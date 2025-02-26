@@ -10,12 +10,10 @@ extension WidgetExtension on Widget? {
   }
 
   /// With custom width
-  SizedBox horizontalSpace(double width) =>
-      SizedBox(width: width.w, child: this);
+  SizedBox withWidth(double width) => SizedBox(width: width.w, child: this);
 
   /// With custom height
-  SizedBox verticalSpace(double height) =>
-      SizedBox(height: height.h, child: this);
+  SizedBox withHeight(double height) => SizedBox(height: height.h, child: this);
 
   /// return padding top
   Padding paddingTop(double top) {

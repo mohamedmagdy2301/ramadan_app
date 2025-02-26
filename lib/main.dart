@@ -4,6 +4,8 @@
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/router/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,17 +25,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      light: ThemeData.light(useMaterial3: true),
-      dark: ThemeData.dark(useMaterial3: true),
-      debugShowFloatingThemeButton: true,
-      initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
-      builder:
-          (theme, darkTheme) => MaterialApp(
-            theme: theme,
-            darkTheme: darkTheme,
-            home: MyHomePage(),
-          ),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: AdaptiveTheme(
+        light: ThemeData.light(useMaterial3: true),
+        dark: ThemeData.dark(useMaterial3: true),
+        debugShowFloatingThemeButton: true,
+        initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
+        builder:
+            (theme, darkTheme) => MaterialApp.router(
+              theme: theme,
+              debugShowCheckedModeBanner: false,
+              darkTheme: darkTheme,
+              routerConfig: AppRouter.appRouter,
+            ),
+      ),
     );
   }
 }

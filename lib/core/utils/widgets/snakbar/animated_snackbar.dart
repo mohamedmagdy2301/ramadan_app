@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 
 // Widget for Animated SnackBar
 class AnimatedSnackBar extends StatefulWidget {
@@ -87,9 +88,8 @@ class _AnimatedSnackBarState extends State<AnimatedSnackBar>
                 Expanded(
                   child: Text(
                     widget.message,
-                    style: TextStyle(
+                    style: StyleText.medium14().copyWith(
                       color: widget.textColor ?? Colors.white,
-                      fontSize: 13.sp,
                     ),
                   ),
                 ),
@@ -98,7 +98,7 @@ class _AnimatedSnackBarState extends State<AnimatedSnackBar>
                     onPressed: widget.onPressedAction,
                     child: Text(
                       widget.labelAction!,
-                      style: const TextStyle(color: Colors.white),
+                      style: StyleText.medium12().copyWith(color: Colors.white),
                     ),
                   ),
               ],

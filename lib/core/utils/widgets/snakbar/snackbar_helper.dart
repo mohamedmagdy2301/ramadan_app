@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ramadan_app/core/utils/funcations/funcations.dart';
+import 'package:ramadan_app/core/utils/helper/funcations_helper.dart';
 
 import 'animated_snackbar.dart';
 

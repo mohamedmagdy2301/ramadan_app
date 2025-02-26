@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
+import 'package:ramadan_app/core/router/router_helper.dart';
+import 'package:ramadan_app/core/router/routes.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,6 +12,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      navigateAndFinish(context, AppRoutes.home);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

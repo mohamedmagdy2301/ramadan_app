@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ramadan_app/main.dart';
 import 'package:ramadan_app/splash_screen.dart';
 
 import 'routes.dart';
@@ -23,6 +24,15 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const SplashScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.home,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const HomeScreen(),
             ),
       ),
     ],

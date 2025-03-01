@@ -13,6 +13,7 @@ class StyleText {
       fontSize: fontSize.sp,
       fontWeight: fontWeight,
       color: Colors.black,
+      fontFamily: "Cairo",
     );
   }
 

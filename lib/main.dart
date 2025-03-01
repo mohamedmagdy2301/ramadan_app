@@ -5,7 +5,11 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
+
+import 'core/theming/app_theme_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +34,8 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: AdaptiveTheme(
-        light: ThemeData.light(useMaterial3: true),
-        dark: ThemeData.dark(useMaterial3: true),
+        light: AppThemeData.lightTheme(AppColors.primary),
+        dark: AppThemeData.darkTheme(AppColors.primary),
         debugShowFloatingThemeButton: true,
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
         builder:
@@ -67,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('Light'),
+                  Text('Light', style: TextStyle(color: context.primaryColor)),
                   const SizedBox(width: 10),
                   Switch.adaptive(
                     value: AdaptiveTheme.of(context).mode.isDark,
@@ -80,10 +84,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   const SizedBox(width: 10),
-                  const Text('Dark'),
+                  Text('Dark', style: TextStyle(color: context.primaryColor)),
                 ],
               ),
               const SizedBox(height: 60),
+              FilledButton(
+                onPressed:
+                    () => AdaptiveTheme.of(context).setTheme(
+                      light: AppThemeData.lightTheme(Colors.green),
+                      dark: AppThemeData.darkTheme(Colors.green),
+                    ),
+                style: ElevatedButton.styleFrom(
+                  visualDensity: const VisualDensity(
+                    horizontal: 4,
+                    vertical: 2,
+                  ),
+                ),
+                child: const Text('Set Custom Theme'),
+              ),
             ],
           ),
         ),

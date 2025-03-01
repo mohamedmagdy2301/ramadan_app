@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ramadan_app/Azkary_app.dart';
+import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/main.dart';
 import 'package:ramadan_app/splash_screen.dart';
 

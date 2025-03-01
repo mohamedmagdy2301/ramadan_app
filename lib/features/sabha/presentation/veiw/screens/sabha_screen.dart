@@ -116,13 +116,13 @@ class _SabhaScreenState extends State<SabhaScreen> {
       title: Text(
         AppStrings.sabha,
 
-        style: StyleText.bold36().copyWith(color: AppColors.white),
+        style: StyleText.bold36().copyWith(color: context.onPrimaryColor),
       ),
       centerTitle: true,
       flexibleSpace: Container(),
       elevation: 4,
       toolbarHeight: 60.h,
-      backgroundColor: context.theme.scaffoldBackgroundColor,
+      backgroundColor: context.primaryColor.withAlpha(200),
       actions: [
         counter != 0
             ? IconButton(

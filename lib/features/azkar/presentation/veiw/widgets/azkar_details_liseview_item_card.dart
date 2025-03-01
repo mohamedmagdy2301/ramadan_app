@@ -27,7 +27,10 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
         onTap: onCounterChanged,
         child: Card(
           elevation: 4,
-          color: !context.isDark ? Colors.grey.shade100 : Colors.grey.shade900,
+          color:
+              !context.isDark
+                  ? const Color.fromARGB(255, 207, 207, 207)
+                  : Colors.grey.shade900,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -53,19 +56,13 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
                     Text(
                       "الذكر ${index + 1}",
                       style: StyleText.bold18().copyWith(
-                        color:
-                            counter ==
-                                    (int.parse(
-                                      dataList?[index]["count"] ?? "0",
-                                    ))
-                                ? context.primaryColor
-                                : context.onPrimaryColor,
+                        color: context.onPrimaryColor,
                       ),
                     ),
                     counter == (int.parse(dataList?[index]["count"] ?? "0"))
                         ? Icon(
                           Icons.check_circle_outline,
-                          color: context.primaryColor,
+                          color: context.onPrimaryColor,
                         )
                         : Text(
                           "التكرار : $counter / ${dataList?[index]["count"]}",

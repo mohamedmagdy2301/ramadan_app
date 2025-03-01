@@ -20,7 +20,9 @@ extension ContextExtensions on BuildContext {
 
   //! App Theme Data
   ThemeData get theme => AdaptiveTheme.of(this).theme;
-  get primaryColor => AdaptiveTheme.of(this).theme.primaryColor;
+  Color get primaryColor => AdaptiveTheme.of(this).theme.primaryColor;
+  Color get onPrimaryColor =>
+      AdaptiveTheme.of(this).theme.colorScheme.onPrimary;
 
   AdaptiveThemeMode get mode => AdaptiveTheme.of(this).mode;
 

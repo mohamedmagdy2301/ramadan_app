@@ -11,6 +11,7 @@ class AppThemeData {
 
     colorScheme: ColorScheme.fromSeed(
       seedColor: seedColor,
+      onPrimary: AppColors.textDarkColor,
       brightness: Brightness.dark,
     ),
     iconTheme: const IconThemeData(color: AppColors.textDarkColor),
@@ -35,6 +36,7 @@ class AppThemeData {
     primaryColor: seedColor,
     colorScheme: ColorScheme.fromSeed(
       seedColor: seedColor,
+      onPrimary: AppColors.textLightColor,
       brightness: Brightness.light,
     ),
     iconTheme: const IconThemeData(color: AppColors.textLightColor),

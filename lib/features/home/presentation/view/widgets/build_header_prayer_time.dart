@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
@@ -24,10 +25,10 @@ class BuildHeaderPrayerTime extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(Icons.watch_later_outlined, color: context.onPrimaryColor),
+          Icon(Icons.watch_later_outlined, color: AppColors.white),
           Text(
             AppStrings.prayerTimes,
-            style: StyleText.medium18().copyWith(color: context.onPrimaryColor),
+            style: StyleText.medium18().copyWith(color: AppColors.white),
           ),
         ],
       ),

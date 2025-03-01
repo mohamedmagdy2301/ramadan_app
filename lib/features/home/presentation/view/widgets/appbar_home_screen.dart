@@ -23,7 +23,7 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
           10.hSpace,
           Text(
             '${time.dayWeek} ${time.dayMonth},${time.month}',
-            style: StyleText.medium26(),
+            style: StyleText.bold24().copyWith(color: context.onPrimaryColor),
           ),
           3.hSpace,
           Text(

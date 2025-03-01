@@ -23,14 +23,13 @@ class NextPrayerCard extends StatelessWidget {
       child: BlocBuilder<NextPrayerCubit, NextPrayerState>(
         builder: (context, state) {
           return Container(
-            height: 140.h,
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  context.primaryColor.withAlpha(150),
-                  context.primaryColor.withAlpha(200),
-                  context.primaryColor.withAlpha(250),
+                  context.primaryColor.withAlpha(context.isDark ? 150 : 200),
+                  context.primaryColor.withAlpha(context.isDark ? 200 : 225),
+                  context.primaryColor.withAlpha(context.isDark ? 250 : 250),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -38,7 +37,7 @@ class NextPrayerCard extends StatelessWidget {
               ),
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 18.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

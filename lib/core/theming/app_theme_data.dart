@@ -51,6 +51,7 @@ class AppThemeData {
       backgroundColor: AppColors.backgroundLightColor,
       foregroundColor: AppColors.textLightColor,
       elevation: 0,
+      centerTitle: true,
     ),
   );
 }

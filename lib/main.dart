@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
       child: AdaptiveTheme(
         light: AppThemeData.lightTheme(AppColors.primary),
         dark: AppThemeData.darkTheme(AppColors.primary),
-        debugShowFloatingThemeButton: true,
+        debugShowFloatingThemeButton: false,
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
         builder:
             (theme, darkTheme) => BlocProvider<PrayerTimesCubit>(

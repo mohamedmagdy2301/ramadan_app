@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtensions on BuildContext {
@@ -16,4 +17,7 @@ extension ContextExtensions on BuildContext {
   bool get canPop => Navigator.canPop(this);
 
   void pop<T extends Object>([T? result]) => Navigator.pop(this, result);
+  AdaptiveThemeMode get mode => AdaptiveTheme.of(this).mode;
+
+  bool get isDark => mode.isDark;
 }

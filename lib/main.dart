@@ -72,6 +72,18 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool isDark = false;
+  final List<Color> colors = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.purple,
+    Colors.orange,
+    Colors.pink,
+    Colors.teal,
+    Colors.amber,
+    Colors.cyan,
+    Colors.indigo,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,24 +113,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
               const SizedBox(height: 60),
-              FilledButton(
-                onPressed:
-                    () => AdaptiveTheme.of(context).setTheme(
-                      light: AppThemeData.lightTheme(Colors.green),
-                      dark: AppThemeData.darkTheme(Colors.green),
-                    ),
-                style: ElevatedButton.styleFrom(
-                  visualDensity: const VisualDensity(
-                    horizontal: 4,
-                    vertical: 2,
-                  ),
-                ),
-                child: const Text('Set Custom Theme'),
+
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children:
+                    colors
+                        .map((color) => CircleColorPaletteWidget(color: color))
+                        .toList(),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class CircleColorPaletteWidget extends StatelessWidget {
+  const CircleColorPaletteWidget({super.key, required this.color});
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        AdaptiveTheme.of(context).setTheme(
+          light: AppThemeData.lightTheme(color),
+          dark: AppThemeData.darkTheme(color),
+        );
+      },
+      child: CircleAvatar(backgroundColor: color, radius: 28.r),
     );
   }
 }

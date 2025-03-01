@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
@@ -24,10 +25,6 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   List<Widget> _buildScreens() {
     return [
-      // const AzkarScreen(),
-      // HomeScreen(),
-
-      // const SabhaScreen(),
       const HomeScreen(),
       const SettingsScreen(),
       const SettingsScreen(),
@@ -104,23 +101,62 @@ class _MainScaffoldState extends State<MainScaffold> {
     ];
   }
 
+  Future<bool> _onBackPressed() async {
+    return await showDialog(
+          context: context,
+          builder:
+              (context) => AlertDialog(
+                title: const Text("الخروج من التطبيق"),
+                content: const Text("هل ترغب بالخروج من التطبيق؟"),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text("الغاء"),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text("الخروج"),
+                  ),
+                ],
+              ),
+        ) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarsItems(),
-      navBarHeight: 70.h,
-
-      handleAndroidBackButtonPress: true,
-      resizeToAvoidBottomInset: true,
-      stateManagement: true,
-      hideNavigationBarWhenKeyboardAppears: true,
-      navBarStyle: NavBarStyle.style13,
-      onWillPop: (context) async {
-        return true;
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        bool shouldExit = await _onBackPressed();
+        if (shouldExit) {
+          SystemNavigator.pop();
+        }
       },
+      child: PersistentTabView(
+        context,
+        controller: _controller,
+        screens: _buildScreens(),
+        items: _navBarsItems(),
+        navBarHeight: 70.h,
+        backgroundColor: context.backgroundColor,
+        handleAndroidBackButtonPress: true,
+        resizeToAvoidBottomInset: true,
+        stateManagement: true,
+        hideNavigationBarWhenKeyboardAppears: true,
+        navBarStyle: NavBarStyle.style13,
+        decoration: NavBarDecoration(
+          borderRadius: BorderRadius.circular(0),
+          boxShadow: [
+            BoxShadow(
+              color: context.onPrimaryColor.withAlpha(100),
+              blurRadius: 2,
+              spreadRadius: .5,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

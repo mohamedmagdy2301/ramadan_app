@@ -4,7 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart';
+import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 
 class TodayDoaaCard extends StatefulWidget {
   const TodayDoaaCard({super.key});
@@ -39,42 +42,35 @@ class _TodayDoaaCardState extends State<TodayDoaaCard> {
           !context.isDark
               ? Colors.grey.shade100
               : const Color.fromARGB(255, 31, 31, 31),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.bookmark, color: context.primaryColor, size: 20.sp),
-                SizedBox(width: 5.w),
-                Text(
-                  AppStrings.daiaToday,
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    color: context.primaryColor,
-                  ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.bookmark, color: context.primaryColor, size: 20.sp),
+              5.wSpace,
+              Text(
+                AppStrings.daiaToday,
+                style: StyleText.semiBold16().copyWith(
+                  color: context.primaryColor,
                 ),
-              ],
-            ),
-            SizedBox(height: 15.h),
-            Text(
-              displayRandomZikr(),
-              style: TextStyle(
-                fontSize: 17.sp,
-                fontWeight: FontWeight.w500,
-                height: 2.h,
-                wordSpacing: 1.w,
-                color: context.isDark ? Colors.black : Colors.white,
-                fontFamily: "Amiri",
               ),
+            ],
+          ),
+          15.hSpace,
+          Text(
+            displayRandomZikr(),
+            style: StyleText.medium18().copyWith(
+              height: 2.h,
+              wordSpacing: 1.w,
+              color: !context.isDark ? Colors.black : Colors.white,
+              fontFamily: "Amiri",
             ),
-          ],
-        ),
-      ),
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 15, vertical: 10),
     );
   }
 }

@@ -4,10 +4,13 @@
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
+import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
 
 import 'core/theming/app_theme_data.dart';
 
@@ -39,25 +42,35 @@ class _MyAppState extends State<MyApp> {
         debugShowFloatingThemeButton: true,
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
         builder:
-            (theme, darkTheme) => MaterialApp.router(
-              theme: theme,
-              debugShowCheckedModeBanner: false,
-              darkTheme: darkTheme,
-              routerConfig: AppRouter.appRouter,
+            (theme, darkTheme) => BlocProvider<PrayerTimesCubit>(
+              create: (context) => PrayerTimesCubit()..fetchPrayerTimes(),
+              child: MaterialApp.router(
+                theme: theme,
+                debugShowCheckedModeBanner: false,
+                darkTheme: darkTheme,
+                localizationsDelegates: const [
+                  GlobalCupertinoLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                ],
+                supportedLocales: const [Locale("ar", "AE")],
+                locale: const Locale("ar", "AE"),
+                routerConfig: AppRouter.appRouter,
+              ),
             ),
       ),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
   bool isDark = false;
   @override
   Widget build(BuildContext context) {

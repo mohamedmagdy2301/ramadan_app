@@ -4,6 +4,7 @@ import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/main.dart';
 import 'package:ramadan_app/splash_screen.dart';
 
+import '../../features/home/presentation/view/screens/home_screen.dart';
 import 'routes.dart';
 
 abstract class AppRouter {
@@ -34,6 +35,15 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const MainScaffold(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.settings,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const SettingsScreen(),
             ),
       ),
       GoRoute(

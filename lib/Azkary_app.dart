@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 
-import 'core/constants/app_colors.dart';
 import 'main.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -25,12 +25,13 @@ class _MainScaffoldState extends State<MainScaffold> {
   List<Widget> _buildScreens() {
     return [
       // const AzkarScreen(),
-      HomeScreen(),
-      HomeScreen(),
-      HomeScreen(),
-      HomeScreen(),
+      // HomeScreen(),
+
       // const SabhaScreen(),
-      // const SettingsScreen(),
+      const HomeScreen(),
+      const SettingsScreen(),
+      const SettingsScreen(),
+      const SettingsScreen(),
     ];
   }
 
@@ -39,65 +40,65 @@ class _MainScaffoldState extends State<MainScaffold> {
       PersistentBottomNavBarItem(
         icon: Image.asset(
           'assets/images/praying2.png',
-          height: 35,
-          color: AppColors.primary,
-          width: 35,
+          height: 35.sp,
+          color: context.primaryColor,
+          width: 35.sp,
         ),
         inactiveIcon: Image.asset(
           'assets/images/praying.png',
-          height: 35,
-          width: 35,
+          height: 35.sp,
+          width: 35.sp,
         ),
         title: (" "),
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Image.asset(
           'assets/images/crescent2.png',
-          height: 30,
-          color: AppColors.primary,
-          width: 30,
+          height: 30.sp,
+          color: context.primaryColor,
+          width: 30.sp,
         ),
         inactiveIcon: Image.asset(
           'assets/images/crescent.png',
-          height: 30,
-          width: 30,
+          height: 30.sp,
+          width: 30.sp,
         ),
         title: (" "),
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Image.asset(
           "assets/images/prayer-beads.png",
-          height: 35,
-          color: AppColors.primary,
-          width: 35,
+          height: 35.sp,
+          color: context.primaryColor,
+          width: 35.sp,
         ),
         inactiveIcon: Image.asset(
           'assets/images/arabic2.png',
-          height: 35,
-          width: 35,
+          height: 35.sp,
+          width: 35.sp,
         ),
         title: (" "),
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Image.asset(
           'assets/images/setting-bulb2.png',
-          height: 30,
-          color: AppColors.primary,
-          width: 30,
+          height: 30.sp,
+          color: context.primaryColor,
+          width: 30.sp,
         ),
         inactiveIcon: Image.asset(
           'assets/images/setting-bulb.png',
-          height: 30,
-          width: 30,
+          height: 28.sp,
+          width: 28.sp,
         ),
         title: (" "),
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
     ];
@@ -111,7 +112,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       navBarHeight: 70.h,
-      backgroundColor: context.isDark ? Colors.black : AppColors.white,
+
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,

@@ -6,6 +6,7 @@ import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 
 import 'features/azkar/presentation/veiw/screens/azkar_screen.dart';
+import 'features/sabha/presentation/veiw/screens/sabha_screen.dart';
 import 'main.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -28,7 +29,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return [
       AzkarScreen(),
       const HomeScreen(),
-      const SettingsScreen(),
+      const SabhaScreen(),
       const SettingsScreen(),
     ];
   }

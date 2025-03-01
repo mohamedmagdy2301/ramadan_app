@@ -12,10 +12,16 @@ import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
 import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
 
+import 'core/local_storage/shared_preferences_manager.dart';
 import 'core/theming/app_theme_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.wait([
+    ScreenUtil.ensureScreenSize(),
+    // AwesomeNotificationManager.initialize(),
+    SharedPreferencesManager.sharedPreferencesInitialize(),
+  ]);
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   runApp(MyApp(savedThemeMode: savedThemeMode));
 }

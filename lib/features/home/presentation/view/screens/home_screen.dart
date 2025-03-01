@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
 
 import '../../view_model/prayer_times_cubit/prayper_times_cubit.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               child: Text(
                 state.message,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20.sp),
+                style: StyleText.bold18().copyWith(color: AppColors.grey),
               ),
             ),
           );

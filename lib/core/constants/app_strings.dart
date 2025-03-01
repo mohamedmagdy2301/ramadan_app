@@ -36,6 +36,7 @@ class AppStrings {
   static const String themesMode = "المظهر والوضع";
 
   static const String language = "اللغة";
+  static const String colorPalette = "اختر لونك المفضل";
   static const String aboutApp = "عن التطبيق";
 
   static const String aboutAppContent =

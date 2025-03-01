@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
+import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 
 import 'features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'features/sabha/presentation/veiw/screens/sabha_screen.dart';
-import 'main.dart';
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});
@@ -30,7 +30,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       AzkarScreen(),
       const HomeScreen(),
       const SabhaScreen(),
-      const SettingsScreen(),
+      SettingsScreen(),
     ];
   }
 

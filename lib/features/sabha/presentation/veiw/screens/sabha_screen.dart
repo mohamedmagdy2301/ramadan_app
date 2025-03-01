@@ -122,7 +122,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
       flexibleSpace: Container(),
       elevation: 4,
       toolbarHeight: 60.h,
-      backgroundColor: context.primaryColor,
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       actions: [
         counter != 0
             ? IconButton(

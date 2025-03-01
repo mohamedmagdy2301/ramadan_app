@@ -5,6 +5,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 
+import 'features/azkar/presentation/veiw/screens/azkar_screen.dart';
 import 'main.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -25,8 +26,8 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   List<Widget> _buildScreens() {
     return [
+      AzkarScreen(),
       const HomeScreen(),
-      const SettingsScreen(),
       const SettingsScreen(),
       const SettingsScreen(),
     ];

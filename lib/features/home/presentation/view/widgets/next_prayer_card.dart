@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart';
 
 import '../../../domain/prayer_times_entity.dart';
 import '../../view_model/next_prayer/next_prayer_cubit.dart';
@@ -51,10 +54,8 @@ class NextPrayerCard extends StatelessWidget {
                     ),
                     Text(
                       locationName,
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                      style: StyleText.medium18().copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ],
@@ -68,18 +69,14 @@ class NextPrayerCard extends StatelessWidget {
                       children: [
                         Text(
                           'متبقي علي',
-                          style: TextStyle(
-                            fontSize: 15.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                          style: StyleText.medium16().copyWith(
+                            color: AppColors.white,
                           ),
                         ),
                         Text(
                           'صلاة ${state.nextPrayerName}',
-                          style: TextStyle(
-                            fontSize: 25.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900,
+                          style: StyleText.black26().copyWith(
+                            color: AppColors.white,
                           ),
                         ),
                       ],
@@ -89,19 +86,15 @@ class NextPrayerCard extends StatelessWidget {
                       children: [
                         Text(
                           state.remainingTime,
-                          style: TextStyle(
-                            fontSize: 26.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900,
+                          style: StyleText.black26().copyWith(
+                            color: AppColors.white,
                           ),
                         ),
-                        SizedBox(width: 5.w),
+                        5.wSpace,
                         Text(
                           'ساعة',
-                          style: TextStyle(
-                            fontSize: 15.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
+                          style: StyleText.regular16().copyWith(
+                            color: AppColors.white,
                           ),
                         ),
                       ],

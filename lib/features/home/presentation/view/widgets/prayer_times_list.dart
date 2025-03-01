@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/widgets/prayer_time_row.dart';
 
 import '../../../../../core/utils/functions/get_status_prayer_name.dart';
@@ -81,10 +82,10 @@ class _PrayerTimesListState extends State<PrayerTimesList> {
         if (nextPrayerTime[0] == prayerName) {
           return context.primaryColor;
         }
-        return isLightTheme ? Colors.black : Colors.white;
+        return context.onPrimaryColor;
       }
     }
-    return Colors.grey;
+    return AppColors.grey;
   }
 
   @override
@@ -95,31 +96,42 @@ class _PrayerTimesListState extends State<PrayerTimesList> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w),
-        child: ListView.builder(
-          itemCount: prayerModels.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            final model = prayerModels[index];
-            return Column(
-              children: [
-                PrayerTimeRow(
-                  title: model.nameAr,
-                  time: model.time,
-                  colorText: _updatePrayerTimeColor(
-                    model.nameEn,
-                    !context.isDark,
-                  ),
+    return Column(
+      children: [
+        for (var model in prayerModels)
+          Column(
+            children: [
+              PrayerTimeRow(
+                title: model.nameAr,
+                time: model.time,
+                colorText: _updatePrayerTimeColor(
+                  model.nameEn,
+                  !context.isDark,
                 ),
-                const Divider(thickness: .3, height: 0),
-              ],
-            );
-          },
-        ),
-      ),
-    );
+              ),
+              const Divider(thickness: .4, height: 0),
+            ],
+          ),
+      ],
+    ).paddingSymmetric(horizontal: 30).expand();
+
+    //  ListView.builder(
+    //   itemCount: prayerModels.length,
+    //   shrinkWrap: true,
+    //   physics: const NeverScrollableScrollPhysics(),
+    //   itemBuilder: (context, index) {
+    //     final model = prayerModels[index];
+    //     return Column(
+    //       children: [
+    //         PrayerTimeRow(
+    //           title: model.nameAr,
+    //           time: model.time,
+    //           colorText: _updatePrayerTimeColor(model.nameEn, !context.isDark),
+    //         ),
+    //         const Divider(thickness: .3, height: 0),
+    //       ],
+    //     );
+    //   },
+    // )
   }
 }

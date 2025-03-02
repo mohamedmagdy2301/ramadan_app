@@ -17,10 +17,9 @@ class PrayerTimeLoadedUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(prayerTimes: prayerTimes),
+      appBar: AppBarHome(prayerTimes: prayerTimes, locationName: locationName),
       body: BodyHomeScreen(
         prayerTimes: prayerTimes,
-        locationName: locationName,
       ).paddingSymmetric(horizontal: 15, vertical: 10),
     );
   }

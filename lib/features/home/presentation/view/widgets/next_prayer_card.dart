@@ -26,6 +26,7 @@ class NextPrayerCard extends StatelessWidget {
       child: BlocBuilder<NextPrayerCubit, NextPrayerState>(
         builder: (context, state) {
           return Container(
+            height: 130.h,
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -40,7 +41,7 @@ class NextPrayerCard extends StatelessWidget {
               ),
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.h),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -73,6 +74,7 @@ class NextPrayerCard extends StatelessWidget {
                             color: AppColors.white,
                           ),
                         ),
+                        5.hSpace,
                         Text(
                           'صلاة ${state.nextPrayerName}',
                           style: StyleText.black26().copyWith(

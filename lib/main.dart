@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:ramadan_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
 import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
 
@@ -14,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
-    // AwesomeNotificationManager.initialize(),
+    AwesomeNotificationManager.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);
   final savedThemeMode = await AdaptiveTheme.getThemeMode();

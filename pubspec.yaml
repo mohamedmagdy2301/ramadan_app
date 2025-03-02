@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
   shared_preferences:
   flutter_native_splash: ^2.4.5
+  awesome_notifications: ^0.10.0
+  permission_handler: ^11.4.0
 
 dev_dependencies:
   flutter_test:

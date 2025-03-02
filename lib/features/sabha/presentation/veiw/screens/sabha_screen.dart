@@ -60,7 +60,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                   boxShadow: [
                     BoxShadow(
-                      color: context.primaryColor,
+                      color: context.primaryColor.withAlpha(200),
                       blurRadius: 3,
                       spreadRadius: 2,
                     ),
@@ -116,12 +116,12 @@ class _SabhaScreenState extends State<SabhaScreen> {
       title: Text(
         AppStrings.sabha,
 
-        style: StyleText.bold36().copyWith(color: context.onPrimaryColor),
+        style: StyleText.bold36().copyWith(color: AppColors.white),
       ),
       centerTitle: true,
       flexibleSpace: Container(),
       elevation: 4,
-      toolbarHeight: 60.h,
+      toolbarHeight: 80.h,
       backgroundColor: context.primaryColor.withAlpha(200),
       actions: [
         counter != 0

@@ -1,7 +1,3 @@
-// Copyright © 2020 Birju Vachhani. All rights reserved.
-// Use of this source code is governed by an Apache license that can be
-// found in the LICENSE file.
-
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         light: AppThemeData.lightTheme(AppColors.primary),
         dark: AppThemeData.darkTheme(AppColors.primary),
         debugShowFloatingThemeButton: false,
-        initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
+        initial: widget.savedThemeMode ?? AdaptiveThemeMode.dark,
         builder:
             (theme, darkTheme) => BlocProvider<PrayerTimesCubit>(
               create: (context) => PrayerTimesCubit()..fetchPrayerTimes(),

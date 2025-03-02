@@ -17,7 +17,7 @@ class AppThemeData {
     iconTheme: const IconThemeData(color: AppColors.textDarkColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.backgroundDarkColor,
-      elevation: 0,
+      elevation: 10,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
       showUnselectedLabels: false,
@@ -42,7 +42,7 @@ class AppThemeData {
     iconTheme: const IconThemeData(color: AppColors.textLightColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.backgroundLightColor,
-      elevation: 0,
+      elevation: 10,
       type: BottomNavigationBarType.fixed,
       showSelectedLabels: false,
       showUnselectedLabels: false,
@@ -51,7 +51,6 @@ class AppThemeData {
       backgroundColor: AppColors.backgroundLightColor,
       foregroundColor: AppColors.textLightColor,
       elevation: 0,
-      centerTitle: true,
     ),
   );
 }

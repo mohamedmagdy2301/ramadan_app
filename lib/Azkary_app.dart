@@ -141,23 +141,12 @@ class _MainScaffoldState extends State<MainScaffold> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
-        navBarHeight: 70.h,
         backgroundColor: context.backgroundColor,
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset: true,
         stateManagement: true,
         hideNavigationBarWhenKeyboardAppears: true,
         navBarStyle: NavBarStyle.style13,
-        decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(0),
-          boxShadow: [
-            BoxShadow(
-              color: context.onPrimaryColor.withAlpha(100),
-              blurRadius: 2,
-              spreadRadius: .5,
-            ),
-          ],
-        ),
       ),
     );
   }

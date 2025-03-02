@@ -13,19 +13,19 @@ class AppBarAzkar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         AppStrings.appName,
-
-        style: StyleText.extraBold32().copyWith(
+        style: StyleText.extraBold34().copyWith(
           color: context.onPrimaryColor,
           fontFamily: "Amiri",
         ),
       ),
       centerTitle: true,
+      forceMaterialTransparency: true,
       flexibleSpace: Container(),
       elevation: 0,
-      toolbarHeight: 90.h,
+      toolbarHeight: 80.h,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(90.h);
+  Size get preferredSize => Size.fromHeight(80.h);
 }

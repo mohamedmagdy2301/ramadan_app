@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart';
 
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/constants/app_text_style.dart';
@@ -41,7 +43,13 @@ class AzkarScreenBody extends StatelessWidget {
                 );
               },
             ),
-            Text(AppStrings.azkarMtnwa, style: StyleText.medium22()),
+            Text(
+              AppStrings.azkarMtnwa,
+              style: StyleText.medium22().copyWith(
+                color: context.onPrimaryColor,
+              ),
+            ),
+            10.hSpace,
             AzkarScreenBodyItem(
               azkarScreenBodyItemModel: azkarScreenBodyItemModel[2],
               onTap: () {

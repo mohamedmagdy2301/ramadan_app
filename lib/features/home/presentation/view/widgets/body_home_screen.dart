@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ramadan_app/features/home/presentation/view/widgets/next_prayer_card.dart';
 import 'package:ramadan_app/features/home/presentation/view/widgets/prayer_times_card.dart';
 import 'package:ramadan_app/features/home/presentation/view/widgets/today_doaa_card.dart';
 

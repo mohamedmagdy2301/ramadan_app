@@ -30,6 +30,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   shared_preferences:
+  flutter_native_splash: ^2.4.5
 
 dev_dependencies:
   flutter_test:

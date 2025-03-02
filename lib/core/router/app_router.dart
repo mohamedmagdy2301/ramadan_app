@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
-import 'package:ramadan_app/splash_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
 import 'routes.dart';
@@ -16,18 +15,9 @@ abstract class AppRouter {
 
   static final GoRouter appRouter = GoRouter(
     navigatorKey: navigatorKey,
-    initialLocation: AppRoutes.splash,
+    initialLocation: AppRoutes.mainScaffold,
     // debugLogDiagnostics: true,
     routes: <RouteBase>[
-      GoRoute(
-        path: AppRoutes.splash,
-        pageBuilder:
-            (context, state) => buildPageWithDefaultTransition<void>(
-              context: context,
-              state: state,
-              child: const SplashScreen(),
-            ),
-      ),
       GoRoute(
         path: AppRoutes.mainScaffold,
         pageBuilder:

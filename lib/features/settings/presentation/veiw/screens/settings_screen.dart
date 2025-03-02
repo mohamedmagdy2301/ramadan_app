@@ -63,10 +63,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Container(
             width: double.infinity,
             height: 140.h,
-            color:
-                context.isDark
-                    ? const Color.fromARGB(255, 48, 48, 48)
-                    : const Color.fromARGB(255, 218, 218, 218),
+            color: context.backgroundColor,
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -101,10 +99,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           )
                           .toList(),
                 ).expand(),
-                const Divider(
-                  color: Color.fromARGB(255, 186, 186, 186),
-                  thickness: 1,
-                  height: 1,
+                Divider(
+                  color: context.onPrimaryColor.withAlpha(120),
+                  thickness: .5,
+                  height: 0,
                 ),
               ],
             ),

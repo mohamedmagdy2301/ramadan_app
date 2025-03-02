@@ -21,10 +21,7 @@ class SettingsRowItem extends StatelessWidget {
           height: 80.h,
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 10.w),
-          color:
-              context.isDark
-                  ? const Color.fromARGB(255, 48, 48, 48)
-                  : const Color.fromARGB(255, 218, 218, 218),
+          color: context.backgroundColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -39,10 +36,10 @@ class SettingsRowItem extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(
-          color: Color.fromARGB(255, 186, 186, 186),
-          thickness: 1,
-          height: 1,
+        Divider(
+          color: context.onPrimaryColor.withAlpha(120),
+          thickness: .5,
+          height: 0,
         ),
       ],
     );

@@ -30,9 +30,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   shared_preferences:
-  flutter_native_splash: ^2.4.5
-  awesome_notifications: ^0.10.0
-  permission_handler: ^11.4.0
+  flutter_native_splash:
+  # awesome_notifications:
+  permission_handler: 
+  flutter_local_notifications: ^18.0.1
+  flutter_timezone: ^4.1.0
 
 dev_dependencies:
   flutter_test:

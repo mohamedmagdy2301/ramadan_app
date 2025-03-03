@@ -15,7 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
-    AwesomeNotificationManager.initialize(),
+    // AwesomeNotificationManager.initialize(),
+    LocalNotificationService.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);
   final savedThemeMode = await AdaptiveTheme.getThemeMode();

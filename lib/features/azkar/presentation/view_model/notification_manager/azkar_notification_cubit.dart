@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:awesome_notifications/awesome_notifications.dart';
+// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ramadan_app/core/local_storage/shared_preferences_manager.dart';
@@ -49,17 +49,31 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
       await saveTimeNotification(timeOfDay0);
 
       // Canceling the previous notification
-      await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
+      // Canceling the previous notification
+      await LocalNotificationService.cancelNotificationById(
+        azkarScreenBodyItemModel.id,
+      );
 
       // Scheduling the notification
-      AwesomeNotificationManager.scheduleAzkarNotification(
+      await LocalNotificationService.showDailyScheduledNotification(
         id: azkarScreenBodyItemModel.id,
         title: azkarScreenBodyItemModel.title,
         body: "موعد ${azkarScreenBodyItemModel.title}",
         selectedHour: timeOfDay0.hour,
         selectedMinute: timeOfDay0.minute,
-        isRepeating: true,
       );
+
+      // AwesomeNotificationManager.cancelNotification(azkarScreenBodyItemModel.id);
+
+      // Scheduling the notification
+      // AwesomeNotificationManager.scheduleAzkarNotification(
+      //   id: azkarScreenBodyItemModel.id,
+      //   title: azkarScreenBodyItemModel.title,
+      //   body: "موعد ${azkarScreenBodyItemModel.title}",
+      //   selectedHour: timeOfDay0.hour,
+      //   selectedMinute: timeOfDay0.minute,
+      //   isRepeating: true,
+      // );
       // Updating the UI
       isSwitchEnable = true;
       saveSwitchIsEnableNotification(isSwitchEnable);
@@ -110,7 +124,7 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
     await saveSwitchIsEnableNotification(isSwitchEnable);
     textButton = "اختيار موعد";
     await saveTextButtonNotification(textButton);
-    await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
+    // await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
 
     emit(NoHasAzkarNotification());
   }

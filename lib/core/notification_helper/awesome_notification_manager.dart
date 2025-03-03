@@ -1,119 +1,142 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
-import 'package:ramadan_app/core/router/app_router.dart';
-import 'package:ramadan_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
-import 'package:ramadan_app/features/azkar/presentation/view/screens/azkar_details_screen.dart';
-import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
-class AwesomeNotificationManager {
-  /// Initialize notifications for Android & iOS
+class LocalNotificationService {
+  static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  static onTap(NotificationResponse response) {}
+
+  /// Initialize Local Notification
   static Future<void> initialize() async {
-    await AwesomeNotifications().initialize('resource://drawable/quran2', [
-      NotificationChannel(
-        channelKey: "schedule_azkar_channel",
-        channelName: 'Scheduled Notifications',
-        channelDescription: 'Notification channel for scheduled Azkar',
-        importance: NotificationImportance.Max,
-        channelShowBadge: false,
-        groupAlertBehavior: GroupAlertBehavior.Children,
-        enableLights: true,
-        enableVibration: true,
-        defaultPrivacy: NotificationPrivacy.Public,
-        onlyAlertOnce: true,
-        playSound: true,
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+          iOS: DarwinInitializationSettings(),
+        );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveBackgroundNotificationResponse: onTap,
+      onDidReceiveNotificationResponse: onTap,
+    );
+  }
+
+  /// Show Basic Notification
+  static Future<void> showBasicNotification() async {
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'basic_channel',
+        'Basic Notifications',
+        importance: Importance.max,
+        priority: Priority.high,
       ),
-    ]);
-
-    await requestNotificationPermission();
-    onActionReceived();
+    );
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Basic Notification',
+      'Body',
+      notificationDetails,
+    );
   }
 
-  /// Request permission for notifications (iOS & Android)
-  static Future<void> requestNotificationPermission() async {
-    if (!await AwesomeNotifications().isNotificationAllowed()) {
-      await AwesomeNotifications().requestPermissionToSendNotifications();
-    }
+  /// Show Repeating Notification every minute
+  static Future<void> showRepeatingNotification() async {
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'repeating_channel',
+        'Repeating Notifications',
+        importance: Importance.max,
+        priority: Priority.high,
+      ),
+    );
+    await flutterLocalNotificationsPlugin.periodicallyShow(
+      1,
+      'Repeating Notification',
+      'Notification Body',
+      RepeatInterval.everyMinute,
+      notificationDetails,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+    );
   }
 
-  /// Schedule Azkar Notification
-  static Future<void> scheduleAzkarNotification({
+  /// Show Scheduled Notification after 10 seconds
+  static Future<void> showScheduledNotification() async {
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'scheduled_channel',
+        'Scheduled Notifications',
+        importance: Importance.max,
+        priority: Priority.high,
+      ),
+    );
+    tz.initializeTimeZones();
+    final String currentTimeZoneLocal =
+        await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(currentTimeZoneLocal));
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      2,
+      'Scheduled Notification',
+      'Body',
+      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 10)),
+      notificationDetails,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+    );
+  }
+
+  /// Show Daily Scheduled Notification
+  static Future<void> showDailyScheduledNotification({
     required int id,
     required String title,
     required String body,
     required int selectedHour,
     required int selectedMinute,
-    required bool isRepeating,
   }) async {
-    final notificationContent = NotificationContent(
-      id: id,
-      channelKey: "schedule_azkar_channel",
-      title: title,
-      body: body,
-      icon: 'resource://drawable/quran2',
-      notificationLayout: NotificationLayout.Default,
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'daily_scheduled_channel',
+        'Daily Scheduled Notifications',
+        importance: Importance.max,
+        priority: Priority.high,
+      ),
     );
-
-    final schedule = NotificationCalendar(
-      hour: selectedHour,
-      minute: selectedMinute,
-      second: 0,
-      repeats: isRepeating,
-      timeZone: await AwesomeNotifications().getLocalTimeZoneIdentifier(),
+    tz.initializeTimeZones();
+    final String currentTimeZoneLocal =
+        await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(currentTimeZoneLocal));
+    final tz.TZDateTime currentTime = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduledDate = tz.TZDateTime(
+      tz.local,
+      currentTime.year,
+      currentTime.month,
+      currentTime.day,
+      selectedHour,
+      selectedMinute,
     );
-
-    await AwesomeNotifications().createNotification(
-      content: notificationContent,
-      schedule: schedule,
-    );
-  }
-
-  /// Setup action listeners for notifications
-  static void onActionReceived() {
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: onActionReceivedMethod,
-    );
-  }
-
-  /// Handle when a notification is tapped (foreground)
-  @pragma('vm:entry-point')
-  static Future<void> onActionReceivedMethod(
-    ReceivedAction receivedAction,
-  ) async {
-    if (receivedAction.actionType == ActionType.SilentAction ||
-        receivedAction.actionType == ActionType.SilentBackgroundAction) {
-      return;
-    } else {
-      return onActionReceivedImplementationMethod(receivedAction);
+    if (scheduledDate.isBefore(currentTime)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      scheduledDate,
+      notificationDetails,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+    );
   }
 
-  /// Handle when a notification is tapped (background)
-  @pragma('vm:entry-point')
-  static Future<void> onBackgroundNotificationMethod(
-    ReceivedAction receivedAction,
-  ) async {
-    onActionReceivedImplementationMethod(receivedAction);
+  /// Cancel All Notifications
+  static Future<void> cancelAllNotifications() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
   }
 
-  /// Navigate to the correct screen when a notification is tapped
-  static Future<void> onActionReceivedImplementationMethod(
-    ReceivedAction receivedAction,
-  ) async {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      AppRouter.navigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) {
-            if (receivedAction.channelKey == "schedule_azkar_channel") {
-              return AzkarDetailsScreen(
-                azkarScreenBodyItemModel:
-                    azkarScreenBodyItemModel[receivedAction.id!],
-              );
-            }
-            return HomeScreen();
-          },
-        ),
-        (route) => false,
-      );
-    });
+  /// Cancel Notification By Id
+  static Future<void> cancelNotificationById(int id) async {
+    await flutterLocalNotificationsPlugin.cancel(id);
   }
 }

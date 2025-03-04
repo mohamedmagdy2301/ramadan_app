@@ -19,14 +19,21 @@ void main() async {
     LocalNotificationService.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);
+
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
-  runApp(MyApp(savedThemeMode: savedThemeMode));
+  final savedThemeColor = await SharedPreferencesManager.getData(
+    key: 'theme_color',
+  );
+  runApp(
+    MyApp(savedThemeMode: savedThemeMode, savedThemeColor: savedThemeColor),
+  );
 }
 
 class MyApp extends StatefulWidget {
   final AdaptiveThemeMode? savedThemeMode;
+  final Color? savedThemeColor;
 
-  const MyApp({super.key, this.savedThemeMode});
+  const MyApp({super.key, this.savedThemeMode, this.savedThemeColor});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -40,8 +47,12 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: AdaptiveTheme(
-        light: AppThemeData.lightTheme(AppColors.primary),
-        dark: AppThemeData.darkTheme(AppColors.primary),
+        light: AppThemeData.lightTheme(
+          widget.savedThemeColor ?? AppColors.primary,
+        ),
+        dark: AppThemeData.darkTheme(
+          widget.savedThemeColor ?? AppColors.primary,
+        ),
         debugShowFloatingThemeButton: false,
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.dark,
         builder:

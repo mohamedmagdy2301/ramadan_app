@@ -1,5 +1,6 @@
 class AppStrings {
   static const String appName = "فَاذْكُرُونِي أَذْكُرْكُمْ";
+  static const String quran = "القران الكريم";
 
   static const String home = "الرئيسية";
   static const String azkar = "اذكار";

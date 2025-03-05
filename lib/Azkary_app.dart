@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/pages/quran_screen.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 
@@ -22,13 +23,14 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 0);
+    _controller = PersistentTabController(initialIndex: 2);
   }
 
   List<Widget> _buildScreens() {
     return [
       AzkarScreen(),
       const HomeScreen(),
+      const QuranScreen(),
       const SabhaScreen(),
       SettingsScreen(),
     ];
@@ -52,6 +54,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
+
       PersistentBottomNavBarItem(
         icon: Image.asset(
           'assets/images/crescent2.png',
@@ -63,6 +66,22 @@ class _MainScaffoldState extends State<MainScaffold> {
           'assets/images/crescent.png',
           height: 30.sp,
           width: 30.sp,
+        ),
+        title: (" "),
+        activeColorPrimary: context.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Image.asset(
+          'assets/images/kaaba.png',
+          height: 35.sp,
+          // color: context.primaryColor,
+          width: 35.sp,
+        ),
+        inactiveIcon: Image.asset(
+          'assets/images/kaaba.png',
+          height: 35.sp,
+          width: 35.sp,
         ),
         title: (" "),
         activeColorPrimary: context.primaryColor,

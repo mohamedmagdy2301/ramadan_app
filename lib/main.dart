@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/notification_helper/awesome_notification_manager.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
@@ -14,7 +15,8 @@ import 'core/theming/app_theme_data.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
-    ScreenUtil.ensureScreenSize(),
+    ScreenUtil.ensureScreenSize(), QuranLibrary().init(),
+
     // AwesomeNotificationManager.initialize(),
     LocalNotificationService.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),

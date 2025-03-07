@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
-import '../../../../../core/constants/app_images.dart';
-import '../../../../../core/utils/functions/convert_num_to_ar.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/utils/functions/convert_num_to_ar.dart';
 
 class NumberWidget extends StatelessWidget {
   const NumberWidget({super.key, required this.num});

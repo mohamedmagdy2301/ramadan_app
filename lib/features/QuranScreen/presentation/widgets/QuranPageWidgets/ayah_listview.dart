@@ -10,7 +10,7 @@ import 'package:ramadan_app/core/extensions/int_extensions.dart' as ext;
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 import 'package:ramadan_app/features/QuranScreen/data/models/ayah_model.dart';
 import 'package:ramadan_app/features/QuranScreen/data/models/quran_chapter_model.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/QuranPageWidgets/number_widget.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/widgets/number_widget.dart';
 
 class AyahListViewWidget extends StatefulWidget {
   final int suraNumber;

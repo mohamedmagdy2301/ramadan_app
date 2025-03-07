@@ -9,8 +9,8 @@ class BookMarkListViewWidget extends StatelessWidget {
     return ListView(
       children: [
         ...BookmarksCtrl.instance.bookmarks.entries.map((entry) {
-          final colorCode = entry.key; // اللون
-          final bookmarks = entry.value; // قائمة العلامات لهذا اللون
+          final colorCode = entry.key;
+          final bookmarks = entry.value;
           return ExpansionTile(
             title: Text(
               colorCode == 0xAAFFD354

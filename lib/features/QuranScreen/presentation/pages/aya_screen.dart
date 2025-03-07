@@ -4,6 +4,8 @@
 // import 'package:ramadan_app/core/extensions/context_extensions.dart';
 // import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
 // import 'package:ramadan_app/features/QuranScreen/Service/AyahService.dart';
+// import 'package:ramadan_app/features/QuranScreen/presentation/widgets/appbar_quran.dart';
+// import 'package:ramadan_app/features/QuranScreen/presentation/widgets/drawar_surah.dart';
 
 // class AyahScreens extends StatefulWidget {
 //   final int suraNumber;
@@ -66,6 +68,8 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
+//       appBar: AppBarQuran(),
+//       drawer: DrawarSurah("ar", context.isDark),
 //       body: QuranLibraryScreen(
 //         ayahIconColor: context.primaryColor,
 //         ayahSelectedBackgroundColor: context.primaryColor,

@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
 
-class DrawarQuran extends StatelessWidget {
+class DrawarSurah extends StatelessWidget {
   final String languageCode;
   final bool isDark;
 
-  const DrawarQuran(this.languageCode, this.isDark, {super.key});
+  const DrawarSurah(this.languageCode, this.isDark, {super.key});
 
   @override
   Widget build(BuildContext context) {

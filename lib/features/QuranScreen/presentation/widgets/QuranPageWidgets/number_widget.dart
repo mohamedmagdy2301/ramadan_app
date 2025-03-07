@@ -21,7 +21,8 @@ class NumberWidget extends StatelessWidget {
           Positioned(
             child: ImageIcon(
               size: 50.r,
-              color: context.primaryColor,
+              color: context.onPrimaryColor.withAlpha(200),
+
               AssetImage(AppAssets.sura),
             ),
           ),
@@ -31,9 +32,9 @@ class NumberWidget extends StatelessWidget {
                 top: 5.h,
                 child: Text(
                   convertNumberToArabic(num.toString()),
-                  style: StyleText.regular16().copyWith(
+                  style: StyleText.semiBold16().copyWith(
                     fontFamily: 'Noto_Nastaliq_Urdu',
-                    color: context.primaryColor,
+                    color: context.onPrimaryColor.withAlpha(200),
                   ),
                 ),
               )
@@ -43,9 +44,9 @@ class NumberWidget extends StatelessWidget {
                 top: 6.h,
                 child: Text(
                   convertNumberToArabic(num.toString()),
-                  style: StyleText.medium(15).copyWith(
+                  style: StyleText.semiBold(15).copyWith(
                     fontFamily: 'Noto_Nastaliq_Urdu',
-                    color: context.primaryColor,
+                    color: context.onPrimaryColor.withAlpha(200),
                   ),
                 ),
               )
@@ -56,7 +57,7 @@ class NumberWidget extends StatelessWidget {
                   convertNumberToArabic(num.toString()),
                   style: StyleText.semiBold(12).copyWith(
                     fontFamily: 'Noto_Nastaliq_Urdu',
-                    color: context.primaryColor,
+                    color: context.onPrimaryColor.withAlpha(200),
                   ),
                 ),
               ),

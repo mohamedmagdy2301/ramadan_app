@@ -1,289 +1,118 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
-import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/appbar_quran.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/drawar_quran.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/widgets/bookmark_listview.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/widgets/jozz_listview.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/widgets/surah_listview.dart';
 
-class QuranScreen extends StatelessWidget {
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/constants/app_text_style.dart';
+
+class QuranScreen extends StatefulWidget {
   const QuranScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final jozzList = QuranLibrary().allJoz;
-    final hizbList = QuranLibrary().allHizb;
-    final surahs = QuranLibrary().getAllSurahs();
-    bool isDark = context.isDark;
-    return Scaffold(
-      appBar: AppBarQuran(),
-      drawer: DefaultDrawer("ar", context.isDark),
-      body: ListView(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: const Color(
-                0xfff6d09d,
-              ).withValues(alpha: isDark ? .5 : .3),
-              border: Border.all(width: 1, color: const Color(0xfff6d09d)),
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-            ),
-            child: ListTile(
-              trailing: const Icon(Icons.search_outlined),
-              title: Text('البحث', style: QuranLibrary().naskhStyle),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (ctx) => QuranLibrarySearchScreen(isDark: isDark),
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 32),
-          ExpansionTile(
-            title: Text('الفهرس', style: QuranLibrary().naskhStyle),
-            expandedCrossAxisAlignment: CrossAxisAlignment.start,
-            backgroundColor: const Color(
-              0xfff6d09d,
-            ).withValues(alpha: isDark ? .6 : .1),
-            collapsedBackgroundColor: const Color(
-              0xfff6d09d,
-            ).withValues(alpha: isDark ? .8 : .3),
-            children: [
-              ExpansionTile(
-                title: Text('الأجزاء', style: QuranLibrary().naskhStyle),
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                iconColor: Colors.black,
-                children: List.generate(
-                  jozzList.length,
-                  (jozzIndex) => Container(
-                    width: MediaQuery.sizeOf(context).width,
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    color:
-                        jozzIndex.isEven
-                            ? const Color(0xfff6d09d).withValues(alpha: .1)
-                            : Colors.transparent,
-                    child: ExpansionTile(
-                      title: Text(
-                        jozzList[jozzIndex],
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      children: List.generate(2, (index) {
-                        final hizbIndex =
-                            (index == 0 && jozzIndex == 0)
-                                ? 0
-                                : ((jozzIndex * 2 + index));
-                        return InkWell(
-                          onTap: () {
-                            QuranLibrary().jumpToHizb(hizbIndex + 1);
-                            Scaffold.of(context).closeDrawer();
-                          },
-                          child: Container(
-                            width: MediaQuery.sizeOf(context).width,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 38,
-                            ),
-                            color:
-                                index.isEven
-                                    ? const Color(
-                                      0xfff6d09d,
-                                    ).withValues(alpha: .1)
-                                    : Colors.transparent,
-                            child: Text(
-                              "${convertNumberToArabic("${hizbIndex + 1}")} ${hizbList[hizbIndex]}",
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
-                  //    )
-                ),
-              ),
-              ExpansionTile(
-                title: Text('السور', style: QuranLibrary().naskhStyle),
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  surahs.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      PersistentNavBarNavigator.pushNewScreen(
-                        context,
-                        withNavBar: false,
-                        screen: QuranLibraryScreen(
-                          useDefaultAppBar: false,
-                          surahNumber: index + 1,
-                          ayahIconColor: context.primaryColor,
-                          ayahSelectedBackgroundColor: context.primaryColor,
-                          backgroundColor: context.backgroundColor,
-                          basmalaStyle: BasmalaStyle(
-                            basmalaColor: context.primaryColor,
-                          ),
-                          isDark: context.isDark,
-                          // circularProgressWidget: const Center(child: CustomLoadingWidget()),
-                          textColor: context.onPrimaryColor,
-                          surahNameStyle: SurahNameStyle(
-                            surahNameColor: context.primaryColor,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 4.0,
-                        horizontal: 8.0,
-                      ),
-                      color:
-                          index.isEven
-                              ? const Color(0xfff6d09d).withValues(alpha: .1)
-                              : Colors.transparent,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    AssetsPath().suraNum,
-                                    width: 50,
-                                    height: 50,
-                                    colorFilter: ColorFilter.mode(
-                                      Colors.black,
-                                      BlendMode.srcIn,
-                                    ),
-                                  ),
-                                  Text(
-                                    '${index + 1}'
-                                        .convertNumbersAccordingToLang(
-                                          languageCode: "ar",
-                                        ),
-                                    style: QuranLibrary().naskhStyle.copyWith(
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          // SizedBox(width: 46),
-                          Expanded(
-                            flex: 8,
-                            child: SvgPicture.asset(
-                              'packages/quran_library/lib/assets/svg/surah_name/00${index + 1}.svg',
-                              width: 200,
-                              height: 40,
-                              colorFilter: ColorFilter.mode(
-                                Colors.black,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          ExpansionTile(
-            title: Text('العلامات', style: QuranLibrary().naskhStyle),
-            expandedCrossAxisAlignment: CrossAxisAlignment.start,
-            backgroundColor: const Color(
-              0xfff6d09d,
-            ).withValues(alpha: isDark ? .6 : .1),
-            collapsedBackgroundColor: const Color(
-              0xfff6d09d,
-            ).withValues(alpha: isDark ? .8 : .3),
-            children: [
-              ...BookmarksCtrl.instance.bookmarks.entries.map((entry) {
-                final colorCode = entry.key; // اللون
-                final bookmarks = entry.value; // قائمة العلامات لهذا اللون
+  State<QuranScreen> createState() => _QuranScreenState();
+}
 
-                return ExpansionTile(
-                  title: Text(
-                    colorCode == 0xAAFFD354
-                        ? 'العلامات الصفراء'
-                        : colorCode == 0xAAF36077
-                        ? 'العلامات الحمراء'
-                        : 'العلامات الخضراء',
-                    style: QuranLibrary().naskhStyle.copyWith(fontSize: 18),
-                  ),
-                  leading: Icon(Icons.bookmark, color: Color(colorCode)),
-                  children:
-                      bookmarks.map((bookmark) {
-                        return ListTile(
-                          leading: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 1.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(color: Color(colorCode)),
-                            ),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Icon(
-                                  Icons.bookmark,
-                                  color: Color(bookmark.colorCode),
-                                  size: 34,
-                                ),
-                                Text(
-                                  bookmark.ayahNumber
-                                      .toString()
-                                      .convertNumbersAccordingToLang(
-                                        languageCode: "ar",
-                                      ),
-                                  style: QuranLibrary().naskhStyle,
-                                ),
-                              ],
-                            ),
-                          ),
-                          title: Text(
-                            bookmark.name,
-                            style: QuranLibrary().naskhStyle.copyWith(
-                              fontSize: 17,
-                            ),
-                          ),
-                          onTap: () {
-                            QuranLibrary().jumpToBookmark(bookmark);
-                            Scaffold.of(context).closeDrawer();
-                          },
-                        );
-                      }).toList(),
-                );
-              }),
-            ],
+class _QuranScreenState extends State<QuranScreen>
+    with TickerProviderStateMixin {
+  late final TabController _tabController;
+  int _selectedIndex = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      initialIndex: _selectedIndex,
+      vsync: this,
+      length: 3,
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() => _selectedIndex = index);
+  }
+
+  final List<Widget> _bodyList = [
+    JozzListViewWidget(),
+    SuraListViewWidget(),
+    BookMarkListViewWidget(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: _buildAppBar(context),
+        // drawer: DrawarQuran("ar", context.isDark),
+        body: _bodyList[_selectedIndex],
+      ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text(
+        AppStrings.quran,
+        style: StyleText.extraBold34().copyWith(
+          color: Colors.white,
+          fontFamily: "Amiri",
+        ),
+      ),
+      // leading: IconButton(
+      //   icon: const Icon(Icons.menu, color: Colors.white),
+      //   onPressed: () => Scaffold.of(context).openDrawer(),
+      // ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search, color: Colors.white),
+          onPressed:
+              () => PersistentNavBarNavigator.pushNewScreen(
+                context,
+                withNavBar: false,
+                screen: QuranLibrarySearchScreen(isDark: context.isDark),
+              ),
+        ),
+      ],
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: context.primaryColor.withAlpha(120),
+      toolbarHeight: 98.h,
+      bottom: TabBar(
+        controller: _tabController,
+        onTap: _onItemTapped,
+        indicatorColor: context.primaryColor,
+        unselectedLabelColor: context.onPrimaryColor,
+        labelColor: context.primaryColor,
+        indicatorSize: TabBarIndicatorSize.tab,
+        dividerHeight: 1.5.h,
+        indicator: BoxDecoration(
+          color: context.primaryColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.r),
+            topRight: Radius.circular(10.r),
           ),
+        ),
+        dividerColor: context.primaryColor,
+        tabs: [
+          _buildTab('الأجزاء'),
+          _buildTab("السور"),
+          _buildTab("المحفوظات"),
         ],
       ),
-      // QuranLibraryScreen(
-      //   useDefaultAppBar: false,
-      //   ayahIconColor: context.primaryColor,
-      //   ayahSelectedBackgroundColor: context.primaryColor,
-      //   backgroundColor: context.backgroundColor,
-      //   basmalaStyle: BasmalaStyle(basmalaColor: context.primaryColor),
-      //   isDark: context.isDark,
-      //   circularProgressWidget: const Center(child: CustomLoadingWidget()),
-      //   textColor: context.onPrimaryColor,
-      //   surahNameStyle: SurahNameStyle(surahNameColor: context.primaryColor),
-      // ),
+    );
+  }
+
+  Tab _buildTab(String title) {
+    return Tab(
+      icon: Text(
+        title,
+        style: StyleText.medium18().copyWith(color: Colors.white),
+      ),
     );
   }
 }

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quran_library/quran.dart';
-import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/widget_extensions.dart';
+import 'package:ramadan_app/features/QuranScreen/presentation/pages/surah_screen.dart';
 
 class JozzListViewWidget extends StatelessWidget {
   const JozzListViewWidget({super.key});
@@ -10,107 +15,64 @@ class JozzListViewWidget extends StatelessWidget {
     final jozzList = QuranLibrary().allJoz;
     final hizbList = QuranLibrary().allHizb;
 
-    return ListView(
-      children: List.generate(
-        jozzList.length,
-        (jozzIndex) => Container(
-          width: MediaQuery.sizeOf(context).width,
-          margin: const EdgeInsets.symmetric(vertical: 4),
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+    return ListView.builder(
+      itemCount: jozzList.length,
+      itemBuilder: (context, jozzIndex) {
+        return Container(
+          width: context.W,
           color:
               jozzIndex.isEven
-                  ? const Color(0xfff6d09d).withValues(alpha: .1)
+                  ? context.primaryColor.withAlpha(20)
                   : Colors.transparent,
           child: ExpansionTile(
+            iconColor: context.onPrimaryColor,
+            collapsedIconColor: context.onPrimaryColor,
             title: Text(
               jozzList[jozzIndex],
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+              style: StyleText.medium20().copyWith(
+                color: context.onPrimaryColor,
               ),
             ),
             children: List.generate(2, (index) {
-              final hizbIndex =
-                  (index == 0 && jozzIndex == 0)
-                      ? 0
-                      : ((jozzIndex * 2 + index));
-              return InkWell(
-                onTap: () {
-                  QuranLibrary().jumpToHizb(hizbIndex + 1);
-                  Scaffold.of(context).closeDrawer();
-                },
-                child: Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 38,
+              final hizbIndex = jozzIndex * 2 + index;
+              return Column(
+                children: [
+                  if (index == 0)
+                    Divider(
+                      height: 1,
+                      thickness: .4,
+                      color: context.onPrimaryColor.withAlpha(100),
+                    ),
+                  InkWell(
+                    onTap: () {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        withNavBar: false,
+                        screen: SurahScreen(),
+                      );
+                      QuranLibrary().jumpToHizb(hizbIndex + 1);
+                    },
+                    child: Container(
+                      width: context.W,
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
+                      color:
+                          index.isEven
+                              ? context.onPrimaryColor.withAlpha(10)
+                              : context.onPrimaryColor.withAlpha(30),
+                      child: Text(
+                        "◉  ${hizbList[hizbIndex]}",
+                        style: StyleText.regular16().copyWith(
+                          color: context.onPrimaryColor,
+                        ),
+                      ).paddingSymmetric(horizontal: 40.w),
+                    ),
                   ),
-                  color:
-                      index.isEven
-                          ? const Color(0xfff6d09d).withValues(alpha: .1)
-                          : Colors.transparent,
-                  child: Text(
-                    "${convertNumberToArabic("${hizbIndex + 1}")} ${hizbList[hizbIndex]}",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                ],
               );
             }),
           ),
-        ),
-      ),
+        );
+      },
     );
-
-    // ListView.builder(
-    //       itemCount: quranData.length,
-    //       itemBuilder: (context, index) {
-    //         var surah = quranData[index];
-    //         return GestureDetector(
-    //           onTap: () {
-    //             PersistentNavBarNavigator.pushNewScreen(
-    //               context,
-    //               withNavBar: false,
-    //               screen: AyahScreens(suraNumber: surah.id),
-    //             );
-    //           },
-    //           child: Container(
-    //             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-    //             child: Row(
-    //               children: [
-    //                 NumberWidget(num: surah.id),
-    //                 14.wSpace,
-    //                 Text(
-    //                   surah.name,
-    //                   style: StyleText.medium24().copyWith(
-    //                     color: context.onPrimaryColor.withAlpha(200),
-    //                     fontFamily: "Amiri",
-    //                   ),
-    //                 ),
-    //                 Spacer(),
-    //                 Text(
-    //                   "${convertNumberToArabic(surah.totalVerses.toString())} ايات",
-    //                   style: StyleText.medium18().copyWith(
-    //                     fontFamily: "Amiri",
-    //                     color: context.onPrimaryColor.withAlpha(180),
-    //                   ),
-    //                 ),
-    //                 8.wSpace,
-    //                 Text(
-    //                   "||",
-    //                   style: StyleText.medium18().copyWith(
-    //                     fontFamily: "Amiri",
-    //                     color: context.onPrimaryColor.withAlpha(180),
-    //                   ),
-    //                 ),
-    //                 8.wSpace,
-    //                 Image.asset(
-    //                   surah.type == "meccan" ? AppAssets.kaaba : AppAssets.mosque,
-    //                   width: 30.w,
-    //                   height: 30.h,
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //         );
   }
 }

@@ -63,10 +63,6 @@ class _QuranScreenState extends State<QuranScreen>
           fontFamily: "Amiri",
         ),
       ),
-      // leading: IconButton(
-      //   icon: const Icon(Icons.menu, color: Colors.white),
-      //   onPressed: () => Scaffold.of(context).openDrawer(),
-      // ),
       actions: [
         IconButton(
           icon: const Icon(Icons.search, color: Colors.white),

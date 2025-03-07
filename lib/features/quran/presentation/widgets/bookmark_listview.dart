@@ -4,7 +4,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/pages/surah_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
 
 class BookMarkListViewWidget extends StatelessWidget {
   const BookMarkListViewWidget({super.key});

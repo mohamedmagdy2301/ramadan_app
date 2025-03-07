@@ -8,8 +8,8 @@ import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart' as ext;
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/pages/surah_screen.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/number_widget.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/widgets/number_widget.dart';
 
 class SuraListViewWidget extends StatefulWidget {
   const SuraListViewWidget({super.key});

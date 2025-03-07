@@ -5,7 +5,7 @@ import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/pages/surah_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
 
 class JozzListViewWidget extends StatelessWidget {
   const JozzListViewWidget({super.key});

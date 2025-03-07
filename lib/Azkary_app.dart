@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/pages/quran_screen.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/quran_screen.dart';
 import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
 
 import 'features/azkar/presentation/view/screens/azkar_screen.dart';
@@ -129,11 +129,16 @@ class _MainScaffoldState extends State<MainScaffold> {
               (context) => AlertDialog(
                 title: const Text("الخروج من التطبيق"),
                 content: const Text("هل ترغب بالخروج من التطبيق؟"),
+                actionsAlignment: MainAxisAlignment.center,
                 actions: [
                   TextButton(
-                    onPressed: () => Navigator.of(context).pop(false),
+                    onPressed: () {
+                      _controller.jumpToTab(2);
+                      Navigator.of(context).pop(false);
+                    },
                     child: const Text("الغاء"),
                   ),
+
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(true),
                     child: const Text("الخروج"),

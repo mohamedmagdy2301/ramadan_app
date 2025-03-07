@@ -5,10 +5,10 @@ import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/pages/surah_screen.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/bookmark_listview.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/jozz_listview.dart';
-import 'package:ramadan_app/features/QuranScreen/presentation/widgets/surah_listview.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/widgets/bookmark_listview.dart';
+import 'package:ramadan_app/features/quran/presentation/widgets/jozz_listview.dart';
+import 'package:ramadan_app/features/quran/presentation/widgets/surah_listview.dart';
 
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/constants/app_text_style.dart';

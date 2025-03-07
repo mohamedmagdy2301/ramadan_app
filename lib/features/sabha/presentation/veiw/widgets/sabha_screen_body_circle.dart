@@ -18,15 +18,16 @@ class SabhaScreenBodyCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300.h,
-      width: 300.w,
+      height: 200.h,
+      width: 200.w,
       decoration: BoxDecoration(
         color: context.primaryColor,
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(20),
+        shape: BoxShape.circle,
+
+        // borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.primaryColor.withAlpha(200),
+            color: context.primaryColor.withAlpha(100),
             blurRadius: 12,
             spreadRadius: 8,
           ),
@@ -50,24 +51,13 @@ class SabhaScreenBodyCircle extends StatelessWidget {
         //   end: Alignment.bottomRight,
         // ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            counter.toString(),
-            maxLines: 1,
-            style: StyleText.bold(
-              100,
-            ).copyWith(color: AppColors.white, fontFamily: "Amiri"),
-          ),
-          Text(
-            selectedSabha,
-            textAlign: TextAlign.center,
-            style: StyleText.bold(
-              40,
-            ).copyWith(color: AppColors.white, fontFamily: "Amiri"),
-          ),
-        ],
+      alignment: Alignment.center,
+      child: Text(
+        counter.toString(),
+        maxLines: 1,
+        style: StyleText.bold(
+          80,
+        ).copyWith(color: AppColors.white, fontFamily: "Amiri"),
       ),
     );
   }

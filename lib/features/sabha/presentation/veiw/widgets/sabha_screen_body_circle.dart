@@ -20,7 +20,6 @@ class SabhaScreenBodyCircle extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.primaryColor.withAlpha(150),
         shape: BoxShape.circle,
-
         // borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(

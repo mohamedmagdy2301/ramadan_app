@@ -118,7 +118,7 @@ class _SabhaScreenState extends State<SabhaScreen> {
                   counter == 0
                       ? 28.sp
                       : counter.toString().length <= 2
-                      ? 180.sp
+                      ? 170.sp
                       : counter.toString().length <= 3
                       ? 150.sp
                       : 90.sp,

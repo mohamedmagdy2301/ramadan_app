@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
 
 import '../../view_model/prayer_times_cubit/prayper_times_cubit.dart';
@@ -23,10 +26,51 @@ class HomeScreen extends StatelessWidget {
         } else if (state is PrayerTimesError) {
           return Scaffold(
             body: Center(
-              child: Text(
-                state.message,
-                textAlign: TextAlign.center,
-                style: StyleText.bold18().copyWith(color: AppColors.grey),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    state.message == "لا يوجد اتصال بالإنترنت"
+                        ? CupertinoIcons.wifi_exclamationmark
+                        : Icons.warning_amber_rounded,
+                    size: 200.sp,
+                    color: context.onPrimaryColor.withAlpha(100),
+                  ),
+                  50.hSpace,
+                  Text(
+                    state.message,
+                    textAlign: TextAlign.center,
+                    style: StyleText.bold26().copyWith(
+                      color: context.onPrimaryColor.withAlpha(100),
+                    ),
+                  ),
+                  50.hSpace,
+
+                  InkWell(
+                    onTap:
+                        () =>
+                            context.read<PrayerTimesCubit>().fetchPrayerTimes(),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 15.h,
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 60.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        color: context.onPrimaryColor.withAlpha(188),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "اعادة الاتصال",
+                        textAlign: TextAlign.center,
+                        style: StyleText.bold20().copyWith(
+                          color: context.backgroundColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );

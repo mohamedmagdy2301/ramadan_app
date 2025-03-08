@@ -62,7 +62,9 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     connectivitySubscription = Connectivity().onConnectivityChanged.listen((
       List<ConnectivityResult> result,
     ) {
-      print("Connectivity changed: $result");
+      if (result.contains(ConnectivityResult.none)) {
+        emit(PrayerTimesError("لا يوجد اتصال بالإنترنت"));
+      }
     });
   }
 

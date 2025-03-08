@@ -24,22 +24,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Color selectedColor = Color.fromARGB(255, 99, 136, 3);
   final List<Color> darkColors = [
     Color.fromARGB(255, 99, 136, 3),
-    Color.fromARGB(255, 159, 162, 214),
     Color(0xFFba9e72),
-    Color(0xFFc195a0),
+    Color.fromARGB(255, 195, 107, 107),
+    Color.fromARGB(255, 112, 166, 178),
     Color(0xFF838073),
-    Color(0xFF8e9acb),
-    Color(0xFFabb270),
+    Color.fromARGB(255, 159, 162, 214),
   ];
 
   final List<Color> lightColors = [
     Color.fromARGB(255, 99, 136, 3),
     Color(0xFF9b151d),
     Color(0xFFc66e59),
-    Color(0xFF6A994E),
-    Color(0xFF0e106d),
     Color(0xFF14213D),
     Color(0xFF496878),
+    Color.fromARGB(255, 120, 115, 73),
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,9 +51,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
               value: AdaptiveTheme.of(context).mode.isDark,
               onChanged: (value) {
                 if (value) {
+                  selectedColor = darkColors[0];
+
                   AdaptiveTheme.of(context).setDark();
+                  AdaptiveTheme.of(context).setTheme(
+                    light: AppThemeData.lightTheme(selectedColor),
+                    dark: AppThemeData.darkTheme(selectedColor),
+                  );
                 } else {
+                  selectedColor = lightColors[0];
+
                   AdaptiveTheme.of(context).setLight();
+                  AdaptiveTheme.of(context).setTheme(
+                    light: AppThemeData.lightTheme(selectedColor),
+                    dark: AppThemeData.darkTheme(selectedColor),
+                  );
                 }
               },
             ),

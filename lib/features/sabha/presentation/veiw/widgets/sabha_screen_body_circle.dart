@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
-import '../../../../../core/constants/app_colors.dart';
-import '../../../../../core/constants/app_text_style.dart';
-
 class SabhaScreenBodyCircle extends StatelessWidget {
   const SabhaScreenBodyCircle({
     super.key,
@@ -27,7 +24,7 @@ class SabhaScreenBodyCircle extends StatelessWidget {
         // borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.primaryColor.withAlpha(100),
+            color: context.primaryColor.withAlpha(context.isDark ? 100 : 200),
             blurRadius: 12,
             spreadRadius: 8,
           ),
@@ -52,13 +49,13 @@ class SabhaScreenBodyCircle extends StatelessWidget {
         // ),
       ),
       alignment: Alignment.center,
-      child: Text(
-        counter.toString(),
-        maxLines: 1,
-        style: StyleText.bold(
-          80,
-        ).copyWith(color: AppColors.white, fontFamily: "Amiri"),
-      ),
+      // child: Text(
+      //   counter.toString(),
+      //   maxLines: 1,
+      //   style: StyleText.bold(
+      //     80,
+      //   ).copyWith(color: AppColors.white, fontFamily: "Amiri"),
+      // ),
     );
   }
 }

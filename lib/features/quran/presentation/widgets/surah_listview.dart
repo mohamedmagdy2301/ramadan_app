@@ -102,8 +102,8 @@ class _SuraListViewWidgetState extends State<SuraListViewWidget> {
                       NumberWidget(num: surahInfo.number),
                       12.wSpace,
                       Text(
-                        filteredSurahs[index],
-                        style: StyleText.medium16().copyWith(
+                        surahInfo.name,
+                        style: StyleText.medium24().copyWith(
                           fontFamily: "Amiri",
                           color: context.onPrimaryColor.withAlpha(180),
                         ),
@@ -117,6 +117,15 @@ class _SuraListViewWidgetState extends State<SuraListViewWidget> {
                         ),
                       ),
                       8.wSpace,
+                      Text(
+                        "||",
+                        style: StyleText.medium16().copyWith(
+                          fontFamily: "Amiri",
+                          color: context.onPrimaryColor.withAlpha(180),
+                        ),
+                      ),
+                      8.wSpace,
+
                       Image.asset(
                         surahInfo.revelationType == "مكية"
                             ? AppAssets.kaaba

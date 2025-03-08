@@ -32,10 +32,9 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
         return;
       }
 
-      final position = await _determinePosition();
+      final position = await determinePosition();
       if (position == null) {
-        emit(PrayerTimesError("تعذر الحصول على الموقع"));
-        return;
+        return; // Error already emitted inside determinePosition
       }
 
       final locationName = await _getLocationName(position);
@@ -45,7 +44,7 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
 
       emit(PrayerTimesLoaded(prayerTimes, locationName));
     } catch (e) {
-      emit(PrayerTimesError("حدث خطأ أثناء تحميل أوقات الصلاة"));
+      emit(PrayerTimesError("حدث خطأ أثناء تحميل أوقات الصلاة: $e"));
     }
   }
 
@@ -77,7 +76,7 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
       try {
         await fetchPrayerTimes();
       } catch (e) {
-        emit(PrayerTimesError(e.toString()));
+        emit(PrayerTimesError("خطأ في تحديث أوقات الصلاة: $e"));
       }
       _scheduleDailyFetch();
     });
@@ -106,7 +105,7 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     }
   }
 
-  Future<Position?> _determinePosition() async {
+  Future<Position?> determinePosition() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       emit(PrayerTimesError('خدمة تحديد الموقع غير مفعلة'));
@@ -117,20 +116,24 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        emit(PrayerTimesError('الوصول للموقع مرفوض'));
+        emit(PrayerTimesError('تم رفض إذن الوصول للموقع'));
         return null;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       emit(
-        PrayerTimesError(
-          'الوصول للموقع مرفوض بشكل دائم، قم بتفعيله من إعدادات الجهاز',
-        ),
+        PrayerTimesError('الوصول للموقع مرفوض دائمًا، قم بتفعيله من الإعدادات'),
       );
+      await Geolocator.openAppSettings();
       return null;
     }
 
-    return await Geolocator.getCurrentPosition();
+    try {
+      return await Geolocator.getCurrentPosition();
+    } catch (e) {
+      emit(PrayerTimesError('فشل الحصول على الموقع: $e'));
+      return null;
+    }
   }
 }

@@ -6,8 +6,8 @@ import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
+import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
 
-import '../../view_model/prayer_times_cubit/prayper_times_cubit.dart';
 import '../widgets/prayer_time_loaded_UI.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -47,9 +47,9 @@ class HomeScreen extends StatelessWidget {
                   50.hSpace,
 
                   InkWell(
-                    onTap:
-                        () =>
-                            context.read<PrayerTimesCubit>().fetchPrayerTimes(),
+                    onTap: () async {
+                      context.read<PrayerTimesCubit>().fetchPrayerTimes();
+                    },
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 20.w,
@@ -62,7 +62,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "اعادة الاتصال",
+                        state.message == "لا يوجد اتصال بالإنترنت"
+                            ? "إعادة الاتصال"
+                            : "حاول مرة أخرى",
                         textAlign: TextAlign.center,
                         style: StyleText.bold20().copyWith(
                           color: context.backgroundColor,

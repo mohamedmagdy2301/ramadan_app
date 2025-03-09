@@ -19,9 +19,9 @@ class CustomNotificationSettings extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          height: 80.h,
           width: double.infinity,
-          color: Colors.transparent,
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          color: context.primaryColor.withAlpha(60),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -33,7 +33,7 @@ class CustomNotificationSettings extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       context.isDark
-                          ? const Color.fromARGB(255, 48, 48, 48)
+                          ? const Color.fromARGB(255, 81, 81, 81)
                           : const Color.fromARGB(255, 218, 218, 218),
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
@@ -58,8 +58,12 @@ class CustomNotificationSettings extends StatelessWidget {
                 ),
               ),
               Switch.adaptive(
-                // activeColor: const Color.fromARGB(255, 90, 123, 8),
-                // activeTrackColor: const Color.fromARGB(255, 156, 214, 9),
+                inactiveTrackColor: context.onPrimaryColor.withAlpha(100),
+                inactiveThumbColor: context.backgroundColor,
+                applyCupertinoTheme: true,
+                trackOutlineColor: WidgetStateColor.resolveWith(
+                  (states) => Colors.transparent,
+                ),
                 value: azkarNotificationCubit.isSwitchEnable,
                 onChanged: (value) {
                   if (azkarNotificationCubit.isSwitchEnable) {
@@ -84,7 +88,7 @@ class CustomNotificationSettings extends StatelessWidget {
           ),
         ),
         Divider(
-          color: Color.fromARGB(255, 186, 186, 186),
+          color: context.onPrimaryColor.withAlpha(80),
           thickness: .5.w,
           height: .5.h,
         ),

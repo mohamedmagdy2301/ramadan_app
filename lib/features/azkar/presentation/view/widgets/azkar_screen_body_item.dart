@@ -20,13 +20,12 @@ class AzkarScreenBodyItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 80.h,
         width: double.infinity,
         alignment: Alignment.centerRight,
-        margin: EdgeInsets.symmetric(vertical: 9.5.h),
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: EdgeInsets.symmetric(vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 35.h),
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(10.r)),
           image: DecorationImage(
             image: AssetImage(azkarScreenBodyItemModel.image),
             fit: BoxFit.fill,

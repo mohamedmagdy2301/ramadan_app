@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
-import 'package:ramadan_app/core/extensions/int_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart' as ext;
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
+import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
 
 class AzkarDetailsLiseviewItemCard extends StatelessWidget {
   final int index;
@@ -22,54 +23,70 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: GestureDetector(
         onTap: onCounterChanged,
         child: Card(
           elevation: 4,
           color:
-              !context.isDark
-                  ? const Color.fromARGB(255, 207, 207, 207)
-                  : Colors.grey.shade900,
+              context.isDark
+                  ? Colors.grey.shade900
+                  : const Color.fromARGB(255, 207, 207, 207),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           child: Column(
             children: [
               Container(
-                height: 50.h,
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10.r),
                     topRight: Radius.circular(10.r),
                   ),
+                  border: Border.symmetric(
+                    vertical: BorderSide(
+                      color: context.primaryColor,
+                      width: .98.w,
+                    ),
+                    horizontal: BorderSide(
+                      color: context.primaryColor,
+                      width: .2.w,
+                    ),
+                  ),
                   color:
-                      !context.isDark
-                          ? const Color.fromARGB(255, 225, 225, 225)
-                          : const Color.fromARGB(255, 68, 68, 68),
+                      context.isDark
+                          ? const Color.fromARGB(255, 25, 25, 25)
+                          : const Color.fromARGB(255, 225, 225, 225),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "الذكر ${index + 1}",
+                      "الذكر  ${convertNumberToArabic((index + 1).toString())}",
                       style: StyleText.bold18().copyWith(
-                        color: context.onPrimaryColor,
+                        color:
+                            counter ==
+                                    (int.parse(
+                                      dataList?[index]["count"] ?? "0",
+                                    ))
+                                ? context.primaryColor
+                                : context.onPrimaryColor,
                       ),
                     ),
+                    Spacer(),
                     counter == (int.parse(dataList?[index]["count"] ?? "0"))
                         ? Icon(
                           Icons.check_circle_outline,
-                          color: context.onPrimaryColor,
+                          color: context.primaryColor,
                         )
                         : Text(
-                          "التكرار : $counter / ${dataList?[index]["count"]}",
-                          style: StyleText.bold18().copyWith(
+                          "${convertNumberToArabic(removeZeroFromStart(counter.toString()))}  /  ${convertNumberToArabic((dataList?[index]["count"]).toString())}",
+                          style: StyleText.extraBold20().copyWith(
                             color: context.onPrimaryColor,
                           ),
                         ),
+                    5.wSpace,
                   ],
                 ),
               ),
@@ -94,4 +111,11 @@ class AzkarDetailsLiseviewItemCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String removeZeroFromStart(String s) {
+  if (s.length == 2 && s[0] == "0") {
+    s = s[1];
+  }
+  return s;
 }

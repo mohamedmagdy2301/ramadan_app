@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
+import 'package:ramadan_app/core/extensions/int_extensions.dart';
 
 import '../../../data/azkar_data.dart';
 import '../../../data/azkar_screen_body_item_model_data.dart';
@@ -52,7 +54,7 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                 appBar: AppBar(
                   title: Text(widget.azkarScreenBodyItemModel.title),
                   elevation: 0,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: context.primaryColor.withAlpha(60),
                   surfaceTintColor: Colors.transparent,
                   actions: [
                     ClearCountAzkarWidget(state: state),
@@ -74,6 +76,7 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                       CustomNotificationSettings(
                         azkarNotificationCubit: azkarNotificationCubit,
                       ),
+                    10.hSpace,
                     Expanded(
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),

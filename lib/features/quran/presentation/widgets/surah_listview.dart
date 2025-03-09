@@ -95,7 +95,7 @@ class _SuraListViewWidgetState extends State<SuraListViewWidget> {
                   ),
                   color:
                       index.isEven
-                          ? context.primaryColor.withAlpha(50)
+                          ? context.primaryColor.withAlpha(20)
                           : Colors.transparent,
                   child: Row(
                     children: [

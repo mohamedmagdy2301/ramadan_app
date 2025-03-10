@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 import 'package:ramadan_app/features/quran/presentation/pages/quran_screen.dart';
@@ -126,26 +127,48 @@ class _MainScaffoldState extends State<MainScaffold> {
   Future<bool> _onBackPressed() async {
     return await showDialog(
           context: context,
-          builder:
-              (context) => AlertDialog(
-                title: const Text("الخروج من التطبيق"),
-                content: const Text("هل ترغب بالخروج من التطبيق؟"),
-                actionsAlignment: MainAxisAlignment.center,
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      _controller.jumpToTab(2);
-                      Navigator.of(context).pop(false);
-                    },
-                    child: const Text("الغاء"),
-                  ),
-
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(true),
-                    child: const Text("الخروج"),
-                  ),
-                ],
+          builder: (context) {
+            _controller.jumpToTab(2);
+            return AlertDialog.adaptive(
+              title: Text(
+                "الخروج من التطبيق",
+                style: StyleText.regular22().copyWith(
+                  color: context.onPrimaryColor,
+                ),
               ),
+              content: Text(
+                "هل ترغب بالخروج من التطبيق؟",
+                textAlign: TextAlign.right,
+                style: StyleText.regular18().copyWith(
+                  color: context.onPrimaryColor,
+                ),
+              ),
+              actionsAlignment: MainAxisAlignment.spaceEvenly,
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    _controller.jumpToTab(2);
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text(
+                    "الغاء",
+                    style: StyleText.regular18().copyWith(
+                      color: context.primaryColor,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(
+                    "الخروج",
+                    style: StyleText.regular18().copyWith(
+                      color: context.primaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ) ??
         false;
   }

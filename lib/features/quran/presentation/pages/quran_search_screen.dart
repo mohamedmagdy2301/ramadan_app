@@ -38,6 +38,7 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
     query = removeDiacritics(query);
     searchResults = QuranLibrary().search(query);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,6 +54,24 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
               Expanded(
                 child: TextField(
                   controller: _controller,
+                  style: StyleText.regular18().copyWith(
+                    color: context.onPrimaryColor,
+                    fontFamily: "Amiri",
+                  ),
+                  cursorColor: context.primaryColor,
+                  textInputAction: TextInputAction.search,
+                  textDirection: TextDirection.rtl,
+                  textAlign: TextAlign.right,
+                  textAlignVertical: TextAlignVertical.center,
+                  textCapitalization: TextCapitalization.sentences,
+                  autocorrect: false,
+                  enableSuggestions: false,
+                  autofocus: true,
+                  cursorHeight: 25.h,
+                  cursorWidth: 1.5.w,
+                  cursorRadius: Radius.circular(10.r),
+                  showCursor: true,
+                  keyboardType: TextInputType.text,
                   onChanged: (value) => setState(() => query = value),
                   onSubmitted: (value) => setState(() => query = value),
                   decoration: InputDecoration(
@@ -127,16 +146,8 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
                       text: "أبدء بالبحث الان عن اي أيه تريدها...",
                     )
                     : searchResults.isEmpty
-                    ? Center(
-                      child: Column(
-                        children: [
-                          200.hSpace,
-                          TextMessageWidget(
-                            text:
-                                "لا يوجد نتائج بحث بهذه الكلمات\nجرب مرة اخرى !!!",
-                          ),
-                        ],
-                      ),
+                    ? TextMessageWidget(
+                      text: "لا يوجد نتائج بحث بهذه الكلمات\nجرب مرة اخرى !!!",
                     )
                     : ListView.builder(
                       itemCount: searchResults.length,
@@ -224,11 +235,11 @@ class TextMessageWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          200.hSpace,
+          140.hSpace,
           Text(
             text,
             textAlign: TextAlign.center,
-            style: StyleText.medium22().copyWith(
+            style: StyleText.medium24().copyWith(
               fontFamily: "Amiri",
               color: context.onPrimaryColor,
             ),

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
-import 'package:ramadan_app/core/extensions/int_extensions.dart';
-import 'package:ramadan_app/core/extensions/widget_extensions.dart';
-import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/quran_search_screen.dart';
 import 'package:ramadan_app/features/quran/presentation/widgets/bookmark_listview.dart';
 import 'package:ramadan_app/features/quran/presentation/widgets/jozz_listview.dart';
 import 'package:ramadan_app/features/quran/presentation/widgets/surah_listview.dart';
@@ -70,16 +67,12 @@ class _QuranScreenState extends State<QuranScreen>
         IconButton(
           icon: const Icon(Icons.search, color: Colors.white),
           onPressed: () {
-            showSearch(
-              context: context,
-              delegate: CustomSearchDelegate(context: context),
+            PersistentNavBarNavigator.pushNewScreen(
+              context,
+              withNavBar: false,
+              screen: QuranSearchScreen(),
             );
           },
-          // => PersistentNavBarNavigator.pushNewScreen(
-          //   context,
-          //   withNavBar: true,
-          //   screen: QuranSearchScreen(),
-          // ),
         ),
       ],
       centerTitle: true,
@@ -118,158 +111,5 @@ class _QuranScreenState extends State<QuranScreen>
         style: StyleText.medium18().copyWith(color: Colors.white),
       ),
     );
-  }
-}
-
-class CustomSearchDelegate extends SearchDelegate {
-  final BuildContext context;
-
-  CustomSearchDelegate({required this.context});
-  @override
-  String? get searchFieldLabel => "ابحث عن أيه..";
-  @override
-  bool get enableSuggestions => true;
-  @override
-  TextStyle? get searchFieldStyle => StyleText.regular20().copyWith(
-    color: context.onPrimaryColor,
-    fontFamily: "Amiri",
-  );
-  @override
-  ThemeData appBarTheme(BuildContext context) {
-    return ThemeData(
-      inputDecorationTheme: InputDecorationTheme(border: InputBorder.none),
-      brightness: context.isDark ? Brightness.dark : Brightness.light,
-      appBarTheme: AppBarTheme(
-        backgroundColor: context.primaryColor.withAlpha(200),
-        foregroundColor: context.onPrimaryColor,
-        toolbarHeight: 75.h,
-      ),
-    );
-  }
-
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: Text(
-          "مسح",
-          style: StyleText.regular18().copyWith(
-            color: context.onPrimaryColor,
-            fontFamily: "Amiri",
-          ),
-        ),
-        onPressed: () {
-          query = '';
-        },
-      ),
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Text("test");
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    String removeDiacritics(String text) {
-      final diacritics = RegExp(r'[\u064B-\u0652]');
-      return text.replaceAll(diacritics, '');
-    }
-
-    query = query.trim();
-    query = removeDiacritics(query);
-    List<AyahModel> searchResult = QuranLibrary().search(query);
-    return query.isEmpty
-        ? Center(
-          child: Column(
-            children: [
-              200.hSpace,
-              Text(
-                "أبدء بالبحث الان عن اي أيه تريدها...",
-                textAlign: TextAlign.center,
-                style: StyleText.medium22().copyWith(
-                  fontFamily: "Amiri",
-                  color: context.onPrimaryColor,
-                ),
-              ),
-            ],
-          ),
-        )
-        : searchResult.isEmpty
-        ? Center(
-          child: Column(
-            children: [
-              200.hSpace,
-              Text(
-                "لا يوجد نتائج بحث بهذه الكلمات\nجرب مرة اخرى !!!",
-                textAlign: TextAlign.center,
-                style: StyleText.medium22().copyWith(
-                  fontFamily: "Amiri",
-                  color: context.onPrimaryColor,
-                ),
-              ).paddingAll(20),
-            ],
-          ),
-        )
-        : ListView.builder(
-          itemCount: searchResult.length,
-          itemBuilder:
-              (context, index) => Container(
-                color:
-                    index.isEven
-                        ? context.primaryColor.withAlpha(30)
-                        : Colors.transparent,
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Text(
-                        searchResult[index].text.replaceAll('\n', ' '),
-                        style: QuranLibrary().hafsStyle.copyWith(
-                          color: context.onPrimaryColor,
-                        ),
-                      ),
-                      subtitle: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "سورة ${searchResult[index].arabicName}",
-                          style: StyleText.medium16().copyWith(
-                            fontFamily: "Amiri",
-                            color: context.onPrimaryColor,
-                          ),
-                        ).paddingSymmetric(horizontal: 10.w, vertical: 5.h),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 5.h,
-                      ),
-                      onTap: () async {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          withNavBar: false,
-                          screen: SurahScreen(),
-                        );
-                        QuranLibrary().jumpToAyah(searchResult[index]);
-                      },
-                    ),
-                    Divider(
-                      color: context.onPrimaryColor.withAlpha(110),
-                      thickness: .5,
-                      height: 1,
-                    ),
-                  ],
-                ),
-              ),
-        );
   }
 }

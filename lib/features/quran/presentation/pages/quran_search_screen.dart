@@ -131,12 +131,14 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
                   color: context.onPrimaryColor,
                 ),
               ),
-              Text(
-                "${searchResults.length} نتائج",
-                style: StyleText.semiBold16().copyWith(
-                  color: context.onPrimaryColor,
-                ),
-              ),
+              searchResults.isEmpty
+                  ? SizedBox()
+                  : Text(
+                    "${convertNumberToArabic((searchResults.length).toString())} نتائج",
+                    style: StyleText.semiBold16().copyWith(
+                      color: context.onPrimaryColor,
+                    ),
+                  ),
             ],
           ).paddingSymmetric(horizontal: 15, vertical: 15),
           Expanded(

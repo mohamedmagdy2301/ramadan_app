@@ -60,6 +60,8 @@ class CustomNotificationSettings extends StatelessWidget {
               Switch.adaptive(
                 inactiveTrackColor: context.onPrimaryColor.withAlpha(100),
                 inactiveThumbColor: context.backgroundColor,
+                activeTrackColor: context.primaryColor,
+                activeColor: context.backgroundColor,
                 applyCupertinoTheme: true,
                 trackOutlineColor: WidgetStateColor.resolveWith(
                   (states) => Colors.transparent,

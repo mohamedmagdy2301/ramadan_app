@@ -22,10 +22,10 @@ class AppBarAzkar extends StatelessWidget implements PreferredSizeWidget {
       forceMaterialTransparency: true,
       flexibleSpace: Container(),
       elevation: 0,
-      toolbarHeight: 80.h,
+      toolbarHeight: 90.h,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(80.h);
+  Size get preferredSize => Size.fromHeight(90.h);
 }

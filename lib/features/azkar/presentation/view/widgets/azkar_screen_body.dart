@@ -16,7 +16,7 @@ class AzkarScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -44,11 +44,10 @@ class AzkarScreenBody extends StatelessWidget {
                 );
               },
             ),
+            4.hSpace,
             Text(
               AppStrings.azkarMtnwa,
-              style: StyleText.medium22().copyWith(
-                color: context.onPrimaryColor,
-              ),
+              style: StyleText.bold24().copyWith(color: context.onPrimaryColor),
             ),
             10.hSpace,
             AzkarScreenBodyItem(

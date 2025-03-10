@@ -22,8 +22,8 @@ class AzkarScreenBodyItem extends StatelessWidget {
       child: Container(
         width: double.infinity,
         alignment: Alignment.centerRight,
-        margin: EdgeInsets.symmetric(vertical: 10.h),
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 35.h),
+        margin: EdgeInsets.symmetric(vertical: 7.h),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 38.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.r)),
           image: DecorationImage(
@@ -38,7 +38,7 @@ class AzkarScreenBodyItem extends StatelessWidget {
         ),
         child: Text(
           azkarScreenBodyItemModel.title,
-          style: StyleText.regular20().copyWith(color: AppColors.white),
+          style: StyleText.medium20().copyWith(color: AppColors.white),
         ),
       ),
     );

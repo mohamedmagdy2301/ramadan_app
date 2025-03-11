@@ -18,12 +18,12 @@ class SabhaScreenBodyCircle extends StatelessWidget {
       height: 200.h,
       width: 200.w,
       decoration: BoxDecoration(
-        color: context.primaryColor.withAlpha(150),
+        color: context.backgroundColor.withAlpha(120),
         shape: BoxShape.circle,
         // borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.primaryColor.withAlpha(context.isDark ? 100 : 200),
+            color: context.primaryColor.withAlpha(context.isDark ? 100 : 160),
             blurRadius: 12,
             spreadRadius: 8,
           ),

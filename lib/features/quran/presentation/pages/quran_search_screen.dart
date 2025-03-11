@@ -125,12 +125,14 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "نتائج البحث",
-                style: StyleText.bold18().copyWith(
-                  color: context.onPrimaryColor,
-                ),
-              ),
+              searchResults.isEmpty
+                  ? SizedBox()
+                  : Text(
+                    "نتائج البحث",
+                    style: StyleText.bold18().copyWith(
+                      color: context.onPrimaryColor,
+                    ),
+                  ),
               searchResults.isEmpty
                   ? SizedBox()
                   : Text(

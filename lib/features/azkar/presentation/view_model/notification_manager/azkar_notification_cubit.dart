@@ -83,8 +83,8 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
         id: azkarScreenBodyItemModel.id,
         title: azkarScreenBodyItemModel.title,
         body: "موعد ${azkarScreenBodyItemModel.title}",
-        selectedHour: timeOfDay0.hour,
-        selectedMinute: timeOfDay0.minute,
+        hour: timeOfDay0.hour,
+        minute: timeOfDay0.minute,
       );
 
       //! Updating the UI

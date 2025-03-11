@@ -8,6 +8,7 @@ import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart' as ext;
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
+import 'package:ramadan_app/features/quran/presentation/pages/quran_search_screen.dart';
 import 'package:ramadan_app/features/quran/presentation/pages/surah_screen.dart';
 import 'package:ramadan_app/features/quran/presentation/widgets/number_widget.dart';
 
@@ -71,76 +72,81 @@ class _SuraListViewWidgetState extends State<SuraListViewWidget> {
             ),
           ),
         ).paddingAll(8),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filteredSurahs.length,
-            itemBuilder: (context, index) {
-              final surahIndex = surahs.indexOf(filteredSurahs[index]);
-              final surahInfo = QuranLibrary().getSurahInfo(
-                surahNumber: surahIndex,
-              );
-              return InkWell(
-                onTap: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    withNavBar: false,
-                    screen: SurahScreen(),
+        filteredSurahs.isEmpty
+            ? TextMessageWidget(
+              text: "لا يوجد نتائج بحث بهذه الكلمات\nجرب مرة اخرى !!!",
+              fontSize: 60,
+            )
+            : Expanded(
+              child: ListView.builder(
+                itemCount: filteredSurahs.length,
+                itemBuilder: (context, index) {
+                  final surahIndex = surahs.indexOf(filteredSurahs[index]);
+                  final surahInfo = QuranLibrary().getSurahInfo(
+                    surahNumber: surahIndex,
                   );
-                  QuranLibrary().jumpToSurah(surahIndex + 1);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 8.h,
-                    horizontal: 10.w,
-                  ),
-                  color:
-                      index.isEven
-                          ? context.primaryColor.withAlpha(20)
-                          : Colors.transparent,
-                  child: Row(
-                    children: [
-                      NumberWidget(num: surahInfo.number),
-                      12.wSpace,
-                      Text(
-                        surahInfo.name,
-                        style: StyleText.medium24().copyWith(
-                          fontFamily: "Amiri",
-                          color: context.onPrimaryColor.withAlpha(180),
-                        ),
+                  return InkWell(
+                    onTap: () {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        withNavBar: false,
+                        screen: SurahScreen(),
+                      );
+                      QuranLibrary().jumpToSurah(surahIndex + 1);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8.h,
+                        horizontal: 10.w,
                       ),
-                      Spacer(),
-                      Text(
-                        "${convertNumberToArabic(surahInfo.ayahsNumber.toString())} ايات",
-                        style: StyleText.medium16().copyWith(
-                          fontFamily: "Amiri",
-                          color: context.onPrimaryColor.withAlpha(180),
-                        ),
-                      ),
-                      8.wSpace,
-                      Text(
-                        "||",
-                        style: StyleText.medium16().copyWith(
-                          fontFamily: "Amiri",
-                          color: context.onPrimaryColor.withAlpha(180),
-                        ),
-                      ),
-                      8.wSpace,
+                      color:
+                          index.isEven
+                              ? context.primaryColor.withAlpha(20)
+                              : Colors.transparent,
+                      child: Row(
+                        children: [
+                          NumberWidget(num: surahInfo.number),
+                          12.wSpace,
+                          Text(
+                            surahInfo.name,
+                            style: StyleText.medium24().copyWith(
+                              fontFamily: "Amiri",
+                              color: context.onPrimaryColor.withAlpha(180),
+                            ),
+                          ),
+                          Spacer(),
+                          Text(
+                            "${convertNumberToArabic(surahInfo.ayahsNumber.toString())} ايات",
+                            style: StyleText.medium16().copyWith(
+                              fontFamily: "Amiri",
+                              color: context.onPrimaryColor.withAlpha(180),
+                            ),
+                          ),
+                          8.wSpace,
+                          Text(
+                            "||",
+                            style: StyleText.medium16().copyWith(
+                              fontFamily: "Amiri",
+                              color: context.onPrimaryColor.withAlpha(180),
+                            ),
+                          ),
+                          8.wSpace,
 
-                      Image.asset(
-                        surahInfo.revelationType == "مكية"
-                            ? AppAssets.kaaba
-                            : AppAssets.mosque,
-                        width: 30.w,
-                        height: 30.h,
+                          Image.asset(
+                            surahInfo.revelationType == "مكية"
+                                ? AppAssets.kaaba
+                                : AppAssets.mosque,
+                            width: 30.w,
+                            height: 30.h,
+                          ),
+                          8.wSpace,
+                        ],
                       ),
-                      8.wSpace,
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
+                    ),
+                  );
+                },
+              ),
+            ),
       ],
     );
   }

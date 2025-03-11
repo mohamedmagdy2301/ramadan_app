@@ -231,8 +231,9 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
 }
 
 class TextMessageWidget extends StatelessWidget {
-  const TextMessageWidget({super.key, required this.text});
+  const TextMessageWidget({super.key, required this.text, this.fontSize});
   final String text;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -252,7 +253,7 @@ class TextMessageWidget extends StatelessWidget {
           Text(
             "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
             textAlign: TextAlign.center,
-            style: StyleText.black(90).copyWith(
+            style: StyleText.black(fontSize ?? 90).copyWith(
               fontFamily: "Noto_Nastaliq_Urdu",
               color: context.primaryColor.withAlpha(30),
             ),

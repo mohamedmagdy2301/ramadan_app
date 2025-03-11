@@ -81,14 +81,13 @@ class _MainScaffoldState extends State<MainScaffold> {
       PersistentBottomNavBarItem(
         icon: Image.asset(
           'assets/images/quran.png',
-          height: 40.sp,
+          height: 45.sp,
           // color: context.primaryColor,
-          width: 38.sp,
+          width: 45.sp,
         ),
         inactiveIcon: Image.asset(
           'assets/images/quran.png',
           height: 38.sp,
-          color: Colors.grey,
           width: 38.sp,
         ),
         title: (" "),

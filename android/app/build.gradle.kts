@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ramadan_app"
+    namespace = "com.mohamedmagdy.azkar"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973" // Updated NDK version
 
@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.ramadan_app"
+        applicationId = "com.mohamedmagdy.azkar"
         minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

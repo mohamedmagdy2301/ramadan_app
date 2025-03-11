@@ -40,11 +40,14 @@ class _MainScaffoldState extends State<MainScaffold> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Image.asset(
-          'assets/images/praying2.png',
-          height: 35.sp,
-          color: context.primaryColor,
-          width: 35.sp,
+        icon: Transform.rotate(
+          angle: .2,
+          child: Image.asset(
+            'assets/images/praying2.png',
+            height: 35.sp,
+            color: context.primaryColor,
+            width: 35.sp,
+          ),
         ),
         inactiveIcon: Image.asset(
           'assets/images/praying.png',
@@ -57,11 +60,14 @@ class _MainScaffoldState extends State<MainScaffold> {
       ),
 
       PersistentBottomNavBarItem(
-        icon: Image.asset(
-          'assets/images/crescent2.png',
-          height: 30.sp,
-          color: context.primaryColor,
-          width: 30.sp,
+        icon: Transform.rotate(
+          angle: .2,
+          child: Image.asset(
+            'assets/images/crescent2.png',
+            height: 30.sp,
+            color: context.primaryColor,
+            width: 30.sp,
+          ),
         ),
         inactiveIcon: Image.asset(
           'assets/images/crescent.png',
@@ -90,11 +96,14 @@ class _MainScaffoldState extends State<MainScaffold> {
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Image.asset(
-          "assets/images/prayer-beads.png",
-          height: 35.sp,
-          color: context.primaryColor,
-          width: 35.sp,
+        icon: Transform.rotate(
+          angle: .5,
+          child: Image.asset(
+            "assets/images/prayer-beads.png",
+            height: 35.sp,
+            color: context.primaryColor,
+            width: 35.sp,
+          ),
         ),
         inactiveIcon: Image.asset(
           'assets/images/arabic2.png',
@@ -112,10 +121,13 @@ class _MainScaffoldState extends State<MainScaffold> {
           color: context.primaryColor,
           width: 30.sp,
         ),
-        inactiveIcon: Image.asset(
-          'assets/images/setting-bulb.png',
-          height: 28.sp,
-          width: 28.sp,
+        inactiveIcon: Transform.rotate(
+          angle: 8,
+          child: Image.asset(
+            'assets/images/setting-bulb.png',
+            height: 28.sp,
+            width: 28.sp,
+          ),
         ),
         title: (" "),
         activeColorPrimary: context.primaryColor,

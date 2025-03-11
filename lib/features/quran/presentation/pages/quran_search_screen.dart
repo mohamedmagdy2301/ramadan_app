@@ -239,13 +239,22 @@ class TextMessageWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          140.hSpace,
+          50.hSpace,
           Text(
             text,
             textAlign: TextAlign.center,
             style: StyleText.medium24().copyWith(
               fontFamily: "Amiri",
-              color: context.onPrimaryColor,
+              color: context.onPrimaryColor.withAlpha(180),
+            ),
+          ),
+          60.hSpace,
+          Text(
+            "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
+            textAlign: TextAlign.center,
+            style: StyleText.black(90).copyWith(
+              fontFamily: "Noto_Nastaliq_Urdu",
+              color: context.primaryColor.withAlpha(30),
             ),
           ),
         ],

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
@@ -50,8 +48,6 @@ class CustomNotificationSettings extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                 ),
                 onPressed: () async {
-                  log("============================================");
-                  // log(azkarScreenBodyItemModel.id.toString());
                   await azkarNotificationCubit.onTimeChanged(context);
                 },
                 child: Text(
@@ -65,7 +61,7 @@ class CustomNotificationSettings extends StatelessWidget {
                 inactiveTrackColor: context.onPrimaryColor.withAlpha(100),
                 inactiveThumbColor: context.backgroundColor,
                 activeTrackColor: context.primaryColor,
-                activeColor: context.backgroundColor,
+                activeColor: context.onPrimaryColor,
                 applyCupertinoTheme: true,
                 trackOutlineColor: WidgetStateColor.resolveWith(
                   (states) => Colors.transparent,

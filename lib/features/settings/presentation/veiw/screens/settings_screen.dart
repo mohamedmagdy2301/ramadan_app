@@ -119,6 +119,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
 
           CustomRowAboutMe(),
+          Spacer(),
+          Text(
+            "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
+            textAlign: TextAlign.center,
+            style: StyleText.black(66).copyWith(
+              fontFamily: "Noto_Nastaliq_Urdu",
+              color: context.primaryColor.withAlpha(30),
+            ),
+          ),
+          Spacer(),
         ],
       ),
     );

@@ -1,10 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
-// import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/local_storage/shared_preferences_manager.dart';
-import 'package:ramadan_app/core/notification_helper/awesome_notification_manager.dart';
+import 'package:ramadan_app/core/notification_helper/local_notification_manager.dart';
+import 'package:ramadan_app/core/utils/widgets/snakbar/snackbar_helper.dart';
 
 import '../../../data/azkar_screen_body_item_model_data.dart';
 
@@ -38,23 +39,46 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
         hour: DateTime.now().hour,
         minute: DateTime.now().minute + 1,
       ),
+
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme(
+              brightness: context.isDark ? Brightness.dark : Brightness.light,
+              primary: context.primaryColor,
+              onSurface: context.onPrimaryColor,
+              onPrimary: context.onPrimaryColor,
+              surface: context.backgroundColor,
+              error: Colors.red,
+              onError: Colors.red,
+              secondary: context.primaryColor.withAlpha(100),
+              onSecondary: context.onPrimaryColor.withAlpha(100),
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: context.primaryColor,
+                backgroundColor: context.backgroundColor,
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
       initialEntryMode: TimePickerEntryMode.input,
     );
 
     if (selectedTime != null &&
         selectedTime!.hour >= DateTime.now().hour &&
         selectedTime!.minute > DateTime.now().minute) {
-      // Updating the time
       timeOfDay0 = selectedTime!;
       await saveTimeNotification(timeOfDay0);
 
-      // Canceling the previous notification
-      // Canceling the previous notification
+      // !Canceling the previous notification
       await LocalNotificationService.cancelNotificationById(
         azkarScreenBodyItemModel.id,
       );
 
-      // Scheduling the notification
+      //! Scheduling the notification
       await LocalNotificationService.showDailyScheduledNotification(
         id: azkarScreenBodyItemModel.id,
         title: azkarScreenBodyItemModel.title,
@@ -63,32 +87,17 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
         selectedMinute: timeOfDay0.minute,
       );
 
-      // AwesomeNotificationManager.cancelNotification(azkarScreenBodyItemModel.id);
-
-      // Scheduling the notification
-      // AwesomeNotificationManager.scheduleAzkarNotification(
-      //   id: azkarScreenBodyItemModel.id,
-      //   title: azkarScreenBodyItemModel.title,
-      //   body: "موعد ${azkarScreenBodyItemModel.title}",
-      //   selectedHour: timeOfDay0.hour,
-      //   selectedMinute: timeOfDay0.minute,
-      //   isRepeating: true,
-      // );
-      // Updating the UI
+      //! Updating the UI
       isSwitchEnable = true;
       saveSwitchIsEnableNotification(isSwitchEnable);
       textButton = timeOfDay0.format(context).toString();
       saveTextButtonNotification(textButton);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.green,
-          content: Center(
-            child: Text(
-              'تم تفعيل اشعارات ${azkarScreenBodyItemModel.title}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
+
+      // ! Show SnackBar
+      showMessage(
+        context,
+        type: SnackBarType.success,
+        message: 'تم تفعيل اشعارات ${azkarScreenBodyItemModel.title}',
       );
 
       emit(
@@ -98,17 +107,14 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
         ),
       );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          content: Center(
-            child: Text(
-              'الوقت غير صالح لتفعيل الاشعارات\nالرجاء اختيار موعد فى المستقبل',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ),
+      // ! Show SnackBar
+      showMessage(
+        context,
+        type: SnackBarType.error,
+        message:
+            'الوقت غير صالح لتفعيل الاشعارات\nالرجاء اختيار موعد فى المستقبل',
       );
+
       emit(
         HasAzkarNotification(
           isSwitchEnable: isSwitchEnable,
@@ -124,8 +130,10 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
     await saveSwitchIsEnableNotification(isSwitchEnable);
     textButton = "اختيار موعد";
     await saveTextButtonNotification(textButton);
-    // await AwesomeNotifications().cancel(azkarScreenBodyItemModel.id);
-
+    // !Canceling the previous notification
+    await LocalNotificationService.cancelNotificationById(
+      azkarScreenBodyItemModel.id,
+    );
     emit(NoHasAzkarNotification());
   }
 

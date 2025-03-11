@@ -27,7 +27,11 @@ class LocalNotificationService {
   }
 
   /// Show Basic Notification
-  static Future<void> showBasicNotification() async {
+  static Future<void> showBasicNotification({
+    required int id,
+    required String title,
+    required String body,
+  }) async {
     const NotificationDetails notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'basic_channel',
@@ -37,9 +41,9 @@ class LocalNotificationService {
       ),
     );
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'Basic Notification',
-      'Body',
+      id,
+      title,
+      body,
       notificationDetails,
     );
   }
@@ -131,6 +135,7 @@ class LocalNotificationService {
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
     );
   }
 

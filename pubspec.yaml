@@ -33,13 +33,15 @@ dependencies:
   flutter_native_splash:
   # awesome_notifications:
   permission_handler: 
-  flutter_local_notifications: ^18.0.1
-  flutter_timezone: ^4.1.0
-  audioplayers: ^6.2.0
-  quran_library: ^0.1.3
-  quran: ^1.3.3
-  flutter_svg: ^2.0.17
-  get: ^4.7.2
+  flutter_local_notifications:
+  flutter_timezone:
+  audioplayers: 
+  quran_library:
+  quran:
+  flutter_svg:
+  get:
+  lock_orientation_screen:
+  timezone: 
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
@@ -48,6 +50,8 @@ class CustomNotificationSettings extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                 ),
                 onPressed: () async {
+                  log("============================================");
+                  // log(azkarScreenBodyItemModel.id.toString());
                   await azkarNotificationCubit.onTimeChanged(context);
                 },
                 child: Text(

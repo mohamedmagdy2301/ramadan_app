@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
 class SabhaScreenBodyCircle extends StatelessWidget {
@@ -15,8 +14,6 @@ class SabhaScreenBodyCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
-      width: 200.w,
       decoration: BoxDecoration(
         color: context.backgroundColor.withAlpha(120),
         shape: BoxShape.circle,

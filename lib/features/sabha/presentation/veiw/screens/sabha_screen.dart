@@ -130,19 +130,17 @@ class _SabhaScreenState extends State<SabhaScreen> {
                   incrementCounter();
                   animateCircle();
                 },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 50.h),
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 150),
-                    width: isAnimating ? 200.w : 180.w, // Expanding effect
-                    height: isAnimating ? 200.w : 180.w,
-                    child: SabhaScreenBodyCircle(
-                      counter: counter,
-                      selectedSabha: selectedSabha,
-                    ),
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 150),
+                  width: isAnimating ? 200.w : 180.w, // Expanding effect
+                  height: isAnimating ? 200.w : 180.w,
+                  child: SabhaScreenBodyCircle(
+                    counter: counter,
+                    selectedSabha: selectedSabha,
                   ),
                 ),
               ),
+              Spacer(),
             ],
           ).center(),
     );

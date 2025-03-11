@@ -1,6 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
@@ -21,10 +22,11 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  Color selectedColor = Color.fromARGB(255, 99, 136, 3);
+  Color selectedColor = AppColors.primary;
   final List<Color> darkColors = [
+    AppColors.primary,
     Color.fromARGB(255, 99, 136, 3),
-    Color(0xFFba9e72),
+    Color.fromARGB(255, 205, 51, 61),
     Color.fromARGB(255, 195, 107, 107),
     Color.fromARGB(255, 112, 166, 178),
     Color(0xFF838073),
@@ -32,6 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   ];
 
   final List<Color> lightColors = [
+    AppColors.primary,
     Color.fromARGB(255, 99, 136, 3),
     Color(0xFF9b151d),
     Color(0xFFc66e59),
@@ -52,7 +55,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (value) {
                 if (value) {
                   selectedColor = darkColors[0];
-
                   AdaptiveTheme.of(context).setDark();
                   AdaptiveTheme.of(context).setTheme(
                     light: AppThemeData.lightTheme(selectedColor),
@@ -60,7 +62,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   );
                 } else {
                   selectedColor = lightColors[0];
-
                   AdaptiveTheme.of(context).setLight();
                   AdaptiveTheme.of(context).setTheme(
                     light: AppThemeData.lightTheme(selectedColor),
@@ -74,7 +75,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             width: double.infinity,
             height: 140.h,
             color: context.backgroundColor,
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -123,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Text(
             "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
             textAlign: TextAlign.center,
-            style: StyleText.black(66).copyWith(
+            style: StyleText.black(60).copyWith(
               fontFamily: "Noto_Nastaliq_Urdu",
               color: context.primaryColor.withAlpha(30),
             ),

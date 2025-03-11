@@ -18,6 +18,7 @@ class AppBarAzkar extends StatelessWidget implements PreferredSizeWidget {
           fontFamily: "Amiri",
         ),
       ),
+
       centerTitle: true,
       forceMaterialTransparency: true,
       flexibleSpace: Container(),

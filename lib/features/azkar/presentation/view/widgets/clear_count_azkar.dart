@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
 import '../../view_model/view_azkar/azkar_details_cubit.dart';
 import '../../view_model/view_azkar/azkar_details_state.dart';
@@ -36,7 +37,7 @@ class ClearCountAzkarWidget extends StatelessWidget {
           },
           icon: Icon(
             Icons.refresh,
-            color: isComplete() ? Colors.black : Colors.grey,
+            color: isComplete() ? context.onPrimaryColor : Colors.grey,
           ),
           tooltip: 'اعادة تعيين العداد',
         )

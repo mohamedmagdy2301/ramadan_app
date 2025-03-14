@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:async';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -8,17 +8,17 @@ import 'package:timezone/timezone.dart' as tz;
 class LocalNotificationService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  static StreamController<NotificationResponse> streamController =
+      StreamController();
   static onTap(NotificationResponse response) {
-    if (response.payload != null) {
-      log(response.payload.toString());
-    }
+    streamController.add(response);
   }
 
   /// Initialize Local Notification
   static Future<void> initialize() async {
     const InitializationSettings initializationSettings =
         InitializationSettings(
-          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+          android: AndroidInitializationSettings("@drawable/icon_notification"),
           iOS: DarwinInitializationSettings(
             requestSoundPermission: true,
             requestBadgePermission: true,
@@ -49,6 +49,7 @@ class LocalNotificationService {
         enableLights: true,
         enableVibration: true,
         playSound: true,
+        icon: "@drawable/icon_notification",
         sound: RawResourceAndroidNotificationSound('sound_test'),
       ),
       iOS: DarwinNotificationDetails(

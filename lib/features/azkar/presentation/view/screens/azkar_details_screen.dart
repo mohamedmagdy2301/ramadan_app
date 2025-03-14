@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
 
@@ -52,7 +53,12 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
             builder: (context, state) {
               return Scaffold(
                 appBar: AppBar(
-                  title: Text(widget.azkarScreenBodyItemModel.title),
+                  title: Text(
+                    widget.azkarScreenBodyItemModel.title,
+                    style: StyleText.bold22().copyWith(
+                      color: context.onPrimaryColor,
+                    ),
+                  ),
                   elevation: 0,
                   backgroundColor: context.primaryColor.withAlpha(60),
                   surfaceTintColor: Colors.transparent,

@@ -121,7 +121,7 @@ class _SurahScreenState extends State<SurahScreen> {
               SizedBox(
                 width: 130.w,
                 child: AppDropDownButton(
-                  hintText: 'القارئ',
+                  hintText: ' ',
                   value: selectedValue,
                   onChanged: (value) {
                     setState(() {

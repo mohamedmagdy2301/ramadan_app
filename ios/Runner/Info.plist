@@ -80,5 +80,7 @@
 		<array>
 			<dict/>
 		</array>
+		<key>AppGroupId</key>
+		<string>group.timePrayer</string>
 	</dict>
 </plist>

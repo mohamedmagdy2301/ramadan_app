@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:lock_orientation_screen/lock_orientation_screen.dart';
 import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
@@ -21,6 +22,7 @@ import 'core/theming/app_theme_data.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   WakelockPlus.enable();
+  HomeWidget.setAppGroupId('group.timePrayer');
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
     QuranLibrary().init(),

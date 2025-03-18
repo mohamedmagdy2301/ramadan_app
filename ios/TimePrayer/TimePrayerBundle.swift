@@ -8,9 +8,10 @@
 import WidgetKit
 import SwiftUI
 
-@main
 struct TimePrayerBundle: WidgetBundle {
+    @WidgetBundleBuilder
     var body: some Widget {
         TimePrayer()
     }
 }
+

@@ -4,77 +4,73 @@
 //
 //  Created by MohamedMego on 18/03/2025.
 //
-
 import WidgetKit
 import SwiftUI
+import Intents
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(date: Date(), nextPrayer: "Loading...", remainingTime: "--:--")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), nextPrayer: "Fajr", remainingTime: "1h 20m")
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+        let userDefaults = UserDefaults(suiteName: "group.timePrayer")
+        let nextPrayer = userDefaults?.string(forKey: "nextPrayer") ?? "Unknown"
+        let remainingTime = userDefaults?.string(forKey: "remainingTime") ?? "--:--"
+        
+        let entry = SimpleEntry(date: Date(), nextPrayer: nextPrayer, remainingTime: remainingTime)
+        
+        let timeline = Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(60)))
         completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct SimpleEntry:TimelineEntry {
     let date: Date
-    let emoji: String
+    let nextPrayer: String
+    let remainingTime: String
 }
 
-struct TimePrayerEntryView : View {
+
+struct NextPrayerWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+            Text("الصلاة القادمة") // "Next Prayer" in Arabic
+                .font(.subheadline)
+                .foregroundColor(.white)
 
-            Text("Emoji:")
-            Text(entry.emoji)
+            Text(entry.nextPrayer) // Prayer name in Arabic
+                .font(.title2)
+                .bold()
+                .foregroundColor(.white)
+                .multilineTextAlignment(.trailing) // Ensure proper RTL alignment
+
+            Text(entry.remainingTime)
+                .font(.subheadline)
+                .foregroundColor(.white.opacity(0.8))
         }
+        .padding()
+        .containerBackground(Color.brown, for: .widget) // Background color
     }
 }
 
+@main
 struct TimePrayer: Widget {
-    let kind: String = "TimePrayer"
+    let kind: String = "NextPrayerWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                TimePrayerEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                TimePrayerEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
+            NextPrayerWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Next Prayer Widget")
+        .description("Shows the upcoming prayer time.")
+        .supportedFamilies([.systemSmall])
     }
-}
-
-#Preview(as: .systemSmall) {
-    TimePrayer()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
 }

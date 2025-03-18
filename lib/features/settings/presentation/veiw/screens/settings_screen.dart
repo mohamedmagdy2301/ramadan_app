@@ -38,9 +38,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Color.fromARGB(255, 99, 136, 3),
     Color(0xFF9b151d),
     Color(0xFFc66e59),
-    Color(0xFF14213D),
     Color(0xFF496878),
     Color.fromARGB(255, 120, 115, 73),
+    Color(0xFF14213D),
   ];
   @override
   Widget build(BuildContext context) {

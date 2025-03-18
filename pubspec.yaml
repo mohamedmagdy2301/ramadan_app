@@ -42,6 +42,9 @@ dependencies:
   get:
   lock_orientation_screen:
   timezone: 
+  wakelock_plus: ^1.2.10
+  http: ^1.3.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

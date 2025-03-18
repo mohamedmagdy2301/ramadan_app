@@ -83,8 +83,8 @@ class _AudioAyahWidgetState extends State<AudioAyahWidget> {
                 _isPlaying ? Icons.pause : Icons.play_arrow,
                 color:
                     _audioUrl != null
-                        ? Colors.grey
-                        : Colors.grey.withAlpha(150),
+                        ? Colors.white
+                        : Colors.white.withAlpha(120),
               ),
     );
   }

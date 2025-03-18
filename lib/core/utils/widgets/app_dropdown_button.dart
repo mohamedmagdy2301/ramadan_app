@@ -20,30 +20,32 @@ class AppDropDownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color.fromARGB(0, 163, 162, 162),
+      color: Colors.transparent,
       child: DropdownButtonFormField2<String>(
         value: value,
         isDense: true,
         onChanged: onChanged,
+        style: StyleText.medium16().copyWith(color: Colors.white),
+
         dropdownStyleData: DropdownStyleData(
           maxHeight: 300.h,
           width: 200.w,
           useSafeArea: true,
           padding: EdgeInsets.only(top: 20),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 208, 208, 208),
-            border: Border.all(style: BorderStyle.solid),
+            color: const Color.fromARGB(255, 57, 57, 57),
+            // border: Border.all(style: BorderStyle.solid),
             borderRadius: BorderRadius.all(Radius.circular(20.r)),
           ),
         ),
         alignment: Alignment.center,
         decoration: secondryFormFieldDecoration(),
-        iconStyleData: IconStyleData(iconEnabledColor: Colors.black),
+        iconStyleData: IconStyleData(iconEnabledColor: Colors.white),
         isExpanded: true,
         hint: Text(
           hintText,
           style: StyleText.medium16().copyWith(
-            color: Colors.black,
+            color: Colors.white,
             height: 1.2,
           ),
         ),
@@ -53,7 +55,7 @@ class AppDropDownButton extends StatelessWidget {
                 value: item['value'],
                 child: Text(
                   item['name']!,
-                  style: StyleText.medium16().copyWith(color: Colors.black),
+                  style: StyleText.medium16().copyWith(color: Colors.white),
                 ),
               );
             }).toList(),
@@ -70,7 +72,6 @@ InputDecoration secondryFormFieldDecoration({
 }) {
   return InputDecoration(
     hintText: hintText,
-    hintStyle: StyleText.medium16().copyWith(height: 1.2, color: Colors.grey),
     border: InputBorder.none,
     enabledBorder: InputBorder.none,
     focusedBorder: InputBorder.none,

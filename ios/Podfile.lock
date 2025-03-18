@@ -16,6 +16,8 @@ PODS:
     - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
+  - package_info_plus (0.4.5):
+    - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -25,6 +27,8 @@ PODS:
     - Flutter
     - FlutterMacOS
   - url_launcher_ios (0.0.1):
+    - Flutter
+  - wakelock_plus (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -37,10 +41,12 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
 
 EXTERNAL SOURCES:
   audioplayers_darwin:
@@ -61,6 +67,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geocoding_ios/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
@@ -69,6 +77,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  wakelock_plus:
+    :path: ".symlinks/plugins/wakelock_plus/ios"
 
 SPEC CHECKSUMS:
   audioplayers_darwin: ccf9c770ee768abb07e26d90af093f7bab1c12ab
@@ -80,10 +90,12 @@ SPEC CHECKSUMS:
   fluttertoast: 2c67e14dce98bbdb200df9e1acf610d7a6264ea1
   geocoding_ios: bcbdaa6bddd7d3129c9bcb8acddc5d8778689768
   geolocator_apple: 1560c3c875af2a412242c7a923e15d0d401966ff
+  package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+  wakelock_plus: 04623e3f525556020ebd4034310f20fe7fda8b49
 
 PODFILE CHECKSUM: 5f0302031c43bbe39a025ac9006eb90d936954bd
 

@@ -54,10 +54,6 @@ class _SurahScreenState extends State<SurahScreen> {
           textColor: context.onPrimaryColor,
           languageCode: "ar",
           surahNameStyle: SurahNameStyle(surahNameColor: context.primaryColor),
-          onPagePress: () {
-            quranCtrl.state.overlayEntry?.remove();
-            quranCtrl.state.overlayEntry = null;
-          },
           onDefaultAyahLongPress: (allBookmarks, details, ayah) {
             final bookmarkId =
                 allBookmarks

@@ -92,11 +92,11 @@ class _AzkarDetailsLiseviewItemCardState
                     border: Border.symmetric(
                       vertical: BorderSide(
                         color: context.primaryColor,
-                        width: .7.w,
+                        width: .6.w,
                       ),
                       horizontal: BorderSide(
                         color: context.primaryColor,
-                        width: .2.w,
+                        width: .5.w,
                       ),
                     ),
                     color:

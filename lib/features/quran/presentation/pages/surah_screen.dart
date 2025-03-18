@@ -54,7 +54,9 @@ class _SurahScreenState extends State<SurahScreen> {
           textColor: context.onPrimaryColor,
           languageCode: "ar",
           surahNameStyle: SurahNameStyle(surahNameColor: context.primaryColor),
-          onDefaultAyahLongPress: _handleAyahLongPress,
+          onDefaultAyahLongPress:
+              (bookmarks, details, ayah) =>
+                  _handleAyahLongPress(bookmarks, details, ayah),
         ),
       ),
     );

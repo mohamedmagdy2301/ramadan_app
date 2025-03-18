@@ -109,16 +109,16 @@ class _SurahScreenState extends State<SurahScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              AudioAyahWidget(ayah: ayah, selectedValue: selectedReciter),
+              context.verticalDivider(height: 30.h, color: Colors.white54),
+              _buildReciterDropdown(),
+              context.verticalDivider(height: 30.h, color: Colors.white54),
               ...[0xAAFFD354, 0xAAF36077, 0xAA00CD00].map(
                 (colorCode) => BookmarksAyahWidget(
                   ayah: ayah,
                   colorCode: colorCode,
                 ).paddingSymmetric(horizontal: 6.w),
               ),
-              context.verticalDivider(height: 30.h, color: Colors.white54),
-              AudioAyahWidget(ayah: ayah, selectedValue: selectedReciter),
-              context.verticalDivider(height: 30.h, color: Colors.white54),
-              _buildReciterDropdown(),
             ],
           ).paddingSymmetric(horizontal: 20),
         ),

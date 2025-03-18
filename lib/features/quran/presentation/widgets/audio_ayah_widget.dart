@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quran_library/quran.dart';
@@ -116,9 +117,11 @@ class _AudioAyahWidgetState extends State<AudioAyahWidget> {
               : Stack(
                 children: [
                   Icon(
-                    _isPlaying ? Icons.pause : Icons.play_arrow,
+                    _isPlaying
+                        ? CupertinoIcons.pause
+                        : CupertinoIcons.play_arrow_solid,
                     color: Colors.white,
-                    size: 30,
+                    size: _hasError ? 30.sp : 24.sp,
                   ),
                   _hasError
                       ? Positioned(
@@ -127,7 +130,7 @@ class _AudioAyahWidgetState extends State<AudioAyahWidget> {
                         child: Icon(
                           Icons.warning_rounded,
                           color: Colors.orangeAccent,
-                          size: 15,
+                          size: 17.sp,
                         ),
                       )
                       : SizedBox(),

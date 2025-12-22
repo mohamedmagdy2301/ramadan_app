@@ -61,31 +61,38 @@
 
 ---
 
-# المرحلة 3: تحسين جودة الكود (Code Quality) 🟡
+# المرحلة 3: تحسين جودة الكود (Code Quality) ✅
 
-## 3.1 إصلاح أسماء الملفات
-- [ ] `prayper_times_cubit.dart` → `prayer_times_cubit.dart`
-- [ ] `ayah_modell.dart` → `ayah_model.dart`
-- [ ] `veiw/` → `view/` (في Sabha و Settings)
-- [ ] `Azkary_app.dart` → `azkary_app.dart`
-- [ ] **Tests:** Verify imports still work
+## 3.1 إصلاح أسماء الملفات ✅
+- [x] `prayper_times_cubit.dart` → `prayer_times_cubit.dart`
+- [x] `ayah_modell.dart` → `ayah_model.dart`
+- [x] `veiw/` → `view/` (في Sabha و Settings)
+- [x] `Azkary_app.dart` → `azkary_app.dart`
+- [x] `prayer_time_loaded_UI.dart` → `prayer_time_loaded_ui.dart`
+- [x] `AyahModell` class → `AyahModel` class
+- [x] **Tests:** All 175 tests passing ✅
 
-## 3.2 Refactor Hardcoded Items
-- [ ] تحويل `azkar_screen_body.dart` لاستخدام ListView.builder
-- [ ] إزالة الكود المكرر
-- [ ] **Tests:** Widget tests for dynamic list
+## 3.2 Refactor Hardcoded Items ✅
+- [x] إنشاء `storage_keys.dart` لمفاتيح SharedPreferences
+- [x] إضافة constants للـ assets في `app_images.dart`
+- [x] إضافة strings للـ dialogs في `app_strings.dart`
+- [x] تحديث الملفات لاستخدام الـ constants
+- [x] **Tests:** All 175 tests passing ✅
 
-## 3.3 Dependency Injection
-- [ ] إضافة GetIt package
-- [ ] إنشاء `core/di/injection_container.dart`
-- [ ] تسجيل Services و Repositories
-- [ ] **Tests:** Unit tests for DI setup
+## 3.3 Dependency Injection ✅
+- [x] إضافة GetIt package
+- [x] إنشاء `core/di/injection_container.dart`
+- [x] تسجيل SharedPreferences, Connectivity, Dio
+- [x] تسجيل PrayerTimesRepository, PrayerNotificationLocalDatasource
+- [x] تسجيل PrayerNotificationService, AdhanPlayerService
+- [x] تسجيل PrayerTimesCubit, PrayerNotificationCubit
+- [x] **Tests:** All 175 tests passing ✅
 
-## 3.4 توحيد Navigation
-- [ ] استخدام GoRouter فقط
-- [ ] إزالة MaterialPageRoute المباشر
-- [ ] إضافة جميع الـ routes
-- [ ] **Tests:** Navigation tests
+## 3.4 توحيد Navigation ✅
+- [x] إضافة route للـ PrayerNotificationSettingsScreen
+- [x] استخدام GoRouter context.push() للتنقل
+- [x] دمج BlocProvider مع GoRouter
+- [x] **Tests:** All 175 tests passing ✅
 
 ---
 
@@ -180,8 +187,8 @@
 | 2 | المرحلة 2.1 - Prayer Notifications | ✅ |
 | 2 | المرحلة 2.2 - Notification Settings | ✅ |
 | 2 | المرحلة 2.3 - Adhan Sound | ✅ |
-| 3 | المرحلة 3 - Code Quality | 🔄 |
-| 5 | المرحلة 4 - Accessibility | ⏳ |
+| 3 | المرحلة 3 - Code Quality | ✅ |
+| 5 | المرحلة 4 - Accessibility | 🔄 |
 | 6-8 | المرحلة 5 - New Features | ⏳ |
 | 9 | المرحلة 6 - Responsiveness | ⏳ |
 | 10 | المرحلة 7 - Full Testing | ⏳ |

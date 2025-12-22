@@ -13,29 +13,13 @@ class BookmarksAyahWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (QuranCtrl.instance.state.fontsSelected2.value == 1 ||
-            QuranCtrl.instance.state.fontsSelected2.value == 2 ||
-            QuranCtrl.instance.state.scaleFactor.value > 1.3) {
-          // إضافة العلامة الجديدة
-          BookmarksCtrl.instance.saveBookmark(
-            surahName:
-                QuranCtrl.instance
-                    .getSurahDataByAyahUQ(ayah.ayahNumber)
-                    .arabicName,
-            ayahNumber: ayah.ayahNumber,
-            ayahId: ayah.ayahUQNumber,
-            page: ayah.page,
-            colorCode: colorCode,
-          );
-        } else {
-          BookmarksCtrl.instance.saveBookmark(
-            surahName: ayah.arabicName,
-            ayahNumber: ayah.ayahNumber,
-            ayahId: ayah.ayahUQNumber,
-            page: ayah.page,
-            colorCode: colorCode,
-          );
-        }
+        BookmarksCtrl.instance.saveBookmark(
+          surahName: ayah.arabicName ?? '',
+          ayahNumber: ayah.ayahNumber,
+          ayahId: ayah.ayahUQNumber,
+          page: ayah.page,
+          colorCode: colorCode,
+        );
         QuranCtrl.instance.state.overlayEntry?.remove();
         QuranCtrl.instance.state.overlayEntry = null;
       },

@@ -25,7 +25,7 @@ void main() async {
   HomeWidget.setAppGroupId('group.timePrayer');
   await Future.wait([
     ScreenUtil.ensureScreenSize(),
-    QuranLibrary().init(),
+    QuranLibrary.init(),
     LocalNotificationService.initialize(),
     SharedPreferencesManager.sharedPreferencesInitialize(),
   ]);

@@ -12,7 +12,7 @@ class CustomRowAboutMe extends StatelessWidget {
       onTap: () {
         showDialog(
           context: context,
-          barrierColor: Colors.black.withOpacity(0.8),
+          barrierColor: Colors.black.withAlpha(204),
           barrierDismissible: true,
           builder:
               (context) => AlertDialog(

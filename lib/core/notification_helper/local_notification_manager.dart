@@ -61,7 +61,7 @@ class LocalNotificationService {
 
     tz.initializeTimeZones();
     final localTimeZone = await FlutterTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(localTimeZone));
+    tz.setLocalLocation(tz.getLocation(localTimeZone.identifier));
 
     final currentTime = tz.TZDateTime.now(tz.local);
     var scheduledTime = tz.TZDateTime(
@@ -81,9 +81,6 @@ class LocalNotificationService {
       body,
       scheduledTime,
       notificationDetails,
-
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       payload: title,

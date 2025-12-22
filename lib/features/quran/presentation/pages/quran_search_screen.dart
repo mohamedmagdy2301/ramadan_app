@@ -204,13 +204,15 @@ class _QuranSearchScreenState extends State<QuranSearchScreen> {
                                     vertical: 5.h,
                                   ),
                                   onTap: () async {
+                                    final result = searchResults[index];
                                     PersistentNavBarNavigator.pushNewScreen(
                                       context,
                                       withNavBar: false,
                                       screen: SurahScreen(),
                                     );
                                     QuranLibrary().jumpToAyah(
-                                      searchResults[index],
+                                      result.surahNumber ?? 1,
+                                      result.ayahNumber,
                                     );
                                   },
                                 ),

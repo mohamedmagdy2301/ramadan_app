@@ -13,6 +13,7 @@ import '../../../../../core/theming/app_theme_data.dart';
 import '../widgets/appbar_setting.dart';
 import '../widgets/circle_color_palette_widget.dart';
 import '../widgets/custom_row_about_me.dart';
+import '../widgets/font_size_selector.dart';
 import '../widgets/settings_row_item.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -131,6 +132,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
 
+          const FontSizeSelector(),
           CustomRowAboutMe(),
           Spacer(),
           Text(

@@ -77,6 +77,14 @@ class AppStrings {
   static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
   static const String reconnect = "إعادة الاتصال";
   static const String tryAgain = "حاول مرة أخرى";
+
+  // Accessibility
+  static const String accessibility = "إمكانية الوصول";
+  static const String fontSize = "حجم الخط";
+  static const String fontSizeSmall = "صغير";
+  static const String fontSizeNormal = "عادي";
+  static const String fontSizeLarge = "كبير";
+  static const String fontSizeExtraLarge = "كبير جداً";
 }
 
 // class StringsAppEN {

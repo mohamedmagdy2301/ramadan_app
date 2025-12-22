@@ -6,10 +6,10 @@ import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
 import 'package:ramadan_app/features/quran/presentation/pages/quran_screen.dart';
-import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
+import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
 
 import 'features/azkar/presentation/view/screens/azkar_screen.dart';
-import 'features/sabha/presentation/veiw/screens/sabha_screen.dart';
+import 'features/sabha/presentation/view/screens/sabha_screen.dart';
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});

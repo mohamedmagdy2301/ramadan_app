@@ -13,7 +13,7 @@ import 'package:ramadan_app/core/notification_helper/local_notification_manager.
 import 'package:ramadan_app/core/router/app_router.dart';
 import 'package:ramadan_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
 import 'package:ramadan_app/features/azkar/presentation/view/screens/azkar_details_screen.dart';
-import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
+import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayer_times_cubit.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'core/local_storage/shared_preferences_manager.dart';

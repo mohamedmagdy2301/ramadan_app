@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/app_text_style.dart';
-import '../../../home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
+import '../../../home/presentation/view_model/prayer_times_cubit/prayer_times_cubit.dart';
 import '../../data/datasources/prayer_notification_local_datasource.dart';
 import '../../domain/entities/adhan_sound.dart';
 import '../../domain/entities/prayer_notification_settings.dart';

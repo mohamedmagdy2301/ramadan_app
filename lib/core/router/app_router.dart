@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
-import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
+import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
 import 'routes.dart';

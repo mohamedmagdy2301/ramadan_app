@@ -9,7 +9,7 @@ import 'package:geolocator/geolocator.dart';
 import '../../../data/repo/prayer_time_repo_impl.dart';
 import '../../../domain/prayer_times_entity.dart';
 
-part 'prayper_times_state.dart';
+part 'prayer_times_state.dart';
 //   https://api.aladhan.com/v1/timings?latitude=30.5632921&longitude=30.9970544&method=5
 
 class PrayerTimesCubit extends Cubit<PrayerTimesState> {

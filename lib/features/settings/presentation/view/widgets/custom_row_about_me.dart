@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
-import 'package:ramadan_app/features/settings/presentation/veiw/widgets/settings_row_item.dart';
+import 'package:ramadan_app/features/settings/presentation/view/widgets/settings_row_item.dart';
 
 class CustomRowAboutMe extends StatelessWidget {
   const CustomRowAboutMe({super.key});

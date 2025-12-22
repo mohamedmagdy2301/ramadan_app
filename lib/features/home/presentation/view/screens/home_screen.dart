@@ -6,9 +6,9 @@ import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
-import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
+import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayer_times_cubit.dart';
 
-import '../widgets/prayer_time_loaded_UI.dart';
+import '../widgets/prayer_time_loaded_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

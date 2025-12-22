@@ -1,4 +1,4 @@
-part of 'prayper_times_cubit.dart';
+part of 'prayer_times_cubit.dart';
 
 sealed class PrayerTimesState {}
 

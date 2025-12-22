@@ -9,6 +9,8 @@ import 'package:ramadan_app/features/prayer_notifications/data/datasources/praye
 import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
 import 'package:ramadan_app/features/prayer_notifications/services/adhan_player_service.dart';
 import 'package:ramadan_app/features/prayer_notifications/services/prayer_notification_service.dart';
+import 'package:ramadan_app/features/statistics/data/statistics_local_datasource.dart';
+import 'package:ramadan_app/features/statistics/presentation/cubit/statistics_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -35,6 +37,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<IFavoritesLocalDatasource>(
     () => FavoritesLocalDatasource(),
   );
+  sl.registerLazySingleton<IStatisticsLocalDatasource>(
+    () => StatisticsLocalDatasource(),
+  );
 
   // Services
   sl.registerLazySingleton<IPrayerNotificationService>(
@@ -53,5 +58,8 @@ Future<void> initializeDependencies() async {
       localDatasource: sl<PrayerNotificationLocalDatasource>(),
       notificationService: sl<IPrayerNotificationService>(),
     ),
+  );
+  sl.registerFactory(
+    () => StatisticsCubit(sl<IStatisticsLocalDatasource>()),
   );
 }

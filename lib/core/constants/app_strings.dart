@@ -113,6 +113,26 @@ class AppStrings {
   static const String noCompassSensor = "جهازك لا يحتوي على مستشعر البوصلة";
   static const String locationPermissionDenied = "يرجى السماح بالوصول إلى الموقع لتحديد اتجاه القبلة";
   static const String openSettings = "فتح الإعدادات";
+
+  // Statistics
+  static const String statistics = "الإحصائيات";
+  static const String todayStats = "إحصائيات اليوم";
+  static const String weeklySummary = "ملخص الأسبوع";
+  static const String monthlySummary = "ملخص الشهر";
+  static const String allTimeSummary = "الإجمالي";
+  static const String azkarCompleted = "أذكار مكتملة";
+  static const String azkarCount = "عدد الأذكار";
+  static const String quranPagesRead = "صفحات القرآن";
+  static const String quranSurahsRead = "سور القرآن";
+  static const String sabhaCountStats = "عدد التسبيحات";
+  static const String currentStreak = "السلسلة الحالية";
+  static const String longestStreak = "أطول سلسلة";
+  static const String activeDays = "أيام النشاط";
+  static const String consistency = "الانتظام";
+  static const String day = "يوم";
+  static const String days = "أيام";
+  static const String noStatsYet = "لا توجد إحصائيات بعد";
+  static const String startTracking = "ابدأ بقراءة الأذكار والقرآن لتتبع تقدمك";
 }
 
 // class StringsAppEN {

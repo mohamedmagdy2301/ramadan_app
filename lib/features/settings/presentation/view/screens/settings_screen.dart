@@ -62,6 +62,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ).onTap(() {
             context.push(AppRoutes.favorites);
           }),
+          // Statistics
+          SettingsRowItem(
+            title: AppStrings.statistics,
+            leading: Icon(
+              Icons.arrow_forward_ios,
+              size: 18.sp,
+              color: context.onPrimaryColor.withAlpha(150),
+            ),
+          ).onTap(() {
+            context.push(AppRoutes.statistics);
+          }),
           // Prayer Notifications Settings
           SettingsRowItem(
             title: AppStrings.prayerNotifications,

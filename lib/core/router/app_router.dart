@@ -9,6 +9,7 @@ import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/pra
 import 'package:ramadan_app/features/prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
 import 'package:ramadan_app/features/qibla/presentation/view/screens/qibla_screen.dart';
 import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
+import 'package:ramadan_app/features/statistics/presentation/view/screens/statistics_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
 import 'routes.dart';
@@ -84,6 +85,15 @@ abstract class AppRouter {
                 create: (context) => FavoritesCubit(),
                 child: const FavoritesScreen(),
               ),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.statistics,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const StatisticsScreen(),
             ),
       ),
     ],

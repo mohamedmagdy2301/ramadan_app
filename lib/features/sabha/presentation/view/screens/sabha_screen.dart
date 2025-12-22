@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
+import 'package:ramadan_app/core/constants/storage_keys.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 import 'package:ramadan_app/core/utils/functions/convert_num_to_ar.dart';
@@ -19,7 +20,8 @@ class SabhaScreen extends StatefulWidget {
 }
 
 class _SabhaScreenState extends State<SabhaScreen> {
-  int counter = SharedPreferencesManager.getData(key: 'counter') ?? 0;
+  int counter =
+      SharedPreferencesManager.getData(key: StorageKeys.sabhaCounter) ?? 0;
   String selectedSabha = "سبحان الله";
   bool isAnimating = false; // Animation state
 
@@ -36,14 +38,20 @@ class _SabhaScreenState extends State<SabhaScreen> {
   void incrementCounter() {
     setState(() {
       counter++;
-      SharedPreferencesManager.setData(key: 'counter', value: counter);
+      SharedPreferencesManager.setData(
+        key: StorageKeys.sabhaCounter,
+        value: counter,
+      );
     });
   }
 
   void clearCounter() {
     setState(() {
       counter = 0;
-      SharedPreferencesManager.setData(key: 'counter', value: counter);
+      SharedPreferencesManager.setData(
+        key: StorageKeys.sabhaCounter,
+        value: counter,
+      );
     });
   }
 

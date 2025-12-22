@@ -47,17 +47,17 @@
 - [x] إشعار تنبيه قبل الصلاة (اختياري - 0/5/10/15 دقيقة)
 - [x] **Tests:** 50 unit tests for notification scheduling ✅
 
-## 2.2 إعدادات الإشعارات
-- [ ] إضافة شاشة إعدادات إشعارات الصلاة
-- [ ] تفعيل/تعطيل لكل صلاة
-- [ ] اختيار وقت التنبيه المسبق (5/10/15 دقيقة)
-- [ ] **Tests:** Widget tests for settings UI
+## 2.2 إعدادات الإشعارات ✅
+- [x] إضافة شاشة إعدادات إشعارات الصلاة
+- [x] تفعيل/تعطيل لكل صلاة
+- [x] اختيار وقت التنبيه المسبق (5/10/15 دقيقة)
+- [x] **Tests:** 24 widget tests for settings UI ✅
 
-## 2.3 صوت الأذان
-- [ ] إضافة ملفات صوت الأذان
-- [ ] اختيار المؤذن
-- [ ] تشغيل الأذان مع الإشعار
-- [ ] **Tests:** Integration tests for audio playback
+## 2.3 صوت الأذان ✅
+- [x] إضافة ملفات صوت الأذان
+- [x] اختيار المؤذن
+- [x] تشغيل الأذان مع الإشعار
+- [x] **Tests:** 20 unit tests for AdhanSound and AdhanPlayerService ✅
 
 ---
 
@@ -178,9 +178,9 @@
 | 1 | المرحلة 1.3 - Memory Leaks | ✅ |
 | 1 | المرحلة 1.4 - Caching | ✅ |
 | 2 | المرحلة 2.1 - Prayer Notifications | ✅ |
-| 3 | المرحلة 2.2 - Notification Settings | ⏳ |
-| 3 | المرحلة 2.3 - Adhan Sound | ⏳ |
-| 4 | المرحلة 3 - Code Quality | ⏳ |
+| 2 | المرحلة 2.2 - Notification Settings | ✅ |
+| 2 | المرحلة 2.3 - Adhan Sound | ✅ |
+| 3 | المرحلة 3 - Code Quality | 🔄 |
 | 5 | المرحلة 4 - Accessibility | ⏳ |
 | 6-8 | المرحلة 5 - New Features | ⏳ |
 | 9 | المرحلة 6 - Responsiveness | ⏳ |

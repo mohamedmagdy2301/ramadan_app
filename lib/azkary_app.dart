@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:ramadan_app/core/constants/app_images.dart';
+import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/features/home/presentation/view/screens/home_screen.dart';
@@ -43,57 +45,55 @@ class _MainScaffoldState extends State<MainScaffold> {
         icon: Transform.rotate(
           angle: .2,
           child: Image.asset(
-            'assets/images/praying2.png',
+            AppAssets.prayingActive,
             height: 40.sp,
             color: context.primaryColor,
             width: 40.sp,
           ),
         ),
         inactiveIcon: Image.asset(
-          'assets/images/praying.png',
+          AppAssets.prayingInactive,
           height: 32.sp,
           width: 32.sp,
           color: Colors.grey,
         ),
-        title: (" "),
+        title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
-
       PersistentBottomNavBarItem(
         icon: Transform.rotate(
           angle: .2,
           child: Image.asset(
-            'assets/images/crescent2.png',
+            AppAssets.crescentActive,
             height: 35.sp,
             color: context.primaryColor,
             width: 35.sp,
           ),
         ),
         inactiveIcon: Image.asset(
-          'assets/images/crescent.png',
+          AppAssets.crescentInactive,
           height: 30.sp,
           width: 30.sp,
           color: Colors.grey,
         ),
-        title: (" "),
+        title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Image.asset(
-          'assets/images/quran.png',
+          AppAssets.quranActive,
           height: 35.sp,
-          // color: context.primaryColor,
           width: 35.sp,
         ),
         inactiveIcon: Image.asset(
-          'assets/images/quran2.png',
+          AppAssets.quranInactive,
           height: 30.sp,
           width: 30.sp,
           color: Colors.grey,
         ),
-        title: " ",
+        title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
@@ -101,25 +101,25 @@ class _MainScaffoldState extends State<MainScaffold> {
         icon: Transform.rotate(
           angle: -.5,
           child: Image.asset(
-            "assets/images/prayer-beads.png",
+            AppAssets.prayerBeads,
             height: 40.sp,
             color: context.primaryColor,
             width: 40.sp,
           ),
         ),
         inactiveIcon: Image.asset(
-          'assets/images/arabic2.png',
+          AppAssets.arabicInactive,
           height: 35.sp,
           width: 35.sp,
           color: Colors.grey,
         ),
-        title: (" "),
+        title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Image.asset(
-          'assets/images/setting-bulb2.png',
+          AppAssets.settingBulbActive,
           height: 34.sp,
           color: context.primaryColor,
           width: 34.sp,
@@ -127,13 +127,13 @@ class _MainScaffoldState extends State<MainScaffold> {
         inactiveIcon: Transform.rotate(
           angle: -8,
           child: Image.asset(
-            'assets/images/setting-bulb.png',
+            AppAssets.settingBulbInactive,
             height: 28.sp,
             width: 28.sp,
             color: Colors.grey,
           ),
         ),
-        title: (" "),
+        title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
@@ -147,13 +147,13 @@ class _MainScaffoldState extends State<MainScaffold> {
             _controller.jumpToTab(2);
             return AlertDialog.adaptive(
               title: Text(
-                "الخروج من التطبيق",
+                AppStrings.exitApp,
                 style: StyleText.regular22().copyWith(
                   color: context.onPrimaryColor,
                 ),
               ),
               content: Text(
-                "هل ترغب بالخروج من التطبيق؟",
+                AppStrings.exitAppQuestion,
                 textAlign: TextAlign.right,
                 style: StyleText.regular18().copyWith(
                   color: context.onPrimaryColor,
@@ -167,7 +167,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                     Navigator.of(context).pop(false);
                   },
                   child: Text(
-                    "الغاء",
+                    AppStrings.cancel,
                     style: StyleText.regular18().copyWith(
                       color: context.primaryColor,
                     ),
@@ -176,7 +176,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
                   child: Text(
-                    "الخروج",
+                    AppStrings.exit,
                     style: StyleText.regular18().copyWith(
                       color: context.primaryColor,
                     ),

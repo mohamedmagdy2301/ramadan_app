@@ -1,3 +1,5 @@
+import 'package:ramadan_app/core/constants/app_images.dart';
+
 /// Enum representing available Adhan sounds
 enum AdhanSound {
   /// Makkah Adhan - الحرم المكي
@@ -20,9 +22,9 @@ enum AdhanSound {
   String get assetPath {
     switch (this) {
       case AdhanSound.makkah:
-        return 'assets/sound/adan.mp3';
+        return AppAssets.adhanMakkah;
       case AdhanSound.defaultSound:
-        return 'assets/sound/reminder.mp3';
+        return AppAssets.adhanReminder;
     }
   }
 

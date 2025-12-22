@@ -66,6 +66,17 @@ class AppStrings {
   static const String preview = "معاينة";
   static const String stop = "إيقاف";
   static const String soundSettings = "إعدادات الصوت";
+
+  // Exit Dialog
+  static const String exitApp = "الخروج من التطبيق";
+  static const String exitAppQuestion = "هل ترغب بالخروج من التطبيق؟";
+  static const String cancel = "الغاء";
+  static const String exit = "الخروج";
+
+  // Error Messages
+  static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
+  static const String reconnect = "إعادة الاتصال";
+  static const String tryAgain = "حاول مرة أخرى";
 }
 
 // class StringsAppEN {

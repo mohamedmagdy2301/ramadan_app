@@ -9,6 +9,7 @@ import 'package:home_widget/home_widget.dart';
 import 'package:lock_orientation_screen/lock_orientation_screen.dart';
 import 'package:quran_library/quran.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
+import 'package:ramadan_app/core/constants/storage_keys.dart';
 import 'package:ramadan_app/core/notification_helper/local_notification_manager.dart';
 import 'package:ramadan_app/core/router/app_router.dart';
 import 'package:ramadan_app/features/azkar/data/azkar_screen_body_item_model_data.dart';
@@ -32,7 +33,7 @@ void main() async {
 
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   final savedThemeColor = await SharedPreferencesManager.getData(
-    key: 'theme_color',
+    key: StorageKeys.themeColor,
   );
   runApp(
     MyApp(savedThemeMode: savedThemeMode, savedThemeColor: savedThemeColor),

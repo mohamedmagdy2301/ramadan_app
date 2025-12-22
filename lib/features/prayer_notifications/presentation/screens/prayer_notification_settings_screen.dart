@@ -286,10 +286,10 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
       final prayerTimesCubit = context.read<PrayerTimesCubit>();
       final prayerTimesState = prayerTimesCubit.state;
 
-      if (prayerTimesState is PrayperTimesSuccess &&
-          prayerTimesState.prayerTimesEntity != null) {
+      if (prayerTimesState is PrayerTimesLoaded &&
+          prayerTimesState.prayerTimes.isNotEmpty) {
         context.read<PrayerNotificationCubit>().scheduleNotifications(
-              prayerTimesState.prayerTimesEntity!,
+              prayerTimesState.prayerTimes.first,
             );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

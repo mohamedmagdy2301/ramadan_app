@@ -212,4 +212,13 @@ extension WidgetExtension on Widget? {
       ),
     );
   }
+
+  /// Wrap widget with GestureDetector for onTap functionality
+  Widget onTap(VoidCallback onTap, {HitTestBehavior? behavior}) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: behavior ?? HitTestBehavior.opaque,
+      child: this,
+    );
+  }
 }

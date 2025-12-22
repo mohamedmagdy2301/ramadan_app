@@ -86,6 +86,13 @@ class AppStrings {
   static const String fontSizeLarge = "كبير";
   static const String fontSizeExtraLarge = "كبير جداً";
 
+  // Hijri Calendar
+  static const String hijriDate = "التاريخ الهجري";
+  static const String upcomingEvents = "المناسبات القادمة";
+  static const String today = "اليوم";
+  static const String daysRemaining = "يوم";
+  static const String hijriCalendar = "التقويم الهجري";
+
   // Qibla Compass
   static const String qiblaCompass = "بوصلة القبلة";
   static const String qiblaDirection = "اتجاه القبلة";

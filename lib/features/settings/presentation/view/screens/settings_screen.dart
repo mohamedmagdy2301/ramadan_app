@@ -1,14 +1,15 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/core/constants/app_colors.dart';
 import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/widget_extensions.dart';
+import 'package:ramadan_app/core/router/routes.dart';
 
 import '../../../../../core/constants/app_text_style.dart';
 import '../../../../../core/theming/app_theme_data.dart';
-import '../../../../prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
 import '../widgets/appbar_setting.dart';
 import '../widgets/circle_color_palette_widget.dart';
 import '../widgets/custom_row_about_me.dart';
@@ -58,9 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               color: context.onPrimaryColor.withAlpha(150),
             ),
           ).onTap(() {
-            Navigator.of(context).push(
-              PrayerNotificationSettingsScreen.route(),
-            );
+            context.push(AppRoutes.prayerNotificationSettings);
           }),
           SettingsRowItem(
             title: AppStrings.themesMode,

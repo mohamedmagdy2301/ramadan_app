@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
+import 'package:ramadan_app/core/di/injection_container.dart';
+import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
+import 'package:ramadan_app/features/prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
 import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
@@ -43,6 +47,19 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const HomeScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.prayerNotificationSettings,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: BlocProvider(
+                create: (context) =>
+                    sl<PrayerNotificationCubit>()..loadSettings(),
+                child: const PrayerNotificationSettingsScreen(),
+              ),
             ),
       ),
     ],

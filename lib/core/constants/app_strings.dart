@@ -86,6 +86,14 @@ class AppStrings {
   static const String fontSizeLarge = "كبير";
   static const String fontSizeExtraLarge = "كبير جداً";
 
+  // Favorites
+  static const String favorites = "المفضلة";
+  static const String addToFavorites = "إضافة للمفضلة";
+  static const String removeFromFavorites = "إزالة من المفضلة";
+  static const String noFavorites = "لا توجد عناصر في المفضلة";
+  static const String addFavoritesHint = "أضف الأذكار والأدعية المفضلة للوصول السريع";
+  static const String all = "الكل";
+
   // Hijri Calendar
   static const String hijriDate = "التاريخ الهجري";
   static const String upcomingEvents = "المناسبات القادمة";

@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ramadan_app/core/accessibility/accessibility_settings.dart';
+import 'package:ramadan_app/features/favorites/data/favorites_local_datasource.dart';
 import 'package:ramadan_app/features/home/data/repo/prayer_time_repo_impl.dart';
 import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayer_times_cubit.dart';
 import 'package:ramadan_app/features/prayer_notifications/data/datasources/prayer_notification_local_datasource.dart';
@@ -30,6 +31,9 @@ Future<void> initializeDependencies() async {
     () => PrayerNotificationLocalDatasourceImpl(
       sharedPreferences: sl<SharedPreferences>(),
     ),
+  );
+  sl.registerLazySingleton<IFavoritesLocalDatasource>(
+    () => FavoritesLocalDatasource(),
   );
 
   // Services

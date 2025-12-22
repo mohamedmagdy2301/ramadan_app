@@ -5,4 +5,5 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String prayerNotificationSettings = '/prayer-notification-settings';
   static const String qibla = '/qibla';
+  static const String favorites = '/favorites';
 }

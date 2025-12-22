@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/core/di/injection_container.dart';
+import 'package:ramadan_app/features/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:ramadan_app/features/favorites/presentation/view/screens/favorites_screen.dart';
 import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
 import 'package:ramadan_app/features/prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
 import 'package:ramadan_app/features/qibla/presentation/view/screens/qibla_screen.dart';
@@ -70,6 +72,18 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const QiblaScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.favorites,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: BlocProvider(
+                create: (context) => FavoritesCubit(),
+                child: const FavoritesScreen(),
+              ),
             ),
       ),
     ],

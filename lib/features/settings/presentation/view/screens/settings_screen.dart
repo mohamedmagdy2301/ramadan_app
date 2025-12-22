@@ -51,6 +51,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: const AppBarSettings(),
       body: Column(
         children: [
+          // Favorites
+          SettingsRowItem(
+            title: AppStrings.favorites,
+            leading: Icon(
+              Icons.arrow_forward_ios,
+              size: 18.sp,
+              color: context.onPrimaryColor.withAlpha(150),
+            ),
+          ).onTap(() {
+            context.push(AppRoutes.favorites);
+          }),
           // Prayer Notifications Settings
           SettingsRowItem(
             title: AppStrings.prayerNotifications,

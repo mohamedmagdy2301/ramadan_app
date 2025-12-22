@@ -98,11 +98,11 @@
 
 # المرحلة 4: Accessibility (إمكانية الوصول) 🟡
 
-## 4.1 Semantics للعناصر الأساسية
-- [ ] إضافة semanticLabel لجميع الأيقونات
-- [ ] إضافة Semantics للأزرار التفاعلية
-- [ ] إضافة Semantics لمواقيت الصلاة
-- [ ] **Tests:** Accessibility tests
+## 4.1 Semantics للعناصر الأساسية ✅
+- [x] إضافة Semantics لأيقونات شريط التنقل السفلي
+- [x] إضافة Semantics wrapper لعناصر الإعدادات
+- [x] استخدام ExcludeSemantics لمنع التكرار
+- [x] **Tests:** All 175 tests passing ✅
 
 ## 4.2 تحسين قابلية القراءة
 - [ ] التحقق من contrast ratios

@@ -8,9 +8,11 @@ import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/app_text_style.dart';
 import '../../../home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
 import '../../data/datasources/prayer_notification_local_datasource.dart';
+import '../../domain/entities/adhan_sound.dart';
 import '../../domain/entities/prayer_notification_settings.dart';
 import '../cubit/prayer_notification_cubit.dart';
 import '../cubit/prayer_notification_state.dart';
+import '../widgets/adhan_sound_selector.dart';
 import '../widgets/prayer_notification_tile.dart';
 import '../widgets/pre_alert_selector.dart';
 
@@ -189,6 +191,27 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
                     context
                         .read<PrayerNotificationCubit>()
                         .setPreAlertMinutes(minutes);
+                  },
+                ),
+
+                SizedBox(height: 24.h),
+
+                // Section title - Sound settings
+                _SectionTitle(title: AppStrings.soundSettings),
+
+                // Adhan sound selector
+                AdhanSoundSelector(
+                  selectedAdhan: AdhanSound.fromString(settings.selectedAdhan),
+                  soundEnabled: settings.soundEnabled,
+                  onAdhanChanged: (adhan) {
+                    context
+                        .read<PrayerNotificationCubit>()
+                        .setSelectedAdhan(adhan?.name);
+                  },
+                  onSoundEnabledChanged: (enabled) {
+                    context
+                        .read<PrayerNotificationCubit>()
+                        .toggleSound(enabled);
                   },
                 ),
 

@@ -58,6 +58,14 @@ class AppStrings {
   static const String notificationsScheduled = "تم جدولة الإشعارات";
   static const String notificationsNotScheduled = "لم يتم جدولة الإشعارات";
   static const String scheduleNow = "جدولة الآن";
+
+  // Adhan Sound
+  static const String adhanSound = "صوت الأذان";
+  static const String selectAdhan = "اختر صوت الأذان";
+  static const String enableSound = "تفعيل الصوت";
+  static const String preview = "معاينة";
+  static const String stop = "إيقاف";
+  static const String soundSettings = "إعدادات الصوت";
 }
 
 // class StringsAppEN {

@@ -4,6 +4,7 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../home/domain/prayer_times_entity.dart';
+import '../domain/entities/adhan_sound.dart';
 import '../domain/entities/prayer_notification_settings.dart';
 
 /// Abstract interface for prayer notification service
@@ -15,6 +16,8 @@ abstract class IPrayerNotificationService {
     required int minute,
     bool withPreAlert = false,
     int preAlertMinutes = 0,
+    bool soundEnabled = true,
+    AdhanSound? adhanSound,
   });
   Future<void> scheduleAllPrayerNotifications({
     required PrayerTimesEntity prayerTimes,
@@ -52,6 +55,8 @@ class PrayerNotificationService implements IPrayerNotificationService {
     required int minute,
     bool withPreAlert = false,
     int preAlertMinutes = 0,
+    bool soundEnabled = true,
+    AdhanSound? adhanSound,
   }) async {
     await instance.schedulePrayerNotification(
       prayer: prayer,
@@ -59,6 +64,8 @@ class PrayerNotificationService implements IPrayerNotificationService {
       minute: minute,
       withPreAlert: withPreAlert,
       preAlertMinutes: preAlertMinutes,
+      soundEnabled: soundEnabled,
+      adhanSound: adhanSound,
     );
   }
 
@@ -100,10 +107,15 @@ class PrayerNotificationService implements IPrayerNotificationService {
     required int minute,
     bool withPreAlert = false,
     int preAlertMinutes = 0,
+    bool soundEnabled = true,
+    AdhanSound? adhanSound,
   }) async {
     await _ensureInitialized();
 
-    // Schedule main prayer notification
+    // Get the sound name to use
+    final soundName = adhanSound?.rawResourceName;
+
+    // Schedule main prayer notification with adhan sound
     await _scheduleNotification(
       id: prayer.notificationId,
       title: 'حان وقت صلاة ${prayer.arabicName}',
@@ -112,9 +124,11 @@ class PrayerNotificationService implements IPrayerNotificationService {
       minute: minute,
       channelId: 'prayer_notification_channel',
       channelName: 'إشعارات الصلاة',
+      soundName: soundName,
+      playSound: soundEnabled,
     );
 
-    // Schedule pre-alert notification if enabled
+    // Schedule pre-alert notification if enabled (uses reminder sound, not adhan)
     if (withPreAlert && preAlertMinutes > 0) {
       final preAlertTime = _subtractMinutes(hour, minute, preAlertMinutes);
       await _scheduleNotification(
@@ -125,6 +139,8 @@ class PrayerNotificationService implements IPrayerNotificationService {
         minute: preAlertTime['minute']!,
         channelId: 'prayer_pre_alert_channel',
         channelName: 'تذكيرات الصلاة',
+        soundName: 'reminder', // Use reminder sound for pre-alerts
+        playSound: soundEnabled,
       );
     }
   }
@@ -139,6 +155,9 @@ class PrayerNotificationService implements IPrayerNotificationService {
 
     // Cancel all previous prayer notifications
     await cancelAllPrayerNotifications();
+
+    // Get the adhan sound from settings
+    final adhanSound = AdhanSound.fromString(settings.selectedAdhan);
 
     final prayers = {
       PrayerType.fajr: prayerTimes.fajrTime,
@@ -163,6 +182,8 @@ class PrayerNotificationService implements IPrayerNotificationService {
         minute: time['minute']!,
         withPreAlert: settings.preAlertMinutes > 0,
         preAlertMinutes: settings.preAlertMinutes,
+        soundEnabled: settings.soundEnabled,
+        adhanSound: adhanSound,
       );
     }
   }
@@ -211,7 +232,18 @@ class PrayerNotificationService implements IPrayerNotificationService {
     required int minute,
     required String channelId,
     required String channelName,
+    String? soundName,
+    bool playSound = true,
   }) async {
+    // Determine the sound to use
+    AndroidNotificationSound? androidSound;
+    if (playSound && soundName != null) {
+      androidSound = RawResourceAndroidNotificationSound(soundName);
+    } else if (playSound) {
+      // Default to system sound
+      androidSound = null; // Uses default notification sound
+    }
+
     final notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         channelId,
@@ -221,16 +253,16 @@ class PrayerNotificationService implements IPrayerNotificationService {
         priority: Priority.high,
         enableLights: true,
         enableVibration: true,
-        playSound: true,
+        playSound: playSound,
         icon: '@drawable/icon_notification',
-        sound: const RawResourceAndroidNotificationSound('sound_test'),
+        sound: androidSound,
         category: AndroidNotificationCategory.alarm,
         fullScreenIntent: true,
       ),
-      iOS: const DarwinNotificationDetails(
+      iOS: DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
-        presentSound: true,
+        presentSound: playSound,
         interruptionLevel: InterruptionLevel.timeSensitive,
       ),
     );

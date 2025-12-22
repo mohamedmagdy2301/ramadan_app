@@ -42,95 +42,125 @@ class _MainScaffoldState extends State<MainScaffold> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Transform.rotate(
-          angle: .2,
-          child: Image.asset(
-            AppAssets.prayingActive,
-            height: 40.sp,
-            color: context.primaryColor,
-            width: 40.sp,
+        icon: Semantics(
+          label: AppStrings.azkar,
+          child: Transform.rotate(
+            angle: .2,
+            child: Image.asset(
+              AppAssets.prayingActive,
+              height: 40.sp,
+              color: context.primaryColor,
+              width: 40.sp,
+            ),
           ),
         ),
-        inactiveIcon: Image.asset(
-          AppAssets.prayingInactive,
-          height: 32.sp,
-          width: 32.sp,
-          color: Colors.grey,
+        inactiveIcon: Semantics(
+          label: AppStrings.azkar,
+          child: Image.asset(
+            AppAssets.prayingInactive,
+            height: 32.sp,
+            width: 32.sp,
+            color: Colors.grey,
+          ),
         ),
         title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Transform.rotate(
-          angle: .2,
+        icon: Semantics(
+          label: AppStrings.home,
+          child: Transform.rotate(
+            angle: .2,
+            child: Image.asset(
+              AppAssets.crescentActive,
+              height: 35.sp,
+              color: context.primaryColor,
+              width: 35.sp,
+            ),
+          ),
+        ),
+        inactiveIcon: Semantics(
+          label: AppStrings.home,
           child: Image.asset(
-            AppAssets.crescentActive,
+            AppAssets.crescentInactive,
+            height: 30.sp,
+            width: 30.sp,
+            color: Colors.grey,
+          ),
+        ),
+        title: ' ',
+        activeColorPrimary: context.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Semantics(
+          label: AppStrings.quran,
+          child: Image.asset(
+            AppAssets.quranActive,
             height: 35.sp,
-            color: context.primaryColor,
             width: 35.sp,
           ),
         ),
-        inactiveIcon: Image.asset(
-          AppAssets.crescentInactive,
-          height: 30.sp,
-          width: 30.sp,
-          color: Colors.grey,
-        ),
-        title: ' ',
-        activeColorPrimary: context.primaryColor,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Image.asset(
-          AppAssets.quranActive,
-          height: 35.sp,
-          width: 35.sp,
-        ),
-        inactiveIcon: Image.asset(
-          AppAssets.quranInactive,
-          height: 30.sp,
-          width: 30.sp,
-          color: Colors.grey,
-        ),
-        title: ' ',
-        activeColorPrimary: context.primaryColor,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Transform.rotate(
-          angle: -.5,
+        inactiveIcon: Semantics(
+          label: AppStrings.quran,
           child: Image.asset(
-            AppAssets.prayerBeads,
-            height: 40.sp,
-            color: context.primaryColor,
-            width: 40.sp,
+            AppAssets.quranInactive,
+            height: 30.sp,
+            width: 30.sp,
+            color: Colors.grey,
           ),
         ),
-        inactiveIcon: Image.asset(
-          AppAssets.arabicInactive,
-          height: 35.sp,
-          width: 35.sp,
-          color: Colors.grey,
+        title: ' ',
+        activeColorPrimary: context.primaryColor,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Semantics(
+          label: AppStrings.sabha,
+          child: Transform.rotate(
+            angle: -.5,
+            child: Image.asset(
+              AppAssets.prayerBeads,
+              height: 40.sp,
+              color: context.primaryColor,
+              width: 40.sp,
+            ),
+          ),
+        ),
+        inactiveIcon: Semantics(
+          label: AppStrings.sabha,
+          child: Image.asset(
+            AppAssets.arabicInactive,
+            height: 35.sp,
+            width: 35.sp,
+            color: Colors.grey,
+          ),
         ),
         title: ' ',
         activeColorPrimary: context.primaryColor,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Image.asset(
-          AppAssets.settingBulbActive,
-          height: 34.sp,
-          color: context.primaryColor,
-          width: 34.sp,
-        ),
-        inactiveIcon: Transform.rotate(
-          angle: -8,
+        icon: Semantics(
+          label: AppStrings.settings,
           child: Image.asset(
-            AppAssets.settingBulbInactive,
-            height: 28.sp,
-            width: 28.sp,
-            color: Colors.grey,
+            AppAssets.settingBulbActive,
+            height: 34.sp,
+            color: context.primaryColor,
+            width: 34.sp,
+          ),
+        ),
+        inactiveIcon: Semantics(
+          label: AppStrings.settings,
+          child: Transform.rotate(
+            angle: -8,
+            child: Image.asset(
+              AppAssets.settingBulbInactive,
+              height: 28.sp,
+              width: 28.sp,
+              color: Colors.grey,
+            ),
           ),
         ),
         title: ' ',

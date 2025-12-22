@@ -9,39 +9,47 @@ class SettingsRowItem extends StatelessWidget {
     super.key,
     required this.title,
     required this.leading,
+    this.semanticHint,
   });
   final String title;
   final Widget leading;
+  final String? semanticHint;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 80.h,
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          color: context.backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: StyleText.regular20().copyWith(
-                  color: context.onPrimaryColor,
+    return Semantics(
+      label: title,
+      hint: semanticHint,
+      child: Column(
+        children: [
+          Container(
+            height: 80.h,
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            color: context.backgroundColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ExcludeSemantics(
+                  child: Text(
+                    title,
+                    style: StyleText.regular20().copyWith(
+                      color: context.onPrimaryColor,
+                    ),
+                  ),
                 ),
-              ),
-              const Spacer(),
-              leading,
-            ],
+                const Spacer(),
+                leading,
+              ],
+            ),
           ),
-        ),
-        Divider(
-          color: context.onPrimaryColor.withAlpha(120),
-          thickness: .5,
-          height: 0,
-        ),
-      ],
+          Divider(
+            color: context.onPrimaryColor.withAlpha(120),
+            thickness: .5,
+            height: 0,
+          ),
+        ],
+      ),
     );
   }
 }

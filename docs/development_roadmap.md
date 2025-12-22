@@ -39,11 +39,13 @@
 
 # المرحلة 2: إشعارات الصلاة (Prayer Notifications) 🔴
 
-## 2.1 بنية الإشعارات
-- [ ] إنشاء `PrayerNotificationService`
-- [ ] جدولة إشعارات لكل صلاة يومياً
-- [ ] إشعار تنبيه قبل الصلاة (اختياري)
-- [ ] **Tests:** Unit tests for notification scheduling
+## 2.1 بنية الإشعارات ✅
+- [x] إنشاء `PrayerNotificationService` - Service with singleton pattern
+- [x] إنشاء `PrayerNotificationSettings` entity و `PrayerNotificationLocalDatasource`
+- [x] إنشاء `PrayerNotificationCubit` لإدارة الحالة
+- [x] جدولة إشعارات لكل صلاة يومياً
+- [x] إشعار تنبيه قبل الصلاة (اختياري - 0/5/10/15 دقيقة)
+- [x] **Tests:** 50 unit tests for notification scheduling ✅
 
 ## 2.2 إعدادات الإشعارات
 - [ ] إضافة شاشة إعدادات إشعارات الصلاة
@@ -175,7 +177,7 @@
 | 1 | المرحلة 1.2 - Time Validation Fix | ✅ |
 | 1 | المرحلة 1.3 - Memory Leaks | ✅ |
 | 1 | المرحلة 1.4 - Caching | ✅ |
-| 2 | المرحلة 2.1 - Prayer Notifications | ⏳ |
+| 2 | المرحلة 2.1 - Prayer Notifications | ✅ |
 | 3 | المرحلة 2.2 - Notification Settings | ⏳ |
 | 3 | المرحلة 2.3 - Adhan Sound | ⏳ |
 | 4 | المرحلة 3 - Code Quality | ⏳ |

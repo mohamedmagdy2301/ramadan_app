@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ramadan_app/features/home/presentation/view/widgets/prayer_times_card.dart';
+import 'package:ramadan_app/features/home/presentation/view/widgets/qibla_card.dart';
 import 'package:ramadan_app/features/home/presentation/view/widgets/today_doaa_card.dart';
 
 import '../../../domain/prayer_times_entity.dart';
@@ -16,6 +17,7 @@ class BodyHomeScreen extends StatelessWidget {
         spacing: 15.h,
         children: [
           PrayerTimesCard(prayerTimes: prayerTimes),
+          const QiblaCard(),
           const TodayDoaaCard(),
         ],
       ),

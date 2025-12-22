@@ -85,6 +85,19 @@ class AppStrings {
   static const String fontSizeNormal = "عادي";
   static const String fontSizeLarge = "كبير";
   static const String fontSizeExtraLarge = "كبير جداً";
+
+  // Qibla Compass
+  static const String qiblaCompass = "بوصلة القبلة";
+  static const String qiblaDirection = "اتجاه القبلة";
+  static const String distanceToKaaba = "المسافة إلى الكعبة";
+  static const String currentHeading = "الاتجاه الحالي";
+  static const String km = "كم";
+  static const String qiblaAligned = "أنت في اتجاه القبلة";
+  static const String rotateToQibla = "أدر الهاتف نحو القبلة";
+  static const String detectingLocation = "جاري تحديد الموقع...";
+  static const String noCompassSensor = "جهازك لا يحتوي على مستشعر البوصلة";
+  static const String locationPermissionDenied = "يرجى السماح بالوصول إلى الموقع لتحديد اتجاه القبلة";
+  static const String openSettings = "فتح الإعدادات";
 }
 
 // class StringsAppEN {

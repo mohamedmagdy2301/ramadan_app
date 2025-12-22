@@ -4,4 +4,5 @@ class AppRoutes {
   static const String home = '/home';
   static const String settings = '/settings';
   static const String prayerNotificationSettings = '/prayer-notification-settings';
+  static const String qibla = '/qibla';
 }

@@ -5,6 +5,7 @@ import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/core/di/injection_container.dart';
 import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
 import 'package:ramadan_app/features/prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
+import 'package:ramadan_app/features/qibla/presentation/view/screens/qibla_screen.dart';
 import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
@@ -60,6 +61,15 @@ abstract class AppRouter {
                     sl<PrayerNotificationCubit>()..loadSettings(),
                 child: const PrayerNotificationSettingsScreen(),
               ),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.qibla,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const QiblaScreen(),
             ),
       ),
     ],

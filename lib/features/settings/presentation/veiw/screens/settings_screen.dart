@@ -8,6 +8,7 @@ import 'package:ramadan_app/core/extensions/widget_extensions.dart';
 
 import '../../../../../core/constants/app_text_style.dart';
 import '../../../../../core/theming/app_theme_data.dart';
+import '../../../../prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
 import '../widgets/appbar_setting.dart';
 import '../widgets/circle_color_palette_widget.dart';
 import '../widgets/custom_row_about_me.dart';
@@ -48,6 +49,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: const AppBarSettings(),
       body: Column(
         children: [
+          // Prayer Notifications Settings
+          SettingsRowItem(
+            title: AppStrings.prayerNotifications,
+            leading: Icon(
+              Icons.arrow_forward_ios,
+              size: 18.sp,
+              color: context.onPrimaryColor.withAlpha(150),
+            ),
+          ).onTap(() {
+            Navigator.of(context).push(
+              PrayerNotificationSettingsScreen.route(),
+            );
+          }),
           SettingsRowItem(
             title: AppStrings.themesMode,
             leading: Switch.adaptive(

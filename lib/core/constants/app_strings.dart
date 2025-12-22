@@ -44,6 +44,20 @@ class AppStrings {
       "تطبيق أذكار هو تطبيق إسلامي مخصص لتذكير المستخدمين بالأذكار اليومية، الأدعية، وأوقات الصلاة. "
       "يتميز التطبيق بتصميم بسيط وسهل الاستخدام مع تنبيهات مخصصة لتذكيرك بقراءة الأذكار في أوقاتها المحددة. "
       "يمكنك أيضًا تصفح قائمة الأذكار المختلفة، الأدعية من القرآن الكريم والسنة النبوية.";
+
+  // Prayer Notifications
+  static const String prayerNotifications = "إشعارات الصلاة";
+  static const String prayerNotificationsSettings = "إعدادات إشعارات الصلاة";
+  static const String enablePrayerNotifications = "تفعيل إشعارات الصلاة";
+  static const String preAlertTime = "التنبيه المسبق";
+  static const String preAlertDescription = "تنبيه قبل موعد الصلاة بـ";
+  static const String minutes = "دقيقة";
+  static const String noPreAlert = "بدون تنبيه مسبق";
+  static const String enableAllPrayers = "تفعيل الكل";
+  static const String disableAllPrayers = "تعطيل الكل";
+  static const String notificationsScheduled = "تم جدولة الإشعارات";
+  static const String notificationsNotScheduled = "لم يتم جدولة الإشعارات";
+  static const String scheduleNow = "جدولة الآن";
 }
 
 // class StringsAppEN {

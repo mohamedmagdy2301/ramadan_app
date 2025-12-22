@@ -26,11 +26,14 @@
 - [ ] إصلاح StreamSubscription disposal (سيتم في مرحلة لاحقة)
 - [x] **Tests:** Integration tests for resource cleanup
 
-## 1.4 إضافة Caching لمواقيت الصلاة
-- [ ] إنشاء `prayer_local_datasource.dart`
-- [ ] Cache prayer times locally (valid for 1 day)
-- [ ] Offline fallback
-- [ ] **Tests:** Unit tests for caching logic
+## 1.4 إضافة Caching لمواقيت الصلاة ✅
+- [x] إنشاء `prayer_times_local_datasource.dart` - Local caching
+- [x] إنشاء `prayer_times_remote_datasource.dart` - Remote API calls
+- [x] إنشاء `prayer_times_repository.dart` - Repository with caching strategy
+- [x] Cache prayer times locally (valid for 1 day)
+- [x] Offline fallback with cached data
+- [x] Location-based cache invalidation (>1km movement)
+- [x] **Tests:** 23 unit tests for caching logic ✅
 
 ---
 
@@ -171,7 +174,7 @@
 | 1 | المرحلة 1.1 - Error Handling | ✅ |
 | 1 | المرحلة 1.2 - Time Validation Fix | ✅ |
 | 1 | المرحلة 1.3 - Memory Leaks | ✅ |
-| 2 | المرحلة 1.4 - Caching | ⏳ |
+| 1 | المرحلة 1.4 - Caching | ✅ |
 | 2 | المرحلة 2.1 - Prayer Notifications | ⏳ |
 | 3 | المرحلة 2.2 - Notification Settings | ⏳ |
 | 3 | المرحلة 2.3 - Adhan Sound | ⏳ |

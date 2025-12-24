@@ -70,7 +70,8 @@ class PrayerNotificationTile extends StatelessWidget {
           Switch.adaptive(
             value: isEnabled,
             onChanged: onToggle,
-            activeColor: context.primaryColor,
+            activeTrackColor: context.primaryColor,
+            thumbColor: WidgetStateProperty.all(Colors.white),
           ),
         ],
       ),

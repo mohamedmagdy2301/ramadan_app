@@ -18,7 +18,7 @@ class NextPrayerCubit extends Cubit<NextPrayerState> {
 
   void _startTimer() {
     timer = Timer.periodic(
-      const Duration(seconds: 30),
+      const Duration(seconds: 1),
       (Timer t) => _updatePrayerTime(),
     );
   }

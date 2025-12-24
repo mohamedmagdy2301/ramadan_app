@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
+import 'package:ramadan_app/features/favorites/domain/entities/favorite_item.dart';
+import 'package:ramadan_app/features/favorites/domain/entities/favorite_type.dart';
+import 'package:ramadan_app/features/favorites/presentation/widgets/favorite_button.dart';
 
 import '../../../data/azkar_data.dart';
 import '../../../data/azkar_screen_body_item_model_data.dart';
@@ -63,6 +66,14 @@ class _AzkarDetailsScreenState extends State<AzkarDetailsScreen> {
                   backgroundColor: context.primaryColor.withAlpha(60),
                   surfaceTintColor: Colors.transparent,
                   actions: [
+                    FavoriteButton(
+                      item: FavoriteItem(
+                        id: 'azkar_${widget.azkarScreenBodyItemModel.title}',
+                        type: FavoriteType.azkar,
+                        title: widget.azkarScreenBodyItemModel.title,
+                        addedAt: DateTime.now(),
+                      ),
+                    ),
                     ClearCountAzkarWidget(state: state),
                     IconButton(
                       onPressed: () {

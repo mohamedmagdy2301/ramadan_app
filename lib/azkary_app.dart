@@ -17,7 +17,7 @@ class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});
 
   @override
-  _MainScaffoldState createState() => _MainScaffoldState();
+  State<MainScaffold> createState() => _MainScaffoldState();
 }
 
 class _MainScaffoldState extends State<MainScaffold> {
@@ -171,10 +171,15 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   Future<bool> _onBackPressed() async {
+    // Jump to tab before showing dialog to avoid setState during build
+    if (_controller.index != 2) {
+      _controller.jumpToTab(2);
+      return false;
+    }
+
     return await showDialog(
           context: context,
-          builder: (context) {
-            _controller.jumpToTab(2);
+          builder: (dialogContext) {
             return AlertDialog.adaptive(
               title: Text(
                 AppStrings.exitApp,
@@ -193,8 +198,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    _controller.jumpToTab(2);
-                    Navigator.of(context).pop(false);
+                    Navigator.of(dialogContext).pop(false);
                   },
                   child: Text(
                     AppStrings.cancel,
@@ -204,7 +208,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
+                  onPressed: () => Navigator.of(dialogContext).pop(true),
                   child: Text(
                     AppStrings.exit,
                     style: StyleText.regular18().copyWith(
@@ -222,7 +226,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: true,
+      canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         bool shouldExit = await _onBackPressed();
@@ -238,7 +242,7 @@ class _MainScaffoldState extends State<MainScaffold> {
         confineToSafeArea: true,
         navBarHeight: 70.h,
         backgroundColor: context.backgroundColor,
-        handleAndroidBackButtonPress: true,
+        handleAndroidBackButtonPress: false,
         resizeToAvoidBottomInset: true,
         stateManagement: true,
         hideNavigationBarWhenKeyboardAppears: true,

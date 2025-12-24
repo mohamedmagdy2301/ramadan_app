@@ -49,124 +49,126 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarSettings(),
-      body: Column(
-        children: [
-          // Favorites
-          SettingsRowItem(
-            title: AppStrings.favorites,
-            leading: Icon(
-              Icons.arrow_forward_ios,
-              size: 18.sp,
-              color: context.onPrimaryColor.withAlpha(150),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Favorites
+            SettingsRowItem(
+              title: AppStrings.favorites,
+              leading: Icon(
+                Icons.arrow_forward_ios,
+                size: 18.sp,
+                color: context.onPrimaryColor.withAlpha(150),
+              ),
+            ).onTap(() {
+              context.push(AppRoutes.favorites);
+            }),
+            // Statistics
+            SettingsRowItem(
+              title: AppStrings.statistics,
+              leading: Icon(
+                Icons.arrow_forward_ios,
+                size: 18.sp,
+                color: context.onPrimaryColor.withAlpha(150),
+              ),
+            ).onTap(() {
+              context.push(AppRoutes.statistics);
+            }),
+            // Prayer Notifications Settings
+            SettingsRowItem(
+              title: AppStrings.prayerNotifications,
+              leading: Icon(
+                Icons.arrow_forward_ios,
+                size: 18.sp,
+                color: context.onPrimaryColor.withAlpha(150),
+              ),
+            ).onTap(() {
+              context.push(AppRoutes.prayerNotificationSettings);
+            }),
+            SettingsRowItem(
+              title: AppStrings.themesMode,
+              leading: Switch.adaptive(
+                value: AdaptiveTheme.of(context).mode.isDark,
+                onChanged: (value) {
+                  if (value) {
+                    selectedColor = darkColors[0];
+                    AdaptiveTheme.of(context).setDark();
+                    AdaptiveTheme.of(context).setTheme(
+                      light: AppThemeData.lightTheme(selectedColor),
+                      dark: AppThemeData.darkTheme(selectedColor),
+                    );
+                  } else {
+                    selectedColor = lightColors[0];
+                    AdaptiveTheme.of(context).setLight();
+                    AdaptiveTheme.of(context).setTheme(
+                      light: AppThemeData.lightTheme(selectedColor),
+                      dark: AppThemeData.darkTheme(selectedColor),
+                    );
+                  }
+                },
+              ),
             ),
-          ).onTap(() {
-            context.push(AppRoutes.favorites);
-          }),
-          // Statistics
-          SettingsRowItem(
-            title: AppStrings.statistics,
-            leading: Icon(
-              Icons.arrow_forward_ios,
-              size: 18.sp,
-              color: context.onPrimaryColor.withAlpha(150),
-            ),
-          ).onTap(() {
-            context.push(AppRoutes.statistics);
-          }),
-          // Prayer Notifications Settings
-          SettingsRowItem(
-            title: AppStrings.prayerNotifications,
-            leading: Icon(
-              Icons.arrow_forward_ios,
-              size: 18.sp,
-              color: context.onPrimaryColor.withAlpha(150),
-            ),
-          ).onTap(() {
-            context.push(AppRoutes.prayerNotificationSettings);
-          }),
-          SettingsRowItem(
-            title: AppStrings.themesMode,
-            leading: Switch.adaptive(
-              value: AdaptiveTheme.of(context).mode.isDark,
-              onChanged: (value) {
-                if (value) {
-                  selectedColor = darkColors[0];
-                  AdaptiveTheme.of(context).setDark();
-                  AdaptiveTheme.of(context).setTheme(
-                    light: AppThemeData.lightTheme(selectedColor),
-                    dark: AppThemeData.darkTheme(selectedColor),
-                  );
-                } else {
-                  selectedColor = lightColors[0];
-                  AdaptiveTheme.of(context).setLight();
-                  AdaptiveTheme.of(context).setTheme(
-                    light: AppThemeData.lightTheme(selectedColor),
-                    dark: AppThemeData.darkTheme(selectedColor),
-                  );
-                }
-              },
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 140.h,
-            color: context.backgroundColor,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppStrings.colorPalette,
-                  style: StyleText.regular20().copyWith(
-                    color: context.onPrimaryColor,
-                  ),
-                ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
-                ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children:
-                      (context.isDark ? darkColors : lightColors)
-                          .map(
-                            (color) => Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 4.w),
-                              child: CircleColorPaletteWidget(
-                                color: color,
-                                isSelected: selectedColor == color,
-                                onSelect: (selected) {
-                                  setState(() {
-                                    selectedColor = selected;
-                                    AdaptiveTheme.of(context).setTheme(
-                                      light: AppThemeData.lightTheme(selected),
-                                      dark: AppThemeData.darkTheme(selected),
-                                    );
-                                  });
-                                },
+            Container(
+              width: double.infinity,
+              height: 140.h,
+              color: context.backgroundColor,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppStrings.colorPalette,
+                    style: StyleText.regular20().copyWith(
+                      color: context.onPrimaryColor,
+                    ),
+                  ).paddingSymmetric(horizontal: 10.w, vertical: 10.h),
+                  ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children:
+                        (context.isDark ? darkColors : lightColors)
+                            .map(
+                              (color) => Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                                child: CircleColorPaletteWidget(
+                                  color: color,
+                                  isSelected: selectedColor == color,
+                                  onSelect: (selected) {
+                                    setState(() {
+                                      selectedColor = selected;
+                                      AdaptiveTheme.of(context).setTheme(
+                                        light: AppThemeData.lightTheme(selected),
+                                        dark: AppThemeData.darkTheme(selected),
+                                      );
+                                    });
+                                  },
+                                ),
                               ),
-                            ),
-                          )
-                          .toList(),
-                ).expand(),
-                Divider(
-                  color: context.onPrimaryColor.withAlpha(120),
-                  thickness: .5,
-                  height: 0,
-                ),
-              ],
+                            )
+                            .toList(),
+                  ).expand(),
+                  Divider(
+                    color: context.onPrimaryColor.withAlpha(120),
+                    thickness: .5,
+                    height: 0,
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          const FontSizeSelector(),
-          CustomRowAboutMe(),
-          Spacer(),
-          Text(
-            "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
-            textAlign: TextAlign.center,
-            style: StyleText.black(60).copyWith(
-              fontFamily: "Noto_Nastaliq_Urdu",
-              color: context.primaryColor.withAlpha(30),
+            const FontSizeSelector(),
+            CustomRowAboutMe(),
+            SizedBox(height: 20.h),
+            Text(
+              "فَاذْكُرُونِي\n\nأَذْكُرْكُمْ",
+              textAlign: TextAlign.center,
+              style: StyleText.black(60).copyWith(
+                fontFamily: "Noto_Nastaliq_Urdu",
+                color: context.primaryColor.withAlpha(30),
+              ),
             ),
-          ),
-          Spacer(),
-        ],
+            SizedBox(height: 20.h),
+          ],
+        ),
       ),
     );
   }

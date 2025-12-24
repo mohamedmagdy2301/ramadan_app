@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 
 /// A card widget displaying a single statistic
@@ -23,7 +22,7 @@ class StatCard extends StatelessWidget {
     final color = iconColor ?? context.primaryColor;
 
     return Container(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(14.w),
       decoration: BoxDecoration(
         color: context.isDark
             ? const Color.fromARGB(255, 31, 31, 31)
@@ -36,9 +35,10 @@ class StatCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: EdgeInsets.all(8.w),
+            padding: EdgeInsets.all(6.w),
             decoration: BoxDecoration(
               color: color.withAlpha(30),
               borderRadius: BorderRadius.circular(8.r),
@@ -46,21 +46,38 @@ class StatCard extends StatelessWidget {
             child: Icon(
               icon,
               color: color,
-              size: 24.sp,
+              size: 20.sp,
             ),
           ),
-          SizedBox(height: 12.h),
-          Text(
-            value,
-            style: StyleText.bold24().copyWith(
-              color: context.onPrimaryColor,
+          SizedBox(height: 8.h),
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                value,
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Cairo',
+                  color: context.onPrimaryColor,
+                ),
+              ),
             ),
           ),
-          SizedBox(height: 4.h),
-          Text(
-            title,
-            style: StyleText.regular14().copyWith(
-              color: context.onPrimaryColor.withAlpha(150),
+          SizedBox(height: 2.h),
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: AlignmentDirectional.centerStart,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontFamily: 'Cairo',
+                  color: context.onPrimaryColor.withAlpha(150),
+                ),
+              ),
             ),
           ),
         ],

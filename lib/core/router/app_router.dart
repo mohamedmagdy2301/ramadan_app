@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
 import 'package:ramadan_app/core/di/injection_container.dart';
+import 'package:ramadan_app/features/azkar_reminders/presentation/screens/azkar_reminder_settings_screen.dart';
 import 'package:ramadan_app/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:ramadan_app/features/favorites/presentation/view/screens/favorites_screen.dart';
 import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
@@ -94,6 +95,15 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const StatisticsScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.azkarReminders,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const AzkarReminderSettingsScreen(),
             ),
       ),
     ],

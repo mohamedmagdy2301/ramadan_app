@@ -7,4 +7,8 @@ class AppRoutes {
   static const String qibla = '/qibla';
   static const String favorites = '/favorites';
   static const String statistics = '/statistics';
+  static const String azkarReminders = '/azkar-reminders';
 }
+
+/// Alias for shorter route access
+typedef Routes = AppRoutes;

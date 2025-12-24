@@ -139,7 +139,7 @@ class PrayerNotificationService implements IPrayerNotificationService {
         minute: preAlertTime['minute']!,
         channelId: 'prayer_pre_alert_channel',
         channelName: 'تذكيرات الصلاة',
-        soundName: 'reminder', // Use reminder sound for pre-alerts
+        soundName: 'sound_test', // Use reminder sound for pre-alerts
         playSound: soundEnabled,
       );
     }

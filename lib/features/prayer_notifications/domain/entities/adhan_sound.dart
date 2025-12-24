@@ -32,9 +32,9 @@ enum AdhanSound {
   String get rawResourceName {
     switch (this) {
       case AdhanSound.makkah:
-        return 'adan';
+        return 'sound_test';
       case AdhanSound.defaultSound:
-        return 'reminder';
+        return 'sound_test';
     }
   }
 

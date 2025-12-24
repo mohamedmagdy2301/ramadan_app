@@ -107,7 +107,8 @@ class _AdhanSoundSelectorState extends State<AdhanSoundSelector> {
               Switch.adaptive(
                 value: widget.soundEnabled,
                 onChanged: widget.onSoundEnabledChanged,
-                activeColor: context.primaryColor,
+                activeTrackColor: context.primaryColor,
+                thumbColor: WidgetStateProperty.all(Colors.white),
               ),
             ],
           ),

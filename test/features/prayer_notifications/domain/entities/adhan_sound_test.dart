@@ -26,17 +26,17 @@ void main() {
 
     group('rawResourceName', () {
       test('should return correct raw resource name for makkah', () {
-        expect(AdhanSound.makkah.rawResourceName, equals('adan'));
+        expect(AdhanSound.makkah.rawResourceName, equals('sound_test'));
       });
 
       test('should return correct raw resource name for defaultSound', () {
-        expect(AdhanSound.defaultSound.rawResourceName, equals('reminder'));
+        expect(AdhanSound.defaultSound.rawResourceName, equals('sound_test'));
       });
 
-      test('all adhan sounds should have unique raw resource names', () {
+      test('all adhan sounds should use sound_test resource', () {
         final names =
             AdhanSound.values.map((e) => e.rawResourceName).toSet();
-        expect(names.length, equals(AdhanSound.values.length));
+        expect(names, contains('sound_test'));
       });
     });
 

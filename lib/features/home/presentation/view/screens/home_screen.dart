@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ramadan_app/core/constants/app_strings.dart';
 import 'package:ramadan_app/core/constants/app_text_style.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/extensions/int_extensions.dart';
 import 'package:ramadan_app/core/utils/widgets/custom_loading_widget.dart';
-import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayper_times_cubit.dart';
+import 'package:ramadan_app/features/home/presentation/view_model/prayer_times_cubit/prayer_times_cubit.dart';
 
-import '../widgets/prayer_time_loaded_UI.dart';
+import '../widgets/prayer_time_loaded_ui.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,13 +30,15 @@ class _HomeScreenState extends State<HomeScreen> {
             locationName: state.locationName,
           );
         } else if (state is PrayerTimesError) {
+          final isNetworkError =
+              state.message == AppStrings.noInternetConnection;
           return Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    state.message == "لا يوجد اتصال بالإنترنت"
+                    isNetworkError
                         ? CupertinoIcons.wifi_exclamationmark
                         : Icons.warning_amber_rounded,
                     size: 200.sp,
@@ -50,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   50.hSpace,
-
                   InkWell(
                     onTap: () async {
                       context.read<PrayerTimesCubit>().fetchPrayerTimes();
@@ -67,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        state.message == "لا يوجد اتصال بالإنترنت"
-                            ? "إعادة الاتصال"
-                            : "حاول مرة أخرى",
+                        isNetworkError
+                            ? AppStrings.reconnect
+                            : AppStrings.tryAgain,
                         textAlign: TextAlign.center,
                         style: StyleText.bold20().copyWith(
                           color: context.backgroundColor,

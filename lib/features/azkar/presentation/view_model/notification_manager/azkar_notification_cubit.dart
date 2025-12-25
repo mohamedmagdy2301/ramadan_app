@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ramadan_app/core/extensions/context_extensions.dart';
 import 'package:ramadan_app/core/local_storage/shared_preferences_manager.dart';
 import 'package:ramadan_app/core/notification_helper/local_notification_manager.dart';
+import 'package:ramadan_app/core/utils/functions/time_utils.dart';
 import 'package:ramadan_app/core/utils/widgets/snakbar/snackbar_helper.dart';
 
 import '../../../data/azkar_screen_body_item_model_data.dart';
@@ -67,9 +68,11 @@ class AzkarNotificationCubit extends Cubit<AzkarNotificationState> {
       initialEntryMode: TimePickerEntryMode.input,
     );
 
-    if (selectedTime != null &&
-        selectedTime!.hour >= DateTime.now().hour &&
-        selectedTime!.minute > DateTime.now().minute) {
+    // Use proper time comparison instead of separate hour/minute checks
+    final isValidTime = selectedTime != null &&
+        TimeUtils.isTimeInFuture(selectedTime!);
+
+    if (isValidTime) {
       timeOfDay0 = selectedTime!;
       await saveTimeNotification(timeOfDay0);
 

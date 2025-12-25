@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -30,6 +31,48 @@ class LocalNotificationService {
       onDidReceiveBackgroundNotificationResponse: onTap,
       onDidReceiveNotificationResponse: onTap,
     );
+
+    // Request notification permission for Android 13+
+    await requestNotificationPermission();
+  }
+
+  /// Request notification permission (required for Android 13+)
+  static Future<bool> requestNotificationPermission() async {
+    if (Platform.isAndroid) {
+      final androidPlugin = flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      if (androidPlugin != null) {
+        final granted = await androidPlugin.requestNotificationsPermission();
+        return granted ?? false;
+      }
+    } else if (Platform.isIOS) {
+      final iosPlugin = flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>();
+      if (iosPlugin != null) {
+        final granted = await iosPlugin.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+        return granted ?? false;
+      }
+    }
+    return false;
+  }
+
+  /// Check if notification permission is granted
+  static Future<bool> areNotificationsEnabled() async {
+    if (Platform.isAndroid) {
+      final androidPlugin = flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      if (androidPlugin != null) {
+        return await androidPlugin.areNotificationsEnabled() ?? false;
+      }
+    }
+    return true;
   }
 
   //! Show Daily Scheduled Notification
@@ -61,7 +104,7 @@ class LocalNotificationService {
 
     tz.initializeTimeZones();
     final localTimeZone = await FlutterTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(localTimeZone));
+    tz.setLocalLocation(tz.getLocation(localTimeZone.identifier));
 
     final currentTime = tz.TZDateTime.now(tz.local);
     var scheduledTime = tz.TZDateTime(
@@ -81,9 +124,6 @@ class LocalNotificationService {
       body,
       scheduledTime,
       notificationDetails,
-
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       payload: title,

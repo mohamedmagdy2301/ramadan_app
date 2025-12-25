@@ -12,8 +12,8 @@ class JozzListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final jozzList = QuranLibrary().allJoz;
-    final hizbList = QuranLibrary().allHizb;
+    final jozzList = QuranLibrary.allJoz;
+    final hizbList = QuranLibrary.allHizb;
 
     return ListView.builder(
       itemCount: jozzList.length,

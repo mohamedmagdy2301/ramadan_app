@@ -53,7 +53,7 @@ class _AudioAyahWidgetState extends State<AudioAyahWidget> {
     });
     try {
       final ayahs = await _ayahService.getAyahData(
-        widget.ayah.surahNumber,
+        widget.ayah.surahNumber ?? 1,
         widget.selectedValue,
       );
       if (mounted) {

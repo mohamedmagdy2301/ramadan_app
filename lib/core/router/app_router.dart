@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ramadan_app/azkary_app.dart';
-import 'package:ramadan_app/features/settings/presentation/veiw/screens/settings_screen.dart';
+import 'package:ramadan_app/core/di/injection_container.dart';
+import 'package:ramadan_app/features/azkar_reminders/presentation/screens/azkar_reminder_settings_screen.dart';
+import 'package:ramadan_app/features/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:ramadan_app/features/favorites/presentation/view/screens/favorites_screen.dart';
+import 'package:ramadan_app/features/prayer_notifications/presentation/cubit/prayer_notification_cubit.dart';
+import 'package:ramadan_app/features/prayer_notifications/presentation/screens/prayer_notification_settings_screen.dart';
+import 'package:ramadan_app/features/qibla/presentation/view/screens/qibla_screen.dart';
+import 'package:ramadan_app/features/settings/presentation/view/screens/settings_screen.dart';
+import 'package:ramadan_app/features/statistics/presentation/view/screens/statistics_screen.dart';
 
 import '../../features/home/presentation/view/screens/home_screen.dart';
 import 'routes.dart';
@@ -43,6 +52,58 @@ abstract class AppRouter {
               context: context,
               state: state,
               child: const HomeScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.prayerNotificationSettings,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: BlocProvider(
+                create: (context) =>
+                    sl<PrayerNotificationCubit>()..loadSettings(),
+                child: const PrayerNotificationSettingsScreen(),
+              ),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.qibla,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const QiblaScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.favorites,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: BlocProvider(
+                create: (context) => FavoritesCubit(),
+                child: const FavoritesScreen(),
+              ),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.statistics,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const StatisticsScreen(),
+            ),
+      ),
+      GoRoute(
+        path: AppRoutes.azkarReminders,
+        pageBuilder:
+            (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: const AzkarReminderSettingsScreen(),
             ),
       ),
     ],

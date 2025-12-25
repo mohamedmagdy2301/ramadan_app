@@ -44,6 +44,95 @@ class AppStrings {
       "تطبيق أذكار هو تطبيق إسلامي مخصص لتذكير المستخدمين بالأذكار اليومية، الأدعية، وأوقات الصلاة. "
       "يتميز التطبيق بتصميم بسيط وسهل الاستخدام مع تنبيهات مخصصة لتذكيرك بقراءة الأذكار في أوقاتها المحددة. "
       "يمكنك أيضًا تصفح قائمة الأذكار المختلفة، الأدعية من القرآن الكريم والسنة النبوية.";
+
+  // Prayer Notifications
+  static const String prayerNotifications = "إشعارات الصلاة";
+  static const String prayerNotificationsSettings = "إعدادات إشعارات الصلاة";
+  static const String enablePrayerNotifications = "تفعيل إشعارات الصلاة";
+  static const String preAlertTime = "التنبيه المسبق";
+  static const String preAlertDescription = "تنبيه قبل موعد الصلاة بـ";
+  static const String minutes = "دقيقة";
+  static const String noPreAlert = "بدون تنبيه مسبق";
+  static const String enableAllPrayers = "تفعيل الكل";
+  static const String disableAllPrayers = "تعطيل الكل";
+  static const String notificationsScheduled = "تم جدولة الإشعارات";
+  static const String notificationsNotScheduled = "لم يتم جدولة الإشعارات";
+  static const String scheduleNow = "جدولة الآن";
+
+  // Adhan Sound
+  static const String adhanSound = "صوت الأذان";
+  static const String selectAdhan = "اختر صوت الأذان";
+  static const String enableSound = "تفعيل الصوت";
+  static const String preview = "معاينة";
+  static const String stop = "إيقاف";
+  static const String soundSettings = "إعدادات الصوت";
+
+  // Exit Dialog
+  static const String exitApp = "الخروج من التطبيق";
+  static const String exitAppQuestion = "هل ترغب بالخروج من التطبيق؟";
+  static const String cancel = "الغاء";
+  static const String exit = "الخروج";
+
+  // Error Messages
+  static const String noInternetConnection = "لا يوجد اتصال بالإنترنت";
+  static const String reconnect = "إعادة الاتصال";
+  static const String tryAgain = "حاول مرة أخرى";
+
+  // Accessibility
+  static const String accessibility = "إمكانية الوصول";
+  static const String fontSize = "حجم الخط";
+  static const String fontSizeSmall = "صغير";
+  static const String fontSizeNormal = "عادي";
+  static const String fontSizeLarge = "كبير";
+  static const String fontSizeExtraLarge = "كبير جداً";
+
+  // Favorites
+  static const String favorites = "المفضلة";
+  static const String addToFavorites = "إضافة للمفضلة";
+  static const String removeFromFavorites = "إزالة من المفضلة";
+  static const String noFavorites = "لا توجد عناصر في المفضلة";
+  static const String addFavoritesHint = "أضف الأذكار والأدعية المفضلة للوصول السريع";
+  static const String all = "الكل";
+
+  // Hijri Calendar
+  static const String hijriDate = "التاريخ الهجري";
+  static const String upcomingEvents = "المناسبات القادمة";
+  static const String today = "اليوم";
+  static const String daysRemaining = "يوم";
+  static const String hijriCalendar = "التقويم الهجري";
+
+  // Qibla Compass
+  static const String qiblaCompass = "بوصلة القبلة";
+  static const String qiblaDirection = "اتجاه القبلة";
+  static const String distanceToKaaba = "المسافة إلى الكعبة";
+  static const String currentHeading = "الاتجاه الحالي";
+  static const String km = "كم";
+  static const String qiblaAligned = "أنت في اتجاه القبلة";
+  static const String rotateToQibla = "أدر الهاتف نحو القبلة";
+  static const String detectingLocation = "جاري تحديد الموقع...";
+  static const String noCompassSensor = "جهازك لا يحتوي على مستشعر البوصلة";
+  static const String locationPermissionDenied = "يرجى السماح بالوصول إلى الموقع لتحديد اتجاه القبلة";
+  static const String openSettings = "فتح الإعدادات";
+
+  // Statistics
+  static const String statistics = "الإحصائيات";
+  static const String todayStats = "إحصائيات اليوم";
+  static const String weeklySummary = "ملخص الأسبوع";
+  static const String monthlySummary = "ملخص الشهر";
+  static const String allTimeSummary = "الإجمالي";
+  static const String azkarCompleted = "أذكار مكتملة";
+  static const String azkarCount = "عدد الأذكار";
+  static const String quranPagesRead = "صفحات القرآن";
+  static const String quranSurahsRead = "سور القرآن";
+  static const String sabhaCountStats = "عدد التسبيحات";
+  static const String currentStreak = "السلسلة الحالية";
+  static const String longestStreak = "أطول سلسلة";
+  static const String activeDays = "أيام النشاط";
+  static const String consistency = "الانتظام";
+  static const String day = "يوم";
+  static const String days = "أيام";
+  static const String noStatsYet = "لا توجد إحصائيات بعد";
+  static const String startTracking = "ابدأ بقراءة الأذكار والقرآن لتتبع تقدمك";
 }
 
 // class StringsAppEN {

@@ -27,7 +27,7 @@ class _SuraListViewWidgetState extends State<SuraListViewWidget> {
   @override
   void initState() {
     super.initState();
-    surahs = QuranLibrary().getAllSurahs();
+    surahs = QuranLibrary.getAllSurahs();
     filteredSurahs = List.from(surahs);
   }
 

@@ -11,30 +11,12 @@ class ClipboardAyahWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (QuranCtrl.instance.state.fontsSelected2.value == 1) {
-          Clipboard.setData(ClipboardData(text: ayah.text));
-          showMessage(
-            context,
-            type: SnackBarType.success,
-            message: "تم النسخ الى الحافظة",
-          );
-        } else {
-          Clipboard.setData(
-            ClipboardData(
-              text:
-                  QuranCtrl.instance.staticPages[ayah.page - 1].ayahs
-                      .firstWhere(
-                        (element) => element.ayahUQNumber == ayah.ayahUQNumber,
-                      )
-                      .text,
-            ),
-          );
-          showMessage(
-            context,
-            type: SnackBarType.success,
-            message: "تم النسخ الى الحافظة",
-          );
-        }
+        Clipboard.setData(ClipboardData(text: ayah.text));
+        showMessage(
+          context,
+          type: SnackBarType.success,
+          message: "تم النسخ الى الحافظة",
+        );
         QuranCtrl.instance.state.overlayEntry?.remove();
         QuranCtrl.instance.state.overlayEntry = null;
       },

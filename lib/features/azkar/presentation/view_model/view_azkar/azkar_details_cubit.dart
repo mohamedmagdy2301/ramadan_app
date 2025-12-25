@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/di/injection_container.dart';
 import '../../../../../core/local_storage/shared_preferences_manager.dart';
+import '../../../../statistics/data/statistics_local_datasource.dart';
 import 'azkar_details_state.dart';
 
 class AzkarDetailsCubit extends Cubit<AzkarDetailsState> {
   static const _counterKey = "azkar_counters";
   static const _lastResetKey = "last_reset_date";
+  final IStatisticsLocalDatasource _statsDataSource = sl<IStatisticsLocalDatasource>();
 
   AzkarDetailsCubit(List<Map<String, String>>? dataList)
     : super(
@@ -25,6 +28,14 @@ class AzkarDetailsCubit extends Cubit<AzkarDetailsState> {
       currentCounters[index]++;
       emit(state.copyWith(counters: currentCounters));
       await _saveCounters(currentCounters); // Save the updated counters
+
+      // Update statistics
+      await _statsDataSource.incrementAzkarCount();
+
+      // Check if this azkar is completed (reached max count)
+      if (currentCounters[index] == maxCount) {
+        await _statsDataSource.incrementAzkarCompleted();
+      }
     }
   }
 

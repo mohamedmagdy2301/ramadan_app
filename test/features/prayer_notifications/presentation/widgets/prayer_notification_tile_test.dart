@@ -66,7 +66,13 @@ class TestPrayerNotificationTile extends StatelessWidget {
           Switch.adaptive(
             value: isEnabled,
             onChanged: onToggle,
-            activeColor: Theme.of(context).primaryColor,
+            activeTrackColor: Theme.of(context).primaryColor,
+            thumbColor: WidgetStateProperty.resolveWith<Color?>((states) {
+              if (states.contains(WidgetState.selected)) {
+                return Colors.white;
+              }
+              return null;
+            }),
           ),
         ],
       ),

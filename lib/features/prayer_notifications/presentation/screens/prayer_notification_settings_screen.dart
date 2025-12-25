@@ -93,6 +93,8 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
       body: BlocConsumer<PrayerNotificationCubit, PrayerNotificationState>(
         listener: (context, state) {
           if (state is PrayerNotificationLoaded && state.message != null) {
+            // Clear existing SnackBars to avoid duplicate Hero tags
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message!),
@@ -102,6 +104,7 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
             );
           }
           if (state is PrayerNotificationError) {
+            ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(state.message),
@@ -292,6 +295,7 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
               prayerTimesState.prayerTimes.first,
             );
       } else {
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: const Text('يرجى الانتظار حتى يتم تحميل مواقيت الصلاة'),
@@ -301,6 +305,7 @@ class PrayerNotificationSettingsScreen extends StatelessWidget {
         );
       }
     } catch (e) {
+      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('يرجى تحميل مواقيت الصلاة أولاً من الصفحة الرئيسية'),

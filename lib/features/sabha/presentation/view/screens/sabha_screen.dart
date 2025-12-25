@@ -54,58 +54,47 @@ class _SabhaScreenState extends State<SabhaScreen> {
                       builder: (context, constraints) {
                         final isSmallScreen = constraints.maxHeight < 600;
 
-                        return SingleChildScrollView(
-                          physics: const ClampingScrollPhysics(),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                              minHeight: constraints.maxHeight,
+                        return Column(
+                          children: [
+                            SizedBox(height: isSmallScreen ? 10.h : 16.h),
+
+                            // Selected dhikr display
+                            _buildSelectedDhikrDisplay(context, state),
+
+                            SizedBox(height: isSmallScreen ? 8.h : 12.h),
+
+                            // Target selector
+                            TargetSelector(
+                              currentTarget: state.target,
+                              color: state.selectedDhikr.color,
+                              onTargetChanged: _cubit.setTarget,
                             ),
-                            child: IntrinsicHeight(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: isSmallScreen ? 10.h : 16.h),
 
-                                  // Selected dhikr display
-                                  _buildSelectedDhikrDisplay(context, state),
-
-                                  SizedBox(height: isSmallScreen ? 8.h : 12.h),
-
-                                  // Target selector
-                                  TargetSelector(
-                                    currentTarget: state.target,
-                                    color: state.selectedDhikr.color,
-                                    onTargetChanged: _cubit.setTarget,
-                                  ),
-
-                                  Expanded(
-                                    flex: 3,
-                                    child: Center(
-                                      // Main counter circle
-                                      child: DhikrCounterCircle(
-                                        counter: state.counter,
-                                        progress: state.progress,
-                                        color: state.selectedDhikr.color,
-                                        target: state.target,
-                                        isAnimating: state.isAnimating,
-                                        onTap: _cubit.increment,
-                                        dhikrText: state.selectedDhikr.text,
-                                      ),
-                                    ),
-                                  ),
-
-                                  // Dhikr selector section
-                                  _buildSectionTitle(context, 'اختر الذكر'),
-                                  SizedBox(height: 6.h),
-                                  DhikrSelector(
-                                    selectedDhikr: state.selectedDhikr,
-                                    onDhikrSelected: _cubit.selectDhikr,
-                                  ),
-
-                                  SizedBox(height: isSmallScreen ? 12.h : 20.h),
-                                ],
+                            // Main counter circle
+                            Expanded(
+                              child: Center(
+                                child: DhikrCounterCircle(
+                                  counter: state.counter,
+                                  progress: state.progress,
+                                  color: state.selectedDhikr.color,
+                                  target: state.target,
+                                  isAnimating: state.isAnimating,
+                                  onTap: _cubit.increment,
+                                  dhikrText: state.selectedDhikr.text,
+                                ),
                               ),
                             ),
-                          ),
+
+                            // Dhikr selector section
+                            _buildSectionTitle(context, 'اختر الذكر'),
+                            SizedBox(height: 6.h),
+                            DhikrSelector(
+                              selectedDhikr: state.selectedDhikr,
+                              onDhikrSelected: _cubit.selectDhikr,
+                            ),
+
+                            SizedBox(height: isSmallScreen ? 12.h : 20.h),
+                          ],
                         );
                       },
                     ),
